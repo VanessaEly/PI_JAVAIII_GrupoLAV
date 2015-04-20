@@ -1,13 +1,21 @@
 package infnet.loja.veiculos;
 
+import infnet.loja.enums.*;
+
 public class Carro 
 {
+	/**
+	 * Classe Carro define um carro
+	 *@author Antônio, Leandro e Vanessa
+	 * 
+	**/
+	
 	String chassi;
-	String montadora;
-	String modelo;
-	String tipo; 
-	String cor;
+	Montadora montadora;
+	ModeloCarro modelo;
+	TipoCarro tipo; 
+	Cor cor;
 	float motorizacao;
-	String cambio;
-	float preço;
+	Cambio cambio;
+	float preco;
 }
