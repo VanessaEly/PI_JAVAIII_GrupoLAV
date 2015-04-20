@@ -1,6 +1,7 @@
 package infnet.loja.enums;
 
-public enum Montadora {
+public enum Montadora 
+{
 	VOLKSWAGEN(1), 
 	FORD(2), 
 	CHEVROLET(3), 
@@ -12,17 +13,18 @@ public enum Montadora {
 
 	private int indice;
 
-	private Montadora(int indice) {
+	private Montadora(int indice) 
+	{
 		this.setIndice(indice);
 	}
-
 	
-	public int getIndice() {
+	public int getIndice() 
+	{
 		return indice;
 	}
 
-	public void setIndice(int indice) {
+	public void setIndice(int indice) 
+	{
 		this.indice = indice;
 	}
-	
 }
