@@ -5,6 +5,11 @@ import java.util.ArrayList;
 
 public class Loja 
 {
+	/**
+	 * Classe Loja define uma loja e seu estoque
+	 *@author Antonio, Leandro e Vanessa
+	 * 
+	**/
 	String endereco;
 	String nome;
 	ArrayList <Carro> estoqueDeCarros;
