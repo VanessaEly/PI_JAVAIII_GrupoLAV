@@ -1,13 +1,22 @@
-package infnet.loja.veiculos
+
+package infnet.loja.veiculos;
+
+import infnet.loja.enums.*;
 
 public class Motocicleta 
 {
+	/**
+	 * Classe Motocicleta define uma moto
+	 *@author Antônio, Leandro e Vanessa
+	 * 
+	**/
+	
 	String chassi;
-	String montadora;
-	String modelo;
-	String tipo;
-	String cor;
+	Montadora montadora;
+	ModeloMoto modelo;
+	TipoMoto tipo;
+	Cor cor;
 	int cilindrada;
 	int capacidadeDoTanque; 
-	float preço;
+	float preco;
 }
