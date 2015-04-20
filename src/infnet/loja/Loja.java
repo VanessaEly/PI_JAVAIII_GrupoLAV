@@ -1,6 +1,6 @@
 package infnet.loja;
 
-import infnet.loja.*;
+import infnet.loja.veiculos.*;
 import java.util.ArrayList;
 
 public class Loja 
