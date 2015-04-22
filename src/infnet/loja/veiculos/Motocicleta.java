@@ -17,6 +17,19 @@ public class Motocicleta
 	int cilindrada;
 	int capacidadeDoTanque; 
 	float preco;
+//-------------------------ADICIONANDO METODOS CONSTRUTORES-----------------------------------------------------------
+	public Carro(String chassi, Montadora montadora, ModeloMoto modelo, TipoMoto tipo, Cor cor, 
+		     int cilindrada, int capacidadeDoTanque, float preco) 
+	{
+		this.chassi      	= chassi;
+		this.montadora   	= montadora;	
+		this.modelo     	= modelo;
+		this.tipo        	= tipo;
+		this.cor                = cor;
+		this.cilindrada         = cilindrada;
+		this.capacidadeDoTanque = capacidadeDoTanque;
+		this.preco              = preco;
+	}
 //-------------------------EQUALS-------------------------------------------------------------------------------------
 	public boolean equals(Object obj) {
 		if (this == obj)
