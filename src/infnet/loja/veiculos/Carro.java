@@ -4,10 +4,10 @@ import infnet.loja.enums.*;
 
 public class Carro 
 {
-        /************************************** /
-	/* Classe Motocicleta define uma moto** / 
-	/*@author AntÃ´nio, Leandro e Vanessa** /
-	/***************************************/
+        /***************************************** /
+	/** Classe Carro define um carro        ** / 
+	/** @author Antonio, Leandro e Vanessa ** /
+	/******************************************/
 //-------------------------DECLARAÇÃO DE VARIAVEIS--------------------------------------------------------------------
 	String chassi;
 	Montadora montadora;
@@ -19,7 +19,7 @@ public class Carro
 	float preco;
 //-------------------------ADICIONANDO METODOS CONSTRUTORES-----------------------------------------------------------
 	public Carro(String chassi, Montadora montadora, ModeloCarro modelo, TipoCarro tipo, Cor cor, 
-		     float motoricao, Cambio cambio, float preco) 
+		     float motorizacao, Cambio cambio, float preco) 
 	{
 		this.chassi      = chassi;
 		this.montadora   = montadora;	
