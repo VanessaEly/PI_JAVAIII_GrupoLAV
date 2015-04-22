@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 public class Loja 
 {
-	/************************************** /
-	/* Classe Motocicleta define uma moto** / 
-	/*@author AntÃ´nio, Leandro e Vanessa** /
-	/***************************************/
+	/******************************************* /
+	/** Classe Loja define loja e seu estoque ** / 
+	/** @author Antonio, Leandro e Vanessa    ** /
+	/********************************************/
 //-------------------------DECLARAÇÃO DE VARIAVEIS--------------------------------------------------------------------
 	String endereco;
 	String nome;
