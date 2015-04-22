@@ -17,6 +17,18 @@ public class Carro
 	float motorizacao;
 	Cambio cambio;
 	float preco;
+//-------------------------ADICIONANDO METODOS CONSTRUTORES-----------------------------------------------------------
+	public Carro(String chassi, Montadora montadora, ModeloCarro modelo, TipoCarro tipo, Cor cor, 
+		     float motoricao, float preco) 
+	{
+		this.chassi      = chassi;
+		this.montadora   = montadora;	
+		this.modelo      = modelo;
+		this.tipo        = tipo;
+		this.cor         = cor;
+		this.motorizacao = motorizacao;
+		this.preco       = preco;
+	}
 //-------------------------EQUALS-------------------------------------------------------------------------------------
 	public boolean equals(Object obj) {
 		if (this == obj)
