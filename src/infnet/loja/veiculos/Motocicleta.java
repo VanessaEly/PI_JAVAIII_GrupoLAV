@@ -18,8 +18,8 @@ public class Motocicleta
 	int capacidadeDoTanque; 
 	float preco;
 //-------------------------ADICIONANDO METODOS CONSTRUTORES-----------------------------------------------------------
-	public Carro(String chassi, Montadora montadora, ModeloMoto modelo, TipoMoto tipo, Cor cor, 
-		     int cilindrada, int capacidadeDoTanque, float preco) 
+	public Motocicleta(String chassi, Montadora montadora, ModeloMoto modelo, TipoMoto tipo, Cor cor, 
+		           int cilindrada, int capacidadeDoTanque, float preco) 
 	{
 		this.chassi      	= chassi;
 		this.montadora   	= montadora;	
