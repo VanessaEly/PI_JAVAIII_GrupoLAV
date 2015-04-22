@@ -19,7 +19,7 @@ public class Carro
 	float preco;
 //-------------------------ADICIONANDO METODOS CONSTRUTORES-----------------------------------------------------------
 	public Carro(String chassi, Montadora montadora, ModeloCarro modelo, TipoCarro tipo, Cor cor, 
-		     float motoricao, float preco) 
+		     float motoricao, Cambio cambio, float preco) 
 	{
 		this.chassi      = chassi;
 		this.montadora   = montadora;	
@@ -27,6 +27,7 @@ public class Carro
 		this.tipo        = tipo;
 		this.cor         = cor;
 		this.motorizacao = motorizacao;
+		this.cambio      = cambio;
 		this.preco       = preco;
 	}
 //-------------------------EQUALS-------------------------------------------------------------------------------------
