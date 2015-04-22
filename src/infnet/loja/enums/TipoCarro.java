@@ -8,7 +8,8 @@ public enum TipoCarro
 	
 	private int indice;
 
-	private TipoCarro(int indice) 
+	private TipoCarro(int indice)
+	{
 	
 		this.indice = indice;
 	}
@@ -19,7 +20,7 @@ public enum TipoCarro
 	}
 
 	public void setIndice(int indice) 
-	
+	{
 		this.indice = indice;
 	}
 }
