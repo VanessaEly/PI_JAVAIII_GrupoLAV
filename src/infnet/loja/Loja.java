@@ -27,7 +27,7 @@ public class Loja
 	//-------------------------METODOS--------------------------------------------------------------------------------
 	
 	//-------------------------ADICIONAR CARRO---------------------------------------------------------------------------
-	public void adicionarCarro(Carro car)
+	public void adicionarCarro()
 	{
 		Montadora   _montadora   = null;
 		ModeloCarro _modelo      = null;
@@ -37,28 +37,81 @@ public class Loja
 		float 		_motorizacao = 0; 
 		String 		_chassi      = "";
 		float 		_preco 		 = 0;
+		int aux;
 	
 		Scanner scan = new Scanner(System.in);
 		
-		System.out.println("Digite numero da montadora: (VOLKSWAGEN(1),FORD(2),CHEVROLET(3),FIAT(4))");
-			_montadora = Montadora.values()[scan.nextInt()];
+		System.out.println("Digite o numero da montadora: (VOLKSWAGEN(1),FORD(2),CHEVROLET(3),FIAT(4))");
+			aux = scan.nextInt();
+			while (aux <= 0 || aux >=5)
+			{
+				System.out.println("Valor Inválido. Insira outro valor:");
+				aux = scan.nextInt();
+			}
+			for (Montadora m: Montadora.values())
+			{
+				if (m.getIndice() == aux)
+					_montadora = m;
+			}
+			
 		System.out.println("Digite numero do modelo: 	(FOX(1),GOL(2),CELTA(3))");
-			_modelo = ModeloCarro.values()[scan.nextInt()];
+		aux = scan.nextInt();
+		while (aux <= 0 || aux >=4)
+		{
+			System.out.println("Valor Inválido. Insira outro valor:");
+			aux = scan.nextInt();
+		}
+		for (ModeloCarro m: ModeloCarro.values())
+		{
+			if (m.getIndice() == aux)
+				_modelo = m;
+		}
 		System.out.println("Digite numero do tipo:      (SEDAN (1),HATCH (2),SUV (3))");
-			_tipo = TipoCarro.values()[scan.nextInt()];
+		aux = scan.nextInt();
+		while (aux <= 0 || aux >=4)
+		{
+			System.out.println("Valor Inválido. Insira outro valor:");
+			aux = scan.nextInt();
+		}
+		for (TipoCarro m: TipoCarro.values())
+		{
+			if (m.getIndice() == aux)
+				_tipo = m;
+		}
 		System.out.println("Digite numero do cambio:    (MANUAL(1),SEMI (2),AUTO (3))");
-			_cambio = Cambio.values()[scan.nextInt()];
+		aux = scan.nextInt();
+		while (aux <= 0 || aux >=4)
+		{
+			System.out.println("Valor Inválido. Insira outro valor:");
+			aux = scan.nextInt();
+		}
+		for (Cambio m: Cambio.values())
+		{
+			if (m.getIndice() == aux)
+				_cambio = m;
+		}
 		System.out.println("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))");
-			_cor = Cor.values()[scan.nextInt()];
-		System.out.println("Digite numero do motor:		(1.0, 1.4, 1.6, 1.8, 2.0)");
+		aux = scan.nextInt();
+		while (aux <= 0 || aux >=7)
+		{
+			System.out.println("Valor Inválido. Insira outro valor:");
+			aux = scan.nextInt();
+		}
+		for (Cor m: Cor.values())
+		{
+			if (m.getIndice() == aux)
+				_cor = m;
+		}
+		System.out.println("Digite numero do motor:		(1,0/1,4/1,6/1,8/2,0)");
 			_motorizacao = scan.nextFloat();
 		System.out.println("Digite o chassi");
 			_chassi = scan.next();
-		System.out.println("Digite o preço do carro");
+		System.out.println("Digite o preco do carro");
 			_preco = scan.nextFloat();
 				
 		Carro carroaux = new Carro(_chassi, _montadora, _modelo, _tipo, _cor, _motorizacao, _cambio, _preco);
 		estoqueDeCarros.add(carroaux);
+		scan.close();
 	}
 	
 //-------------------------ADICIONAR MOTO----------------------------------------------------------------------------
