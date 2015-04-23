@@ -8,7 +8,7 @@ public class Carro
 	/** Classe Carro define um carro        ** / 
 	/** @author Antonio, Leandro e Vanessa ** /
 	/******************************************/
-//-------------------------DECLARAÇÃO DE VARIAVEIS--------------------------------------------------------------------
+//-------------------------DECLARACAO DE VARIAVEIS--------------------------------------------------------------------
 	String chassi;
 	Montadora montadora;
 	ModeloCarro modelo;
@@ -17,6 +17,7 @@ public class Carro
 	float motorizacao;
 	Cambio cambio;
 	float preco;
+	
 //-------------------------ADICIONANDO METODOS CONSTRUTORES-----------------------------------------------------------
 	public Carro(String chassi, Montadora montadora, ModeloCarro modelo, TipoCarro tipo, Cor cor, 
 		     float motorizacao, Cambio cambio, float preco) 
@@ -30,6 +31,7 @@ public class Carro
 		this.cambio      = cambio;
 		this.preco       = preco;
 	}
+
 //-------------------------EQUALS-------------------------------------------------------------------------------------
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -61,6 +63,7 @@ public class Carro
 			return false;
 		return true;
 	}
+
 //-------------------------GETTERS AND SETTERS------------------------------------------------------------------------
 	public String      getChassi() {
 		return chassi;
@@ -109,5 +112,14 @@ public class Carro
 	}
 	public void        setPreco(float preco) {
 		this.preco = preco;
+	}
+
+	
+	//----------------------------TOSTRING------------------------------------------------------------------------------
+	public String toString() {
+		return "Chassi = " + chassi + " Montadora = " + montadora
+				+ " Modelo = " + modelo + " Tipo = " + tipo + " Cor = " + cor
+				+ " Motorizacao = " + motorizacao + " Cambio = " + cambio
+				+ " Preco = " + preco + ".";
 	}
 }
