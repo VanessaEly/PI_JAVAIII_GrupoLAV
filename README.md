@@ -1,5 +1,8 @@
 # PI_JAVAIII_GrupoLAV
 Projeto Integrado de JavaIII para AV1
+
+Integrantes: Antônio Laurindo, Leandro Varella e Vanessa Ely
+
 # TAREFA
 Os alunos devem se dividir em grupos de três alunos
 
