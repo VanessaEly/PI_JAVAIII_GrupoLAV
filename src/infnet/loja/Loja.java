@@ -44,10 +44,14 @@ public class Loja
 			}
 		}
 
-	
+	//------------removerCarro();  Remove um carro ao inventario, recebendo os dados do usuario------------------------
+	public void removerCarro(Carro car)
+	{
+		estoqueDeCarros.remove(car);
+	}
 	//pesquisarCarro(...);  Retorna um carro, utilizando os atributos passados, caso exista no inventário. 
 	//buscarCarro(Chassi); Retorna um carro, caso exista no estoque um com o Chassi indicado. 
-	//removerCarro();  Remove um carro ao inventário, recebendo os dados do usuário
+	
 	//adicionarMoto(); Adiciona uma moto ao inventário, recebendo os dados do usuário
 	//pesquisarMoto(...); Retorna um carro, utilizando os atributos passados, caso exista no inventário. 
 	//buscarMoto(Chassi); Retorna uma moto, caso exista no estoque uma com o Chassi indicado. 
