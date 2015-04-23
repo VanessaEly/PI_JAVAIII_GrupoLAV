@@ -13,10 +13,10 @@ public class Loja
 	/********************************************/
 
 	//-------------------------DECLARACAO DE VARIAVEIS--------------------------------------------------------------------
-	String endereco;
-	String nome;
-	ArrayList <Carro	estoqueDeCarros       = new ArrayList <Carro>();
-	ArrayList <Motocicleta> estoqueDeMotocicletas = new ArrayList <Motocicleta>();;
+	private String endereco;
+	private String nome;
+	private ArrayList <Carro>	estoqueDeCarros       = new ArrayList <Carro>();
+	private ArrayList <Motocicleta> estoqueDeMotocicletas = new ArrayList <Motocicleta>();;
 	Scanner scan = new Scanner(System.in);
 
 	//-------------------------ADICIONANDO METODO CONSTRUTOR-----------------------------------------------------------
