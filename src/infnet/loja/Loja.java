@@ -1,7 +1,8 @@
 package infnet.loja;
 
 import infnet.loja.veiculos.*;
-
+import infnet.loja.enums.*;
+import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Loja 
@@ -14,8 +15,8 @@ public class Loja
 	//-------------------------DECLARACAO DE VARIAVEIS--------------------------------------------------------------------
 	String endereco;
 	String nome;
-	ArrayList <Carro> estoqueDeCarros = new ArrayList <Carro>();
-	ArrayList <Motocicleta> estoqueDeMotocicletas;
+	ArrayList <Carro	estoqueDeCarros       = new ArrayList <Carro>();
+	ArrayList <Motocicleta> estoqueDeMotocicletas = new ArrayList <Motocicleta>();;
 
 	//-------------------------ADICIONANDO METODO CONSTRUTOR-----------------------------------------------------------
 	public Loja(String nome, String endereco) {
@@ -123,7 +124,7 @@ public class Loja
 	}
 	
 	//------------removerMotocileta();  Remove uma moto do inventario, recebendo os dados do usuario------------------------
-	public void removerMotocicleta(Motocileta moto)	{
+	public void removerMotocicleta(Motocicleta moto)	{
 		estoqueDeMotocicletas.remove(moto);
 	}
 	
