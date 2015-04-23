@@ -6,7 +6,7 @@ public class Motocicleta
 {
         /************************************** /
 	/* Classe Motocicleta define uma moto** / 
-	/*@author AntÃ´nio, Leandro e Vanessa** /
+	/* @author Antonio, Leandro e Vanessa** /
 	/***************************************/
 //-------------------------DECLARAÇÃO DE VARIAVEIS--------------------------------------------------------------------
 	String chassi;
@@ -108,5 +108,11 @@ public class Motocicleta
 	}
 	public void       setPreco(float preco) {
 		this.preco = preco;
+	}
+	public String toString() {
+		return   "Chassi = " + chassi 			    + " Montadora = " + montadora
+				+ " Modelo = " + modelo 			+ " Tipo = "      + tipo 
+				+ " Cor = "    + cor				+ " Cilindrada = " + cilindrada 
+				+ " Tanque = " + capacidadeDoTanque + " Preco = " + preco + ".";
 	}
 }
