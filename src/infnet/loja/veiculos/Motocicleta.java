@@ -9,14 +9,14 @@ public class Motocicleta
 	/* @author Antonio, Leandro e Vanessa** /
 	/***************************************/
 //-------------------------DECLARAÇÃO DE VARIAVEIS--------------------------------------------------------------------
-	String chassi;
-	Montadora montadora;
-	ModeloMoto modelo;
-	TipoMoto tipo;
-	Cor cor;
-	int cilindrada;
-	int capacidadeDoTanque; 
-	float preco;
+	private String chassi;
+	private Montadora montadora;
+	private ModeloMoto modelo;
+	private TipoMoto tipo;
+	private Cor cor;
+	private int cilindrada;
+	private int capacidadeDoTanque; 
+	private float preco;
 //-------------------------ADICIONANDO METODOS CONSTRUTORES-----------------------------------------------------------
 	public Motocicleta(String chassi, Montadora montadora, ModeloMoto modelo, TipoMoto tipo, Cor cor, 
 		           int cilindrada, int capacidadeDoTanque, float preco) 

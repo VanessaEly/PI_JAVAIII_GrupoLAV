@@ -9,14 +9,14 @@ public class Carro
 	/** @author Antonio, Leandro e Vanessa ** /
 	/******************************************/
 //-------------------------DECLARACAO DE VARIAVEIS--------------------------------------------------------------------
-	String chassi;
-	Montadora montadora;
-	ModeloCarro modelo;
-	TipoCarro tipo; 
-	Cor cor;
-	float motorizacao;
-	Cambio cambio;
-	float preco;
+	private String chassi;
+	private Montadora montadora;
+	private ModeloCarro modelo;
+	private TipoCarro tipo; 
+	private Cor cor;
+	private float motorizacao;
+	private Cambio cambio;
+	private float preco;
 	
 //-------------------------ADICIONANDO METODOS CONSTRUTORES-----------------------------------------------------------
 	public Carro(String chassi, Montadora montadora, ModeloCarro modelo, TipoCarro tipo, Cor cor, 

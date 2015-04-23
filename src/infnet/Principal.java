@@ -1,8 +1,6 @@
 package infnet;
 
 import infnet.loja.Loja;
-import infnet.loja.enums.*;
-import infnet.loja.veiculos.*;
 
 public class Principal 
 {
