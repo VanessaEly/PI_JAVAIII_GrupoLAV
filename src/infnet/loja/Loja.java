@@ -25,14 +25,74 @@ public class Loja
 	
 	//-------------------------METODOS--------------------------------------------------------------------------------
 	
-	//-----------ADICIONARCARRO();  Adiciona um carro ao inventario, recebendo os dados do usuario--------------------
-	public void adicionarCarro(Carro car){
-		estoqueDeCarros.add(car);
+	//-------------------------ADICIONAR CARRO---------------------------------------------------------------------------
+	public void adicionarCarro(Carro car)
+	{
+		Montadora   _montadora   = null;
+		ModeloCarro _modelo      = null;
+		TipoCarro   _tipo 	     = null;
+		Cambio 		_cambio      = null;
+		Cor 		_cor 	     = null;
+		float 		_motorizacao = 0; 
+		String 		_chassi      = "";
+		float 		_preco 		 = 0;
+	
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.println("Digite numero da montadora: (VOLKSWAGEN(1),FORD(2),CHEVROLET(3),FIAT(4))");
+			_montadora = Montadora.values()[scan.nextInt()];
+		System.out.println("Digite numero do modelo: 	(FOX(1),GOL(2),CELTA(3))");
+			_modelo = ModeloCarro.values()[scan.nextInt()];
+		System.out.println("Digite numero do tipo:      (SEDAN (1),HATCH (2),SUV (3))");
+			_tipo = TipoCarro.values()[scan.nextInt()];
+		System.out.println("Digite numero do cambio:    (MANUAL(1),SEMI (2),AUTO (3))");
+			_cambio = Cambio.values()[scan.nextInt()];
+		System.out.println("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))");
+			_cor = Cor.values()[scan.nextInt()];
+		System.out.println("Digite numero do motor:		(1.0, 1.4, 1.6, 1.8, 2.0)");
+			_motorizacao = scan.nextFloat();
+		System.out.println("Digite o chassi");
+			_chassi = scan.next();
+		System.out.println("Digite o preço do carro");
+			_preco = scan.nextFloat();
+				
+		Carro carroaux = new Carro(_chassi, _montadora, _modelo, _tipo, _cor, _motorizacao, _cambio, _preco);
+		estoqueDeCarros.add(carroaux);
 	}
 	
-	//-----------ADICIONARMOTO();  Adiciona uma moto ao inventario, recebendo os dados do usuario---------------------
-	public void adicionarMotocicletas(Motocicleta moto){
-		estoqueDeMotocicletas.add(moto);
+//-------------------------ADICIONAR MOTO----------------------------------------------------------------------------
+	public void adicionarMoto(Motocicleta moto)
+	{
+		Montadora   _montadora          = null;
+		ModeloMoto  _modelo             = null;
+		TipoMoto    _tipo 	    	    = null;
+		int 		_capacidadeDoTanque = 0;
+		Cor 		_cor 	            = null;
+		int 		_cilindradas 		= 0; 
+		String 		_chassi      		= "";
+		float 		_preco 		 		= 0;
+	
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.println("Digite numero da montadora: (HONDA(5),SUZUKI(6),YAMAHA(7),KAWASAKI(8))");
+			_montadora = Montadora.values()[scan.nextInt()];
+		System.out.println("Digite numero do modelo: 	(CBR(1),NINJA(2),CB_HORNET(3))");
+			_modelo = ModeloMoto.values()[scan.nextInt()];
+		System.out.println("Digite numero do tipo:      (CHOPPER (1),SCOOTER (2),ESPORTIVO (3))");
+			_tipo = TipoMoto.values()[scan.nextInt()];
+		System.out.println("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))");
+			_cor = Cor.values()[scan.nextInt()];
+		System.out.println("Digite numero de cilindradas:	(50cc, 60cc, 100cc, 120cc, 150cc)");
+			_cilindradas = scan.nextInt();
+		System.out.println("Digite a capacidade do Tanque:");
+			_capacidadeDoTanque = scan.nextInt();
+		System.out.println("Digite o chassi");
+			_chassi = scan.next();
+		System.out.println("Digite o preço do carro");
+			_preco = scan.nextFloat();
+				
+		Motocicleta motoaux = new Motocicleta (_chassi, _montadora, _modelo, _tipo, _cor, _cilindradas, _capacidadeDoTanque, _preco);
+		estoqueDeMotocicletas.add(motoaux);
 	}
 	
 	//----------------------listarEstoquedeCarros()--------------------------------------------------------------------
