@@ -17,6 +17,7 @@ public class Loja
 	String nome;
 	ArrayList <Carro	estoqueDeCarros       = new ArrayList <Carro>();
 	ArrayList <Motocicleta> estoqueDeMotocicletas = new ArrayList <Motocicleta>();;
+	Scanner scan = new Scanner(System.in);
 
 	//-------------------------ADICIONANDO METODO CONSTRUTOR-----------------------------------------------------------
 	public Loja(String nome, String endereco) {
@@ -38,8 +39,6 @@ public class Loja
 		String 		_chassi      = "";
 		float 		_preco 		 = 0;
 		int aux;
-	
-		Scanner scan = new Scanner(System.in);
 		
 		System.out.println("Digite o numero da montadora: (VOLKSWAGEN(1),FORD(2),CHEVROLET(3),FIAT(4))");
 			aux = scan.nextInt();
@@ -111,11 +110,10 @@ public class Loja
 				
 		Carro carroaux = new Carro(_chassi, _montadora, _modelo, _tipo, _cor, _motorizacao, _cambio, _preco);
 		estoqueDeCarros.add(carroaux);
-		scan.close();
 	}
 	
 //-------------------------ADICIONAR MOTO----------------------------------------------------------------------------
-	public void adicionarMoto(Motocicleta moto)
+	public void adicionarMoto()
 	{
 		Montadora   _montadora          = null;
 		ModeloMoto  _modelo             = null;
@@ -125,15 +123,44 @@ public class Loja
 		int 		_cilindradas 		= 0; 
 		String 		_chassi      		= "";
 		float 		_preco 		 		= 0;
-	
-		Scanner scan = new Scanner(System.in);
+		int aux;
 		
 		System.out.println("Digite numero da montadora: (HONDA(5),SUZUKI(6),YAMAHA(7),KAWASAKI(8))");
-			_montadora = Montadora.values()[scan.nextInt()];
+		aux = scan.nextInt();
+		while (aux <= 4 || aux >=9)
+		{
+			System.out.println("Valor Inválido. Insira outro valor:");
+			aux = scan.nextInt();
+		}
+		for (Montadora m: Montadora.values())
+		{
+			if (m.getIndice() == aux)
+				_montadora = m;
+		}
 		System.out.println("Digite numero do modelo: 	(CBR(1),NINJA(2),CB_HORNET(3))");
-			_modelo = ModeloMoto.values()[scan.nextInt()];
+		aux = scan.nextInt();
+		while (aux <= 0 || aux >=4)
+		{
+			System.out.println("Valor Inválido. Insira outro valor:");
+			aux = scan.nextInt();
+		}
+		for (ModeloMoto m: ModeloMoto.values())
+		{
+			if (m.getIndice() == aux)
+				_modelo = m;
+		}
 		System.out.println("Digite numero do tipo:      (CHOPPER (1),SCOOTER (2),ESPORTIVO (3))");
-			_tipo = TipoMoto.values()[scan.nextInt()];
+		aux = scan.nextInt();
+		while (aux <= 0 || aux >=4)
+		{
+			System.out.println("Valor Inválido. Insira outro valor:");
+			aux = scan.nextInt();
+		}
+		for (TipoMoto m: TipoMoto.values())
+		{
+			if (m.getIndice() == aux)
+				_tipo = m;
+		}
 		System.out.println("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))");
 			_cor = Cor.values()[scan.nextInt()];
 		System.out.println("Digite numero de cilindradas:	(50cc, 60cc, 100cc, 120cc, 150cc)");
@@ -142,13 +169,13 @@ public class Loja
 			_capacidadeDoTanque = scan.nextInt();
 		System.out.println("Digite o chassi");
 			_chassi = scan.next();
-		System.out.println("Digite o preço do carro");
+		System.out.println("Digite o preco da Moto");
 			_preco = scan.nextFloat();
 				
 		Motocicleta motoaux = new Motocicleta (_chassi, _montadora, _modelo, _tipo, _cor, _cilindradas, _capacidadeDoTanque, _preco);
 		estoqueDeMotocicletas.add(motoaux);
+		scan.close();
 	}
-	
 	//----------------------listarEstoquedeCarros()--------------------------------------------------------------------
 	public void listarEstoqueDeCarros (){
 			int i = 1;
