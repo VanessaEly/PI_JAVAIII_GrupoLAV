@@ -18,8 +18,7 @@ public class Loja
 	ArrayList <Motocicleta> estoqueDeMotocicletas;
 
 	//-------------------------ADICIONANDO METODO CONSTRUTOR-----------------------------------------------------------
-	public Loja(String nome, String endereco) 
-	{
+	public Loja(String nome, String endereco) {
 		this.endereco              = endereco;
 		this.nome                  = nome;
 	}
@@ -27,14 +26,17 @@ public class Loja
 	//-------------------------METODOS--------------------------------------------------------------------------------
 	
 	//-----------ADICIONARCARRO();  Adiciona um carro ao inventario, recebendo os dados do usuario--------------------
-	public void adicionarCarro(Carro car)
-	{
+	public void adicionarCarro(Carro car){
 		estoqueDeCarros.add(car);
 	}
 	
+	//-----------ADICIONARMOTO();  Adiciona uma moto ao inventario, recebendo os dados do usuario---------------------
+	public void adicionarMotocicletas(Motocicleta moto){
+		estoqueDeMotocicletas.add(moto);
+	}
+	
 	//----------------------listarEstoquedeCarros()--------------------------------------------------------------------
-		public void listarEstoqueDeCarros ()
-		{
+	public void listarEstoqueDeCarros (){
 			int i = 1;
 			for (Carro c: estoqueDeCarros)
 			{
@@ -43,12 +45,30 @@ public class Loja
 				i++;
 			}
 		}
+		
+	//----------------------listarEstoquedeMotos()--------------------------------------------------------------------
+	public void listarEstoqueDeMotocicletas (){
+			int i = 1;
+			for (Motocicleta d: estoqueDeMotocicletas)
+			{
+				System.out.println("Moto " + i);
+				System.out.println(d);
+				i++;
+			}
+		}
 
-	//------------removerCarro();  Remove um carro ao inventario, recebendo os dados do usuario------------------------
-	public void removerCarro(Carro car)
-	{
+	//------------removerCarro();  Remove um carro do inventario, recebendo os dados do usuario------------------------
+	public void removerCarro(Carro car){
 		estoqueDeCarros.remove(car);
 	}
+	
+	//------------removerMotocileta();  Remove uma moto do inventario, recebendo os dados do usuario------------------------
+	public void removerMotocicleta(Motocileta moto)	{
+		estoqueDeMotocicletas.remove(moto);
+	}
+	
+	//------------To Do--------------------------------------------------------------------------------------------
+	
 	//pesquisarCarro(...);  Retorna um carro, utilizando os atributos passados, caso exista no inventário. 
 	//buscarCarro(Chassi); Retorna um carro, caso exista no estoque um com o Chassi indicado. 
 	
@@ -60,8 +80,7 @@ public class Loja
 	//listarEstoquedeMotos() 
 	
 	//-------------------------EQUALS-------------------------------------------------------------------------------------
-	public boolean equals(Object obj) 
-	{
+	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -69,37 +88,28 @@ public class Loja
 		if (getClass() != obj.getClass())
 			return false;
 		Loja other = (Loja) obj;
-		if (endereco == null) 
-		{
+		if (endereco == null) {
 			if (other.endereco != null)
 				return false;
-		} 
-		else if (!endereco.equals(other.endereco))
+		} else if (!endereco.equals(other.endereco))
 			return false;
-		if (estoqueDeCarros == null) 
-		{
+		if (estoqueDeCarros == null) {
 			if (other.estoqueDeCarros != null)
 				return false;
-		} 
-		else if (!estoqueDeCarros.equals(other.estoqueDeCarros))
+		} else if (!estoqueDeCarros.equals(other.estoqueDeCarros))
 			return false;
-		if (estoqueDeMotocicletas == null) 
-		{
+		if (estoqueDeMotocicletas == null) {
 			if (other.estoqueDeMotocicletas != null)
 				return false;
-		} 
-		else if (!estoqueDeMotocicletas.equals(other.estoqueDeMotocicletas))
+		} else if (!estoqueDeMotocicletas.equals(other.estoqueDeMotocicletas))
 			return false;
-		if (nome == null) 
-		{
+		if (nome == null) {
 			if (other.nome != null)
 				return false;
-		} 
-		else if (!nome.equals(other.nome))
+		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
 	}
-
 	//-------------------------GETTERS AND SETTERS------------------------------------------------------------------------
 	public String                 getNome() {
 		return nome;
@@ -122,7 +132,7 @@ public class Loja
 	public ArrayList<Motocicleta> getEstoqueDeMotocicletas() {
 		return estoqueDeMotocicletas;
 	}
-	public void                   setEstoqueDeMotocicletas(ArrayList<Motocicleta> estoqueDeMotocicletas) {
+	public void 		      setEstoqueDeMotocicletas(ArrayList<Motocicleta> estoqueDeMotocicletas) {
 		this.estoqueDeMotocicletas = estoqueDeMotocicletas;
 	}
 
