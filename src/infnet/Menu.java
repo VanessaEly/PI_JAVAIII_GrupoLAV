@@ -84,6 +84,7 @@ public class Menu
 				break;
 			case 4:
 				JOptionPane.showMessageDialog(null,"Listar Estoque de Motos");
+				Loja.listarEstoqueDeMotocicletas();
 				break;
 			case 5:
 				Menu.chamarMenu();
