@@ -72,6 +72,7 @@ public class Menu
 		{
 			case 1: 
 				JOptionPane.showMessageDialog(null,"Adicionar Moto");
+				Loja.adicionarMoto();
 				break;
 			case 2:
 				JOptionPane.showMessageDialog(null,"Pesquisar Moto");
