@@ -278,21 +278,21 @@ public class Loja
 	//GETTERS
 	/**
 	 * getNome Retorna o nome da Loja
-	 * @return nome
+	 * @return nome nome da loja
 	 */
 	public String                 getNome() {
 		return nome;
 	}
 	/**
 	 * getEndereco Retorna o endereco da loja
-	 * @return endereco
+	 * @return endereco endereco da loja
 	 */
 	public String                 getEndereco() {
 		return endereco;
 	}
 	/**
 	 * getEstoqueDeCarros retorna o ArrayList do estoque de carros da loja
-	 * @return estoqueDeCarros
+	 * @return estoqueDeCarros estoque de carros da loja
 	 */
 	public ArrayList<Carro>       getEstoqueDeCarros() {
 		return estoqueDeCarros;
@@ -300,7 +300,7 @@ public class Loja
 	
 	/**
 	 * getEstoqueDeMotocicletas retorna o ArrayList do estoque de motocicletas da loja
-	 * @return estoqueDeMotocicletas
+	 * @return estoqueDeMotocicletas estoque de motocicletas da loja
 	 */
 	public ArrayList<Motocicleta> getEstoqueDeMotocicletas() {
 		return estoqueDeMotocicletas;
@@ -309,7 +309,7 @@ public class Loja
 	//SETTERS
 	/**
 	 * setNome altera o valor da variavel nome para o que foi passado pelo parametro nome
-	 * @param nome
+	 * @param nome nome da loja
 	 */
 	public void                   setNome(String nome) {
 		this.nome = nome;
@@ -317,7 +317,7 @@ public class Loja
 
 	/**
 	 * setEndereco altera o valor da variavel endereco para o que foi passado pelo parametro endereco
-	 * @param endereco
+	 * @param endereco endereco da loja
 	 */
 
 	public void                   setEndereco(String endereco) {
@@ -326,7 +326,7 @@ public class Loja
 
 	/**
 	 * setEstoqueDeCarros altera os valores da ArrayList estoqueDeCarros para os valores da ArrayList que foi passada pelo parametro estoqueDeCarros
-	 * @param estoqueDeCarros
+	 * @param estoqueDeCarros estoque de carros da loja
 	 */
 	public void                   setEstoqueDeCarros(ArrayList<Carro> estoqueDeCarros) {
 		this.estoqueDeCarros = estoqueDeCarros;
@@ -334,7 +334,7 @@ public class Loja
 
 	/**
 	 * setEstoqueDeMotocicletas altera os valores da ArrayList estoqueDeMotocicletas para os valores da ArrayList que foi passada pelo parametro estoqueDeMotocicletas
-	 * @param estoqueDeMotocicletas
+	 * @param estoqueDeMotocicletas estoque de motocicletas da loja
 	 */
 	public void 		      setEstoqueDeMotocicletas(ArrayList<Motocicleta> estoqueDeMotocicletas) {
 		this.estoqueDeMotocicletas = estoqueDeMotocicletas;

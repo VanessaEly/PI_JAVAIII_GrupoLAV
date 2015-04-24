@@ -17,7 +17,7 @@ public enum TipoCarro
 
 	/**
 	 * O valor recebido por indice torna-se o indice do enum
-	 * @param indice
+	 * @param indice indice do enum
 	 */
 	private TipoCarro(int indice)
 	{
@@ -26,7 +26,7 @@ public enum TipoCarro
 
 	/**
 	 * Retorna o valor do indice
-	 * @return indice
+	 * @return indice indice do enum
 	 */
 	public int getIndice() 
 	{

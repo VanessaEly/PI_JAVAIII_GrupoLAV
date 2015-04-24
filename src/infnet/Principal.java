@@ -12,11 +12,12 @@ public class Principal
 {
 	/**
 	 * Metodo main eh onde a execucao do programa se torna possivel
+	 * @param args argumentos do metodo main
 	 */
 	public static void main(String[] args) 
 	{
 		//-------------------------Criando nova Loja---------------------------------------------------------------------------------------------------------
-		Loja loja1 = new Loja("Lojas de Teste", "Rua Qualquer, nÂº 2");
+		Loja loja1 = new Loja("Lojas de Teste", "Rua Qualquer, num 2");
 		System.out.println("Loja: " + loja1.getNome() + "\n End: " + loja1.getEndereco() + "\n" );		
 		//-------------------------Adicionando Carros para Teste---------------------------------------------------------------------------------------------		
 		loja1.adicionarCarro();

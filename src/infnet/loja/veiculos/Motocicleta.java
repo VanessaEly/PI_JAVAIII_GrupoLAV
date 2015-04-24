@@ -79,7 +79,7 @@ public class Motocicleta
 //-------------------------GETTERS AND SETTERS------------------------------------------------------------------------
 	/**
 	 *getChassi Retorna o chassi da moto
-	 * @return chassi
+	 * @return chassi chassi da moto
 	 */
 	public String     getChassi() {
 		return chassi;
@@ -87,7 +87,7 @@ public class Motocicleta
 	
 	/**
 	 * setChassi altera o valor da variavel chassi para String que foi passado pelo parametro chassi
-	 * @param chassi
+	 * @param chassi chassi da moto
 	 */
 	public void       setChassi(String chassi) {
 		this.chassi = chassi;
@@ -95,7 +95,7 @@ public class Motocicleta
 	
 	/**
 	 * getMontadora Retorna a montadora da moto
-	 * @return montadora
+	 * @return montadora montadora da moto
 	 */
 	public Montadora  getMontadora() {
 		return montadora;
@@ -103,7 +103,7 @@ public class Motocicleta
 	
 	/**
 	 * setMontadora altera o valor da variavel montadora para enum Montadora que foi passado pelo parametro montadora
-	 * @param montadora
+	 * @param montadora montadora da moto
 	 */
 	public void       setMontadora(Montadora montadora) {
 		this.montadora = montadora;
@@ -111,7 +111,7 @@ public class Motocicleta
 	
 	/**
 	 * getModelo Retorna o modelo da moto
-	 * @return modelo
+	 * @return modelo modelo da moto
 	 */
 	public ModeloMoto getModelo() {
 		return modelo;
@@ -119,7 +119,7 @@ public class Motocicleta
 	
 	/**
 	 * setModelo altera o valor da variavel modelo para enum ModeloCarro que foi passado pelo parametro modelo
-	 * @param modelo
+	 * @param modelo modelo da moto
 	 */
 	public void       setModelo(ModeloMoto modelo) {
 		this.modelo = modelo;
@@ -127,7 +127,7 @@ public class Motocicleta
 	
 	/**
 	 * getTipo Retorna o tipo da moto
-	 * @return tipo
+	 * @return tipo tipo da moto
 	 */
 	public TipoMoto   getTipo() {
 		return tipo;
@@ -135,7 +135,7 @@ public class Motocicleta
 	
 	/**
 	 * setTipo altera o valor da variavel tipo para enum TipoCarro que foi passado pelo parametro tipo
-	 * @param tipo
+	 * @param tipo tipo da moto
 	 */
 	public void       setTipo(TipoMoto tipo) {
 		this.tipo = tipo;
@@ -143,7 +143,7 @@ public class Motocicleta
 	
 	/**
 	 * getCor retorna a cor da moto
-	 * @return cor
+	 * @return cor cor da moto
 	 */
 	public Cor        getCor() {
 		return cor;
@@ -151,7 +151,7 @@ public class Motocicleta
 	
 	/**
 	 * setCor altera o valor da variavel cor para enum Cor que foi passado pelo parametro cor
-	 * @param cor
+	 * @param cor cor da moto
 	 */
 	public void       setCor(Cor cor) {
 		this.cor = cor;
@@ -159,7 +159,7 @@ public class Motocicleta
 	
 	/**
 	 * getCilindrada retorna as cilindradas da moto
-	 * @return cilindrada
+	 * @return cilindrada cilindradas da moto
 	 */
 	public int        getCilindrada() {
 		return cilindrada;
@@ -167,7 +167,7 @@ public class Motocicleta
 	
 	/**
 	 * setCilindrada altera o valor da variavel cilindrada para o float que foi passado pelo parametro cilindrada
-	 * @param cilindrada
+	 * @param cilindrada cilindradas da moto
 	 */
 	public void       setCilindrada(int cilindrada) {
 		this.cilindrada = cilindrada;
@@ -175,7 +175,7 @@ public class Motocicleta
 	
 	/**
 	 * getCapacidadeDoTanque retorna a capacidade do tanque da moto
-	 * @return capacidadeDoTanque
+	 * @return capacidadeDoTanque capacidade do tanque da moto
 	 */
 	public int        getCapacidadeDoTanque() {
 		return capacidadeDoTanque;
@@ -183,7 +183,7 @@ public class Motocicleta
 	
 	/**
 	 * setCapacidadeDoTanque altera o valor da variavel capacidadeDoTanque para o inteiro que foi passado pelo parametro capacidadeDoTanque
-	 * @param capacidadeDoTanque
+	 * @param capacidadeDoTanque capacidade do tanque da moto
 	 */
 	public void       setCapacidadeDoTanque(int capacidadeDoTanque) {
 		this.capacidadeDoTanque = capacidadeDoTanque;
@@ -191,7 +191,7 @@ public class Motocicleta
 	
 	/**
 	 * getPreco retorna o preco da moto
-	 * @return preco
+	 * @return preco preco da moto
 	 */
 	public float      getPreco() {
 		return preco;
@@ -199,7 +199,7 @@ public class Motocicleta
 	
 	/**
 	 * setPreco altera o valor da variavel preco para o float que foi passado pelo parametro preco
-	 * @param preco
+	 * @param preco preco da moto
 	 */
 	public void       setPreco(float preco) {
 		this.preco = preco;

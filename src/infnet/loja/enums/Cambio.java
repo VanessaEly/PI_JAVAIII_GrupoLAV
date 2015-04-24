@@ -16,7 +16,7 @@ public enum Cambio {
 
 	/**
 	 * O valor recebido por indice torna-se o indice do enum
-	 * @param indice
+	 * @param indice indice do enum
 	 */
 	private Cambio(int indice) {
 		this.indice = indice;
@@ -24,7 +24,7 @@ public enum Cambio {
 
 	/**
 	 * Retorna o valor do indice
-	 * @return indice
+	 * @return indice indice do enum
 	 */
 	public int getIndice() {
 		return indice;
