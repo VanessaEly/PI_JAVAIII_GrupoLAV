@@ -13,6 +13,7 @@ public class Principal
 	/**
 	 * Metodo main eh onde a execucao do programa se torna possivel
 	 * @param args argumentos do metodo main
+	 * @throws IOException 
 	 */
 	public static void main(String[] args) 
 	{
