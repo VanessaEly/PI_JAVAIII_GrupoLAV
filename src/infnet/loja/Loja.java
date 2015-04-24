@@ -119,13 +119,12 @@ public class Loja
 		
 		_preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preco do carro"));
 		
-		JOptionPane.showMessageDialog(null,"Carro cadastrado com sucesso.");
-		Menu.chamarMenu();
-
 		//chamando o metodo construtor e colocando o carro criado no array de carros da loja
 		Carro carroaux = new Carro(_chassi, _montadora, _modelo, _tipo, _cor, _motorizacao, _cambio, _preco);
 		estoqueDeCarros.add(carroaux);
 		
+		JOptionPane.showMessageDialog(null,"Carro cadastrado com sucesso.");
+		Menu.chamarMenu();
 	}
 
 	/**
@@ -209,14 +208,19 @@ public class Loja
 	 * Metodo listarEstoqueDeCarros exibe todos os carros que foram adicionados ao estoque da loja
 	 * Array estoqueDeCarros é percorrido por um enhanced for
 	 */
-	public void listarEstoqueDeCarros (){
-		int i = 1;
+	
+	public static void listarEstoqueDeCarros (){
+		
+	// Criacao de Buffer para receber os valores do Array A
+        StringBuilder carrosA = new StringBuilder();
+        int i = 1;
+    	    	
 		for (Carro c: estoqueDeCarros)
 		{
-			System.out.println("Carro " + i);
-			System.out.println(c);
+			carrosA.append(" - " + c + "\n");
 			i++;
 		}
+    		JOptionPane.showMessageDialog(null,"Lista de Carros: \n" + carrosA.toString());
 	}
 
 	/**
