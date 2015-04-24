@@ -1,9 +1,12 @@
 package infnet.loja;
 
+import infnet.Menu;
 import infnet.loja.veiculos.*;
 import infnet.loja.enums.*;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  * Classe Loja define uma loja e faz a manutencao de seu "estoque"
@@ -17,8 +20,8 @@ public class Loja
 	//VARIAVEIS DA CLASSE
 	private String endereco;
 	private String nome;
-	private ArrayList <Carro>	estoqueDeCarros       = new ArrayList <Carro>();
-	private ArrayList <Motocicleta> estoqueDeMotocicletas = new ArrayList <Motocicleta>();;
+	private static ArrayList <Carro>	estoqueDeCarros       = new ArrayList <Carro>();
+	private static ArrayList <Motocicleta> estoqueDeMotocicletas = new ArrayList <Motocicleta>();;
 	Scanner scan = new Scanner(System.in);
 
 	/**
