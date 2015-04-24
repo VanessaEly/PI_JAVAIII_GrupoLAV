@@ -1,6 +1,7 @@
 package infnet;
 
 import infnet.loja.Loja;
+import java.io.IOException;
 
 /**
  * Classe Principal eh a classe executavel que mostra o funcionamento do programa, instancia classes e demonstra seus metodos
