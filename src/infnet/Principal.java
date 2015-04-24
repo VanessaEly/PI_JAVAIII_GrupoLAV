@@ -16,6 +16,9 @@ public class Principal
 	 */
 	public static void main(String[] args) 
 	{
+		Menu.chamarMenu();
+
+		/**
 		//-------------------------Criando nova Loja---------------------------------------------------------------------------------------------------------
 		Loja loja1 = new Loja("Lojas de Teste", "Rua Qualquer, num 2");
 		System.out.println("Loja: " + loja1.getNome() + "\n End: " + loja1.getEndereco() + "\n" );		
@@ -27,5 +30,6 @@ public class Principal
 		loja1.adicionarMoto();
 		loja1.listarEstoqueDeMotocicletas();
 		//-------------------------Fim do Main---------------------------------------------------------------------------------------------------------------		
+		*/
 	}
 }
