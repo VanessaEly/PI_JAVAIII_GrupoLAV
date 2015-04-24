@@ -2,13 +2,15 @@ package infnet.loja.veiculos;
 
 import infnet.loja.enums.*;
 
+/**
+ * Classe Motocicleta define uma nova Motocicleta
+ * @author Antonio Henrique, Leandro Varella, Vanessa Ely
+ * @version 1.0
+ * @since 15-04-2015
+ */
 public class Motocicleta 
 {
-        /************************************** /
-	/* Classe Motocicleta define uma moto** / 
-	/* @author Antonio, Leandro e Vanessa** /
-	/***************************************/
-//-------------------------DECLARAÇÃO DE VARIAVEIS--------------------------------------------------------------------
+	//VARIAVEIS DA CLASSE
 	private String chassi;
 	private Montadora montadora;
 	private ModeloMoto modelo;
@@ -17,7 +19,18 @@ public class Motocicleta
 	private int cilindrada;
 	private int capacidadeDoTanque; 
 	private float preco;
-//-------------------------ADICIONANDO METODOS CONSTRUTORES-----------------------------------------------------------
+	
+	/**
+	 * Construtor Motocicleta constroi uma nova motocicleta
+	 * @param chassi chassi da motocicleta
+	 * @param montadora montadora da motocicleta
+	 * @param modelo modelo da motocicleta
+	 * @param tipo tipo da motocicleta
+	 * @param cor cor da motocicleta
+	 * @param cilindrada cilindradas da motocicleta
+	 * @param capacidadeDoTanque capacidade do tanque da motocicleta
+	 * @param preco preco da motocicleta
+	 */
 	public Motocicleta(String chassi, Montadora montadora, ModeloMoto modelo, TipoMoto tipo, Cor cor, 
 		           int cilindrada, int capacidadeDoTanque, float preco) 
 	{
@@ -30,7 +43,10 @@ public class Motocicleta
 		this.capacidadeDoTanque = capacidadeDoTanque;
 		this.preco              = preco;
 	}
-//-------------------------EQUALS-------------------------------------------------------------------------------------
+	
+	/**
+	 * Metodo equals sobrescreve o equals da classe
+	 */
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -61,54 +77,138 @@ public class Motocicleta
 		return true;
 	}
 //-------------------------GETTERS AND SETTERS------------------------------------------------------------------------
+	/**
+	 *getChassi Retorna o chassi da moto
+	 * @return chassi
+	 */
 	public String     getChassi() {
 		return chassi;
 	}
+	
+	/**
+	 * setChassi altera o valor da variavel chassi para String que foi passado pelo parametro chassi
+	 * @param chassi
+	 */
 	public void       setChassi(String chassi) {
 		this.chassi = chassi;
 	}
+	
+	/**
+	 * getMontadora Retorna a montadora da moto
+	 * @return montadora
+	 */
 	public Montadora  getMontadora() {
 		return montadora;
 	}
+	
+	/**
+	 * setMontadora altera o valor da variavel montadora para enum Montadora que foi passado pelo parametro montadora
+	 * @param montadora
+	 */
 	public void       setMontadora(Montadora montadora) {
 		this.montadora = montadora;
 	}
+	
+	/**
+	 * getModelo Retorna o modelo da moto
+	 * @return modelo
+	 */
 	public ModeloMoto getModelo() {
 		return modelo;
 	}
+	
+	/**
+	 * setModelo altera o valor da variavel modelo para enum ModeloCarro que foi passado pelo parametro modelo
+	 * @param modelo
+	 */
 	public void       setModelo(ModeloMoto modelo) {
 		this.modelo = modelo;
 	}
+	
+	/**
+	 * getTipo Retorna o tipo da moto
+	 * @return tipo
+	 */
 	public TipoMoto   getTipo() {
 		return tipo;
 	}
+	
+	/**
+	 * setTipo altera o valor da variavel tipo para enum TipoCarro que foi passado pelo parametro tipo
+	 * @param tipo
+	 */
 	public void       setTipo(TipoMoto tipo) {
 		this.tipo = tipo;
 	}
+	
+	/**
+	 * getCor retorna a cor da moto
+	 * @return cor
+	 */
 	public Cor        getCor() {
 		return cor;
 	}
+	
+	/**
+	 * setCor altera o valor da variavel cor para enum Cor que foi passado pelo parametro cor
+	 * @param cor
+	 */
 	public void       setCor(Cor cor) {
 		this.cor = cor;
 	}
+	
+	/**
+	 * getCilindrada retorna as cilindradas da moto
+	 * @return cilindrada
+	 */
 	public int        getCilindrada() {
 		return cilindrada;
 	}
+	
+	/**
+	 * setCilindrada altera o valor da variavel cilindrada para o float que foi passado pelo parametro cilindrada
+	 * @param cilindrada
+	 */
 	public void       setCilindrada(int cilindrada) {
 		this.cilindrada = cilindrada;
 	}
+	
+	/**
+	 * getCapacidadeDoTanque retorna a capacidade do tanque da moto
+	 * @return capacidadeDoTanque
+	 */
 	public int        getCapacidadeDoTanque() {
 		return capacidadeDoTanque;
 	}
+	
+	/**
+	 * setCapacidadeDoTanque altera o valor da variavel capacidadeDoTanque para o inteiro que foi passado pelo parametro capacidadeDoTanque
+	 * @param capacidadeDoTanque
+	 */
 	public void       setCapacidadeDoTanque(int capacidadeDoTanque) {
 		this.capacidadeDoTanque = capacidadeDoTanque;
 	}
+	
+	/**
+	 * getPreco retorna o preco da moto
+	 * @return preco
+	 */
 	public float      getPreco() {
 		return preco;
 	}
+	
+	/**
+	 * setPreco altera o valor da variavel preco para o float que foi passado pelo parametro preco
+	 * @param preco
+	 */
 	public void       setPreco(float preco) {
 		this.preco = preco;
 	}
+	
+	/**
+	 * Metodo toString sobrepondo o original, formatando a String da forma desejada.
+	 * @return String que representa o objeto.
+	 */
 	public String toString() {
 		return   "Chassi = " + chassi 			    + " Montadora = " + montadora
 				+ " Modelo = " + modelo 			+ " Tipo = "      + tipo 
