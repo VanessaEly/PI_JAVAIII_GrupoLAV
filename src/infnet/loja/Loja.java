@@ -227,14 +227,17 @@ public class Loja
 	 * Metodo listarEstoqueDeMotocicletas exibe todas as motocicletas que foram adicionadas ao estoque da loja
 	 * Array estoqueDeMotocicletas é percorrido por um enhanced for
 	 */
-	public void listarEstoqueDeMotocicletas (){
-		int i = 1;
-		for (Motocicleta d: estoqueDeMotocicletas)
+	public static void listarEstoqueDeMotocicletas (){
+		// Criacao de Buffer para receber os valores do Array A
+        StringBuilder motosA = new StringBuilder();
+        int i = 1;
+    	    	
+		for (Motocicleta m: estoqueDeMotocicletas)
 		{
-			System.out.println("Moto " + i);
-			System.out.println(d);
+			motosA.append(" - " + m + "\n");
 			i++;
 		}
+    		JOptionPane.showMessageDialog(null,"Lista de Motos: \n" + motosA.toString());
 	}
 
 	/**
