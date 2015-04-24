@@ -23,10 +23,12 @@ public class Menu
 	public static void chamarMenuCarro()
 	{
 		int opcao = Integer.parseInt(JOptionPane.showInputDialog("O que voce deseja fazer?     \n" + 
-														    	 "1 - Adicionar Carro          \n" +
+														    	 "1 - Adicionar Carro                      \n" +
 																 "2 - Pesquisar Carro 		   \n" +
-																 "3 - Buscar Carro pelo Chassi \n" +
-																 "4 - Listar Estoque de Carros \n"));
+																 "3 - Buscar Carro pelo Chassi     \n" +
+																 "4 - Listar Estoque de Carros     \n" +
+																 "5 - Voltar para o Menu Principal \n" +
+																 "6 - Sair"));
 		switch (opcao) 
 		{
 			case 1: 
@@ -41,6 +43,12 @@ public class Menu
 			case 4:
 				JOptionPane.showMessageDialog(null,"Listar Estoque de Carros");
 				break;
+			case 5:
+				Menu.chamarMenu();
+				break;
+			case 6:
+				JOptionPane.showMessageDialog(null,"Fechando");
+				System.exit(0);	
 			default:
 				JOptionPane.showMessageDialog(null,"Escolha uma opção valida.");
 				Menu.chamarMenuCarro();
@@ -52,9 +60,11 @@ public class Menu
 	{
 		int opcao = Integer.parseInt(JOptionPane.showInputDialog("O que voce deseja fazer?    \n" + 
 														    	 "1 - Adicionar Moto          \n" +
-																 "2 - Pesquisar Moto 		  \n" +
-																 "3 - Buscar Moto pelo Chassi \n" +
-																 "4 - Listar Estoque de Motos \n"));
+															 "2 - Pesquisar Moto 	      \n" +
+															 "3 - Buscar Moto pelo Chassi \n" +
+															 "4 - Listar Estoque de Motos \n" +
+															 "5 - Voltar para o Menu Principal \n"+
+															 "6 - Sair"));
 		switch (opcao) 
 		{
 			case 1: 
@@ -69,6 +79,12 @@ public class Menu
 			case 4:
 				JOptionPane.showMessageDialog(null,"Listar Estoque de Motos");
 				break;
+			case 5:
+				Menu.chamarMenu();
+				break;
+			case 6:
+				JOptionPane.showMessageDialog(null,"Fechando");
+				System.exit(0);	
 			default:
 				JOptionPane.showMessageDialog(null,"Escolha uma opção valida.");
 				Menu.chamarMenuMoto();
