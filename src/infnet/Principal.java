@@ -15,7 +15,8 @@ public class Principal
 	 * @param args argumentos do metodo main
 	 * @throws IOException 
 	 */
-	public static void main(String[] args) 
+	public static void main(String[] args)
+	throws IOException 
 	{
 		Menu.chamarMenu();
 
