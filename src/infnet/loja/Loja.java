@@ -220,6 +220,7 @@ public class Loja
 
 	/**
 	 * Metodo removerCarro remove o carro desejado da array estoqueDeCarros
+	 * @param car carro a ser removido
 	 */
 	public void removerCarro(Carro car)
 	{
@@ -228,6 +229,7 @@ public class Loja
 
 	/**
 	 * Metodo removerMotocicleta remove a motocicleta desejada da array estoqueDeMotocicletas
+	 * @param moto motocicleta a ser removida
 	 */
 	public void removerMotocicleta(Motocicleta moto)	
 	{
