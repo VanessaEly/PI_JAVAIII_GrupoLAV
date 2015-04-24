@@ -21,8 +21,8 @@ public class Loja
 	private String endereco;
 	private String nome;
 	private static ArrayList <Carro>	estoqueDeCarros       = new ArrayList <Carro>();
-	private static ArrayList <Motocicleta> estoqueDeMotocicletas = new ArrayList <Motocicleta>();;
-	Scanner scan = new Scanner(System.in);
+	private static ArrayList <Motocicleta>  estoqueDeMotocicletas = new ArrayList <Motocicleta>();;
+	static Scanner scan = new Scanner(System.in);
 
 	/**
 	 * Construtor Loja constroi uma nova loja
@@ -39,7 +39,8 @@ public class Loja
 	 * Metodo adicionarCarro adiciona um carro ao estoque da loja
 	 * Valores das variáveis são recebidos por input do usuário
 	 */
-		public static void adicionarCarro() throws IOException
+	public static void adicionarCarro() 
+	throws IOException
 	{
 		//variaveis nescessarias para a construcao de um novo Carro
 		Montadora   _montadora   = null;
@@ -131,7 +132,8 @@ public class Loja
 	 * Metodo adicionarMoto adiciona uma motocicleta ao estoque da loja
 	 * Valores das variáveis são recebidos por input do usuário
 	 */
-	public void adicionarMoto()
+	public static void adicionarMoto() 
+	throws IOException
 	{
 		Montadora   _montadora          = null;
 		ModeloMoto  _modelo             = null;
@@ -143,56 +145,64 @@ public class Loja
 		float 		_preco 		 		= 0;
 		int aux;
 
-		System.out.println("Digite numero da montadora: (HONDA(5),SUZUKI(6),YAMAHA(7),KAWASAKI(8))");
-		aux = scan.nextInt();
-		while (aux <= 4 || aux >=9)
-		{
-			System.out.println("Valor Invalido. Insira outro valor:");
-			aux = scan.nextInt();
-		}
-		for (Montadora m: Montadora.values())
-		{
-			if (m.getIndice() == aux)
-				_montadora = m;
-		}
-		System.out.println("Digite numero do modelo: 	(CBR(1),NINJA(2),CB_HORNET(3))");
-		aux = scan.nextInt();
-		while (aux <= 0 || aux >=4)
-		{
-			System.out.println("Valor Invalido. Insira outro valor:");
-			aux = scan.nextInt();
-		}
-		for (ModeloMoto m: ModeloMoto.values())
-		{
-			if (m.getIndice() == aux)
-				_modelo = m;
-		}
-		System.out.println("Digite numero do tipo:      (CHOPPER (1),SCOOTER (2),ESPORTIVO (3))");
-		aux = scan.nextInt();
-		while (aux <= 0 || aux >=4)
-		{
-			System.out.println("Valor Invalido. Insira outro valor:");
-			aux = scan.nextInt();
-		}
-		for (TipoMoto m: TipoMoto.values())
-		{
-			if (m.getIndice() == aux)
-				_tipo = m;
-		}
-		System.out.println("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))");
-		_cor = Cor.values()[scan.nextInt()];
-		System.out.println("Digite numero de cilindradas:	(50cc, 60cc, 100cc, 120cc, 150cc)");
-		_cilindradas = scan.nextInt();
-		System.out.println("Digite a capacidade do Tanque:");
-		_capacidadeDoTanque = scan.nextInt();
-		System.out.println("Digite o chassi");
-		_chassi = scan.next();
-		System.out.println("Digite o preco da Moto");
-		_preco = scan.nextFloat();
-
+		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da montadora: (HONDA(5),SUZUKI(6),YAMAHA(7),KAWASAKI(8))"));
+			while (aux <= 4 || aux >=9)
+			{
+				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da montadora: (HONDA(5),SUZUKI(6),YAMAHA(7),KAWASAKI(8))"));
+			}
+			for (Montadora m: Montadora.values())
+			{
+				if (m.getIndice() == aux)
+					_montadora = m;
+			}
+		
+		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(CBR(1),NINJA(2),CB_HORNET(3))"));
+			while (aux <= 0 || aux >=4)
+			{
+				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(CBR(1),NINJA(2),CB_HORNET(3))"));
+			}
+			for (ModeloMoto m: ModeloMoto.values())
+			{
+				if (m.getIndice() == aux)
+					_modelo = m;
+			}
+			
+		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (CHOPPER (1),SCOOTER (2),ESPORTIVO (3))"));
+			while (aux <= 0 || aux >=4)
+			{
+				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (CHOPPER (1),SCOOTER (2),ESPORTIVO (3))"));
+			}
+			for (TipoMoto m: TipoMoto.values())
+			{
+				if (m.getIndice() == aux)
+					_tipo = m;
+			}
+			
+		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
+			while (aux <= 0 || aux >=6)
+			{
+				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
+			}
+			for (Cor m: Cor.values())
+			{
+				if (m.getIndice() == aux)
+					_cor = m;
+			}
+		
+		_cilindradas = Integer.parseInt(JOptionPane.showInputDialog("Digite numero de cilindradas:	(50cc, 60cc, 100cc, 120cc, 150cc)"));	
+		_capacidadeDoTanque = Integer.parseInt(JOptionPane.showInputDialog("Digite a capacidade do Tanque:"));
+		_chassi = (JOptionPane.showInputDialog("Digite o chassi:"));
+		_preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preco da moto:"));
+				
 		Motocicleta motoaux = new Motocicleta (_chassi, _montadora, _modelo, _tipo, _cor, _cilindradas, _capacidadeDoTanque, _preco);
 		estoqueDeMotocicletas.add(motoaux);
 		scan.close();
+		JOptionPane.showMessageDialog(null,"Moto Cadastrada com Sucesso");
+		Menu.chamarMenuMoto();
 	}
 
 	/**
