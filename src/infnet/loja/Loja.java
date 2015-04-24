@@ -122,6 +122,15 @@ public class Loja
 		//chamando o metodo construtor e colocando o carro criado no array de carros da loja
 		Carro carroaux = new Carro(_chassi, _montadora, _modelo, _tipo, _cor, _motorizacao, _cambio, _preco);
 		estoqueDeCarros.add(carroaux);
+
+//-----------------CRIANDO O ARQUIVO-------------------------------------- --------------------------------//				
+		FileWriter        arq = new FileWriter("c:\\infnet\\carros.txt");
+		PrintWriter gravarArq = new PrintWriter(arq);
+//-----------------ESCREVENDO NO ARQUIVO-------------------------------------------------------------------//		
+		gravarArq.printf("Carros: ");
+			gravarArq.printf("%s", carroaux);
+			arq.close();
+		
 		
 		JOptionPane.showMessageDialog(null,"Carro cadastrado com sucesso.");
 		Menu.chamarMenu();
@@ -200,6 +209,15 @@ public class Loja
 		Motocicleta motoaux = new Motocicleta (_chassi, _montadora, _modelo, _tipo, _cor, _cilindradas, _capacidadeDoTanque, _preco);
 		estoqueDeMotocicletas.add(motoaux);
 		scan.close();
+		
+//-----------------CRIANDO O ARQUIVO-------------------------------------- --------------------------------//				
+		FileWriter        arq = new FileWriter("c:\\infnet\\motos.txt");
+		PrintWriter gravarArq = new PrintWriter(arq);
+//-----------------ESCREVENDO NO ARQUIVO-------------------------------------------------------------------//		
+		gravarArq.printf("Motos: ");
+			gravarArq.printf("%s", motoaux);
+			arq.close();
+		
 		JOptionPane.showMessageDialog(null,"Moto Cadastrada com Sucesso");
 		Menu.chamarMenuMoto();
 	}
