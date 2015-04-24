@@ -1,6 +1,7 @@
 package infnet;
 import java.io.IOException;
 import javax.swing.JOptionPane;
+import infnet.loja.Loja;
 
 public class Menu 
 {
