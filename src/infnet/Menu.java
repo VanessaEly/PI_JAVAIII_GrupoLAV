@@ -34,6 +34,7 @@ public class Menu
 		{
 			case 1: 
 				JOptionPane.showMessageDialog(null,"Adicionar Carro");
+				Loja.adicionarCarro();
 				break;
 			case 2:
 				JOptionPane.showMessageDialog(null,"Pesquisar Carro");
