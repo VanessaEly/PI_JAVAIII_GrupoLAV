@@ -34,9 +34,9 @@ public class Loja
 
 	/**adicionarCarro
 	 * Metodo adicionarCarro adiciona um carro ao estoque da loja
-	 * Valores das vari·veis s„o recebidos por input do usu·rio
+	 * Valores das vari√°veis s√£o recebidos por input do usu√°rio
 	 */
-	public void adicionarCarro()
+		public static void adicionarCarro() throws IOException
 	{
 		//variaveis nescessarias para a construcao de um novo Carro
 		Montadora   _montadora   = null;
@@ -49,82 +49,84 @@ public class Loja
 		float 		_preco 		 = 0;
 		int aux;
 
-		System.out.println("Digite o numero da montadora: (VOLKSWAGEN(1),FORD(2),CHEVROLET(3),FIAT(4))");
-		aux = scan.nextInt();
-		while (aux <= 0 || aux >=5) //tratamento de excecao limitando o indice que pode ser escolhido, utilizado sempre que tratar-se de uma enumeracao
-		{
-			System.out.println("Valor Invalido. Insira outro valor:");
-			aux = scan.nextInt();
-		}
-		for (Montadora m: Montadora.values()) //percorre a enumeraÁ„o
-		{
-			if (m.getIndice() == aux) //verifica qual valor da enumeraÁ„o possui o Ìndice escolhido
-				_montadora = m;
-		}
+		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero da montadora: (VOLKSWAGEN(1),FORD(2),CHEVROLET(3),FIAT(4))"));
+			while (aux <= 0 || aux >=5) //tratamento de excecao limitando o indice que pode ser escolhido, utilizado sempre que tratar-se de uma enumeracao
+			{
+				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero da montadora: \n (VOLKSWAGEN(1),FORD(2),CHEVROLET(3),FIAT(4))"));
+			}
+			for (Montadora m: Montadora.values()) //percorre a enumera√ß√£o
+			{
+				if (m.getIndice() == aux) //verifica qual valor da enumera√ß√£o possui o √≠ndice escolhido
+					_montadora = m;
+			}
 
-		System.out.println("Digite numero do modelo: 	(FOX(1),GOL(2),CELTA(3))");
-		aux = scan.nextInt();
-		while (aux <= 0 || aux >=4)
-		{
-			System.out.println("Valor Invalido. Insira outro valor:");
-			aux = scan.nextInt();
-		}
-		for (ModeloCarro m: ModeloCarro.values())
-		{
-			if (m.getIndice() == aux)
-				_modelo = m;
-		}
-		System.out.println("Digite numero do tipo:      (SEDAN (1),HATCH (2),SUV (3))");
-		aux = scan.nextInt();
-		while (aux <= 0 || aux >=4)
-		{
-			System.out.println("Valor Invalido. Insira outro valor:");
-			aux = scan.nextInt();
-		}
-		for (TipoCarro m: TipoCarro.values())
-		{
-			if (m.getIndice() == aux)
-				_tipo = m;
-		}
-		System.out.println("Digite numero do cambio:    (MANUAL(1),SEMI (2),AUTO (3))");
-		aux = scan.nextInt();
-		while (aux <= 0 || aux >=4)
-		{
-			System.out.println("Valor Invalido. Insira outro valor:");
-			aux = scan.nextInt();
-		}
-		for (Cambio m: Cambio.values())
-		{
-			if (m.getIndice() == aux)
-				_cambio = m;
-		}
-		System.out.println("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))");
-		aux = scan.nextInt();
-		while (aux <= 0 || aux >=7)
-		{
-			System.out.println("Valor Invalido. Insira outro valor:");
-			aux = scan.nextInt();
-		}
-		for (Cor m: Cor.values())
-		{
-			if (m.getIndice() == aux)
-				_cor = m;
-		}
-		System.out.println("Digite numero do motor:		(1,0/1,4/1,6/1,8/2,0)");
-		_motorizacao = scan.nextFloat();
-		System.out.println("Digite o chassi");
-		_chassi = scan.next();
-		System.out.println("Digite o preco do carro");
-		_preco = scan.nextFloat();
+		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(FOX(1),GOL(2),CELTA(3))"));
+			while (aux <= 0 || aux >=4)
+			{
+				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(FOX(1),GOL(2),CELTA(3))"));
+			}
+			for (ModeloCarro m: ModeloCarro.values())
+			{
+				if (m.getIndice() == aux)
+					_modelo = m;
+			}
+			
+		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (SEDAN (1),HATCH (2),SUV (3))"));
+			while (aux <= 0 || aux >=4)
+			{
+			JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (SEDAN (1),HATCH (2),SUV (3))"));
+			}
+			for (TipoCarro m: TipoCarro.values())
+			{
+				if (m.getIndice() == aux)
+					_tipo = m;
+			}
+			
+		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do cambio:    (MANUAL(1),SEMI (2),AUTO (3))"));
+			while (aux <= 0 || aux >=4)
+			{
+				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do cambio:    (MANUAL(1),SEMI (2),AUTO (3))"));
+			}
+			for (Cambio m: Cambio.values())
+			{
+				if (m.getIndice() == aux)
+					_cambio = m;
+			}
+		
+		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
+			while (aux <= 0 || aux >=7)
+			{
+				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
+			}
+			for (Cor m: Cor.values())
+			{
+				if (m.getIndice() == aux)
+					_cor = m;
+			}
+		
+		_motorizacao = Float.parseFloat(JOptionPane.showInputDialog("Digite numero do motor:		(1,0/1,4/1,6/1,8/2,0)"));
+		
+		_chassi = (JOptionPane.showInputDialog("Digite numero do motor:		(1,0/1,4/1,6/1,8/2,0)"));
+		
+		_preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preco do carro"));
+		
+		JOptionPane.showMessageDialog(null,"Carro cadastrado com sucesso.");
+		Menu.chamarMenu();
 
 		//chamando o metodo construtor e colocando o carro criado no array de carros da loja
 		Carro carroaux = new Carro(_chassi, _montadora, _modelo, _tipo, _cor, _motorizacao, _cambio, _preco);
 		estoqueDeCarros.add(carroaux);
+		
 	}
 
 	/**
 	 * Metodo adicionarMoto adiciona uma motocicleta ao estoque da loja
-	 * Valores das vari·veis s„o recebidos por input do usu·rio
+	 * Valores das vari√°veis s√£o recebidos por input do usu√°rio
 	 */
 	public void adicionarMoto()
 	{
@@ -192,7 +194,7 @@ public class Loja
 
 	/**
 	 * Metodo listarEstoqueDeCarros exibe todos os carros que foram adicionados ao estoque da loja
-	 * Array estoqueDeCarros È percorrido por um enhanced for
+	 * Array estoqueDeCarros √© percorrido por um enhanced for
 	 */
 	public void listarEstoqueDeCarros (){
 		int i = 1;
@@ -206,7 +208,7 @@ public class Loja
 
 	/**
 	 * Metodo listarEstoqueDeMotocicletas exibe todas as motocicletas que foram adicionadas ao estoque da loja
-	 * Array estoqueDeMotocicletas È percorrido por um enhanced for
+	 * Array estoqueDeMotocicletas √© percorrido por um enhanced for
 	 */
 	public void listarEstoqueDeMotocicletas (){
 		int i = 1;
@@ -238,9 +240,9 @@ public class Loja
 
 	//------------To Do--------------------------------------------------------------------------------------------
 
-	//pesquisarCarro(...);  Retorna um carro, utilizando os atributos passados, caso exista no invent√°rio. 
+	//pesquisarCarro(...);  Retorna um carro, utilizando os atributos passados, caso exista no invent√É¬°rio. 
 	//buscarCarro(Chassi); Retorna um carro, caso exista no estoque um com o Chassi indicado. 
-	//pesquisarMoto(...); Retorna um carro, utilizando os atributos passados, caso exista no invent√°rio. 
+	//pesquisarMoto(...); Retorna um carro, utilizando os atributos passados, caso exista no invent√É¬°rio. 
 	//buscarMoto(Chassi); Retorna uma moto, caso exista no estoque uma com o Chassi indicado. 
 
 	/**
