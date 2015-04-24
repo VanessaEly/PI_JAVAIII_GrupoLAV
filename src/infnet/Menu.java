@@ -21,6 +21,7 @@ public class Menu
 	}
 //-------------------------Metodo Chamar Menu Carro-------------------------------------------------------------------------------	
 	public static void chamarMenuCarro()
+	throws IOException
 	{
 		int opcao = Integer.parseInt(JOptionPane.showInputDialog("O que voce deseja fazer?     \n" + 
 														    	 "1 - Adicionar Carro                      \n" +
@@ -57,6 +58,7 @@ public class Menu
 	}
 //-------------------------Metodo Chamar Menu Moto--------------------------------------------------------------------------------
 	public static void chamarMenuMoto()
+	throws IOException
 	{
 		int opcao = Integer.parseInt(JOptionPane.showInputDialog("O que voce deseja fazer?    \n" + 
 														    	 "1 - Adicionar Moto          \n" +
