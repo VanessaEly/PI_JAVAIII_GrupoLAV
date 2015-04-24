@@ -45,6 +45,7 @@ public class Menu
 				break;
 			case 4:
 				JOptionPane.showMessageDialog(null,"Listar Estoque de Carros");
+				Loja.listarEstoqueDeCarros();
 				break;
 			case 5:
 				Menu.chamarMenu();
