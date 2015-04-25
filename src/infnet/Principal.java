@@ -1,7 +1,6 @@
 package infnet;
 
 import infnet.loja.Loja;
-
 import java.io.IOException;
 
 /**
@@ -12,6 +11,8 @@ import java.io.IOException;
  */
 public class Principal 
 {
+	public static String nomearq = null;
+
 	/**
 	 * Metodo main eh onde a execucao do programa se torna possivel
 	 * @param args argumentos do metodo main
@@ -20,8 +21,7 @@ public class Principal
 	public static void main(String[] args)
 	throws IOException 
 	{
-
-		Loja loja1 = new Loja("Loja1", "Rua Tal n17");
-		Menu.chamarMenu(loja1);
-	}
+		Loja loja = Loja.criarLoja();
+		Menu.chamarMenu(loja);
+	}	
 }

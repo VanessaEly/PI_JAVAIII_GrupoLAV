@@ -1,13 +1,14 @@
 package infnet.loja;
 
 import infnet.Menu;
+import infnet.Principal;
 import infnet.loja.veiculos.*;
 import infnet.loja.enums.*;
-
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Scanner;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -25,8 +26,14 @@ public class Loja
 	private String endereco;
 	private String nome;
 	private ArrayList <Carro>	estoqueDeCarros       = new ArrayList <Carro>();
-	private ArrayList <Motocicleta>  estoqueDeMotocicletas = new ArrayList <Motocicleta>();;
-	Scanner scan = new Scanner(System.in);
+	private ArrayList <Motocicleta>  estoqueDeMotocicletas = new ArrayList <Motocicleta>();
+	private static PrintWriter gravarArq;
+
+	/**
+	 * Construtor Default
+	 * Cria uma loja sem valores definidos
+	 */
+	public Loja() {}
 
 	/**
 	 * Construtor Loja constroi uma nova loja
@@ -39,12 +46,30 @@ public class Loja
 		this.nome                  = nome;
 	}
 
-	/**adicionarCarro
-	 * Metodo adicionarCarro adiciona um carro ao estoque da loja
-	 * Valores das variáveis são recebidos por input do usuário
+	/**
+	 * Cria uma nova loja e um novo arquivo para a mesma (caso ele ainda nao exista)
+	 * @return loja retorna a loja criada
+	 * @throws IOException para excecoes de entrada e saida
 	 */
-	public static void adicionarCarro(Loja loja) 
-	throws IOException
+	public static Loja criarLoja() throws IOException {
+		Loja loja = new Loja();
+		Principal.nomearq = (JOptionPane.showInputDialog("Digite o nome e formato do arquivo (Ex: 'loja.txt'): "));
+		File arq = new File(Principal.nomearq);
+
+		if (!arq.exists()) 
+		{
+			arq.createNewFile();
+			new Loja("Loja Infnet", "Rua Sao Jose n90");
+		}
+		return loja;
+	}
+
+	/**
+	 * Adiciona um novo carro com os atributos imputados pelo usuario
+	 * @param loja loja cujo estoque recebera o carro 
+	 * @throws IOException para excecoes de entrada e saida
+	 */
+	public static void adicionarCarro(Loja loja) throws IOException
 	{
 		//variaveis nescessarias para a construcao de um novo Carro
 		Montadora   _montadora   = null;
@@ -58,94 +83,101 @@ public class Loja
 		int aux;
 
 		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero da montadora: (VOLKSWAGEN(1),FORD(2),CHEVROLET(3),FIAT(4))"));
-			while (aux <= 0 || aux >=5) //tratamento de excecao limitando o indice que pode ser escolhido, utilizado sempre que tratar-se de uma enumeracao
-			{
-				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero da montadora: \n (VOLKSWAGEN(1),FORD(2),CHEVROLET(3),FIAT(4))"));
-			}
-			for (Montadora m: Montadora.values()) //percorre a enumeração
-			{
-				if (m.getIndice() == aux) //verifica qual valor da enumeração possui o índice escolhido
-					_montadora = m;
-			}
+		while (aux <= 0 || aux >=5) //tratamento de excecao limitando o indice que pode ser escolhido, utilizado sempre que tratar-se de uma enumeracao
+		{
+			JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero da montadora: \n (VOLKSWAGEN(1),FORD(2),CHEVROLET(3),FIAT(4))"));
+		}
+		for (Montadora m: Montadora.values()) //percorre a enumeracao
+		{
+			if (m.getIndice() == aux) //verifica qual valor da enumeracao possui o índice escolhido
+				_montadora = m;
+		}
 
 		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(FOX(1),GOL(2),CELTA(3))"));
-			while (aux <= 0 || aux >=4)
-			{
-				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(FOX(1),GOL(2),CELTA(3))"));
-			}
-			for (ModeloCarro m: ModeloCarro.values())
-			{
-				if (m.getIndice() == aux)
-					_modelo = m;
-			}
-			
+		while (aux <= 0 || aux >=4)
+		{
+			JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(FOX(1),GOL(2),CELTA(3))"));
+		}
+		for (ModeloCarro m: ModeloCarro.values())
+		{
+			if (m.getIndice() == aux)
+				_modelo = m;
+		}
+
 		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (SEDAN (1),HATCH (2),SUV (3))"));
-			while (aux <= 0 || aux >=4)
-			{
+		while (aux <= 0 || aux >=4)
+		{
 			JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
 			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (SEDAN (1),HATCH (2),SUV (3))"));
-			}
-			for (TipoCarro m: TipoCarro.values())
-			{
-				if (m.getIndice() == aux)
-					_tipo = m;
-			}
-			
+		}
+		for (TipoCarro m: TipoCarro.values())
+		{
+			if (m.getIndice() == aux)
+				_tipo = m;
+		}
+
 		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do cambio:    (MANUAL(1),SEMI (2),AUTO (3))"));
-			while (aux <= 0 || aux >=4)
-			{
-				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do cambio:    (MANUAL(1),SEMI (2),AUTO (3))"));
-			}
-			for (Cambio m: Cambio.values())
-			{
-				if (m.getIndice() == aux)
-					_cambio = m;
-			}
-		
+		while (aux <= 0 || aux >=4)
+		{
+			JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do cambio:    (MANUAL(1),SEMI (2),AUTO (3))"));
+		}
+		for (Cambio m: Cambio.values())
+		{
+			if (m.getIndice() == aux)
+				_cambio = m;
+		}
+
 		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
-			while (aux <= 0 || aux >=7)
-			{
-				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
-			}
-			for (Cor m: Cor.values())
-			{
-				if (m.getIndice() == aux)
-					_cor = m;
-			}
-		
+		while (aux <= 0 || aux >=7)
+		{
+			JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
+		}
+		for (Cor m: Cor.values())
+		{
+			if (m.getIndice() == aux)
+				_cor = m;
+		}
+
 		_motorizacao = Float.parseFloat(JOptionPane.showInputDialog("Digite numero do motor:		(1.0/1.4/1.6/1.8/2.0)"));
-		
+
 		_chassi = (JOptionPane.showInputDialog("Digite o chassi: "));
-		
+
 		_preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preco do carro"));
-		
+
 		//chamando o metodo construtor e colocando o carro criado no array de carros da loja
 		Carro carroaux = new Carro(_chassi, _montadora, _modelo, _tipo, _cor, _motorizacao, _cambio, _preco);
 		loja.estoqueDeCarros.add(carroaux);
 
-//-----------------CRIANDO O ARQUIVO-------------------------------------- --------------------------------//				
-		FileWriter        arq = new FileWriter("c:\\infnet\\carros.txt");
-		PrintWriter gravarArq = new PrintWriter(arq);
-//-----------------ESCREVENDO NO ARQUIVO-------------------------------------------------------------------//		
-		gravarArq.printf("Carros: ");
-			gravarArq.printf("%s", carroaux);
-			arq.close();
-		
-		
+		//-----------------ESCREVENDO NO ARQUIVO-------------------------------------------------------------------//
+		try
+		{
+			gravarArq = new PrintWriter((new BufferedWriter(new FileWriter(Principal.nomearq, true)))); //true garante que a escrita nao sobrescreva o conteudo atual
+			gravarArq.printf("\nCarro %s", carroaux); //dados que serao escritos
+			gravarArq.println();
+			gravarArq.flush(); //limpa buffer
+		} 
+		finally 
+		{
+			if (gravarArq != null) 
+			{
+				gravarArq.close();
+			} 
+		}
 		JOptionPane.showMessageDialog(null,"Carro cadastrado com sucesso.");
 		Menu.chamarMenu(loja);
 	}
-
+	
 	/**
-	 * Metodo adicionarMoto adiciona uma motocicleta ao estoque da loja
-	 * Valores das variáveis são recebidos por input do usuário
+	 * Adiciona uma nova moto com os atributos imputados pelo usuario
+	 * @param loja loja cujo estoque recebera a moto 
+	 * @throws IOException para excecoes de entrada e saida
 	 */
 	public static void adicionarMoto(Loja loja) 
-	throws IOException
+			throws IOException
 	{
 		Montadora   _montadora          = null;
 		ModeloMoto  _modelo             = null;
@@ -158,107 +190,114 @@ public class Loja
 		int aux;
 
 		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da montadora: (HONDA(5),SUZUKI(6),YAMAHA(7),KAWASAKI(8))"));
-			while (aux <= 4 || aux >=9)
-			{
-				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da montadora: (HONDA(5),SUZUKI(6),YAMAHA(7),KAWASAKI(8))"));
-			}
-			for (Montadora m: Montadora.values())
-			{
-				if (m.getIndice() == aux)
-					_montadora = m;
-			}
-		
+		while (aux <= 4 || aux >=9)
+		{
+			JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da montadora: (HONDA(5),SUZUKI(6),YAMAHA(7),KAWASAKI(8))"));
+		}
+		for (Montadora m: Montadora.values())
+		{
+			if (m.getIndice() == aux)
+				_montadora = m;
+		}
+
 		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(CBR(1),NINJA(2),CB_HORNET(3))"));
-			while (aux <= 0 || aux >=4)
-			{
-				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(CBR(1),NINJA(2),CB_HORNET(3))"));
-			}
-			for (ModeloMoto m: ModeloMoto.values())
-			{
-				if (m.getIndice() == aux)
-					_modelo = m;
-			}
-			
+		while (aux <= 0 || aux >=4)
+		{
+			JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(CBR(1),NINJA(2),CB_HORNET(3))"));
+		}
+		for (ModeloMoto m: ModeloMoto.values())
+		{
+			if (m.getIndice() == aux)
+				_modelo = m;
+		}
+
 		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (CHOPPER (1),SCOOTER (2),ESPORTIVO (3))"));
-			while (aux <= 0 || aux >=4)
-			{
-				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (CHOPPER (1),SCOOTER (2),ESPORTIVO (3))"));
-			}
-			for (TipoMoto m: TipoMoto.values())
-			{
-				if (m.getIndice() == aux)
-					_tipo = m;
-			}
-			
+		while (aux <= 0 || aux >=4)
+		{
+			JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (CHOPPER (1),SCOOTER (2),ESPORTIVO (3))"));
+		}
+		for (TipoMoto m: TipoMoto.values())
+		{
+			if (m.getIndice() == aux)
+				_tipo = m;
+		}
+
 		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
-			while (aux <= 0 || aux >=6)
-			{
-				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
-			}
-			for (Cor m: Cor.values())
-			{
-				if (m.getIndice() == aux)
-					_cor = m;
-			}
-		
+		while (aux <= 0 || aux >=6)
+		{
+			JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
+		}
+		for (Cor m: Cor.values())
+		{
+			if (m.getIndice() == aux)
+				_cor = m;
+		}
+
 		_cilindradas = Integer.parseInt(JOptionPane.showInputDialog("Digite numero de cilindradas:	(50cc, 60cc, 100cc, 120cc, 150cc)"));	
 		_capacidadeDoTanque = Integer.parseInt(JOptionPane.showInputDialog("Digite a capacidade do Tanque:"));
 		_chassi = (JOptionPane.showInputDialog("Digite o chassi:"));
 		_preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preco da moto:"));
-				
+
 		Motocicleta motoaux = new Motocicleta (_chassi, _montadora, _modelo, _tipo, _cor, _cilindradas, _capacidadeDoTanque, _preco);
 		loja.estoqueDeMotocicletas.add(motoaux);
-		
-//-----------------CRIANDO O ARQUIVO-------------------------------------- --------------------------------//				
-		FileWriter        arq = new FileWriter("c:\\infnet\\motos.txt");
-		PrintWriter gravarArq = new PrintWriter(arq);
-//-----------------ESCREVENDO NO ARQUIVO-------------------------------------------------------------------//		
-		gravarArq.printf("Motos: ");
-			gravarArq.printf("%s", motoaux);
-			arq.close();
-		
+
+		//-----------------ESCREVENDO NO ARQUIVO-------------------------------------------------------------------//
+		try
+		{
+			gravarArq = new PrintWriter((new BufferedWriter(new FileWriter(Principal.nomearq, true))));
+			gravarArq.printf("Moto %s", motoaux);
+			gravarArq.println();
+			gravarArq.flush();
+		} 
+		finally 
+		{
+			if (gravarArq != null) 
+			{
+				gravarArq.close();
+			} 
+		}
+
 		JOptionPane.showMessageDialog(null,"Moto Cadastrada com Sucesso");
-		Menu.chamarMenuMoto(loja);
+		Menu.chamarMenu(loja);
 	}
 
 	/**
 	 * Metodo listarEstoqueDeCarros exibe todos os carros que foram adicionados ao estoque da loja
-	 * Array estoqueDeCarros é percorrido por um enhanced for
+	 * @param loja loja que esta sendo pesquisada
 	 */
-	
 	public static void listarEstoqueDeCarros (Loja loja){
-		
-	// Criacao de Buffer para receber os valores do Array A
-        StringBuilder carrosA = new StringBuilder();
-        int i = 1;
-    	    	
+
+		// Criacao de Buffer para receber os valores do Array A
+		StringBuilder carrosA = new StringBuilder();
+		int i = 1;
+
 		for (Carro c: loja.estoqueDeCarros)
 		{
 			carrosA.append(" - " + c + "\n");
 			i++;
 		}
-    		JOptionPane.showMessageDialog(null,"Lista de Carros: \n" + carrosA.toString());
+		JOptionPane.showMessageDialog(null,"Lista de Carros: \n" + carrosA.toString());
 	}
 
 	/**
 	 * Metodo listarEstoqueDeMotocicletas exibe todas as motocicletas que foram adicionadas ao estoque da loja
-	 * Array estoqueDeMotocicletas é percorrido por um enhanced for
+	 * @param loja loja que esta sendo pesquisada
 	 */
 	public static void listarEstoqueDeMotocicletas (Loja loja){
 		// Criacao de Buffer para receber os valores do Array A
-        StringBuilder motosA = new StringBuilder();
-        int i = 1;
-    	    	
+		StringBuilder motosA = new StringBuilder();
+		int i = 1;
+
 		for (Motocicleta m: loja.estoqueDeMotocicletas)
 		{
 			motosA.append(" - " + m + "\n");
 			i++;
 		}
-    		JOptionPane.showMessageDialog(null,"Lista de Motos: \n" + motosA.toString());
+		JOptionPane.showMessageDialog(null,"Lista de Motos: \n" + motosA.toString());
 	}
 
 	/**
@@ -342,7 +381,7 @@ public class Loja
 	public ArrayList<Carro>       getEstoqueDeCarros() {
 		return estoqueDeCarros;
 	}
-	
+
 	/**
 	 * getEstoqueDeMotocicletas retorna o ArrayList do estoque de motocicletas da loja
 	 * @return estoqueDeMotocicletas estoque de motocicletas da loja

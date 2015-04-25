@@ -5,8 +5,12 @@ import infnet.loja.Loja;
 
 public class Menu 
 {
-//-------------------------Metodo Chamar Menu--------------------------------------------------------------------------
-	public static void chamarMenu(Loja loja) 
+	/**
+	 * Metodo que permite a escolha entre opcoes de carro e de moto
+	 * @param loja loja que esta sendo trabalhada
+	 * @throws IOException para excecoes de entrada e saida
+	 */
+	public static void chamarMenu( Loja loja) 
 	throws IOException
 	{
 		JOptionPane.showMessageDialog(null,"Controle de Estoque");
@@ -20,7 +24,12 @@ public class Menu
 		if (selectedValue == itens[1])
 			Menu.chamarMenuMoto(loja);		
 	}
-//-------------------------Metodo Chamar Menu Carro-------------------------------------------------------------------------------	
+	
+	/**
+	 * Menu que exibe todas as opcoes disponiveis para carro
+	 * @param loja loja sendo trabalhada
+	 * @throws IOException excecoes de entrada e saida
+	 */
 	public static void chamarMenuCarro(Loja loja)
 	throws IOException
 	{
@@ -51,7 +60,7 @@ public class Menu
 				Menu.chamarMenu(loja);
 				break;
 			case 6:
-				JOptionPane.showMessageDialog(null,"Fechando");
+				JOptionPane.showMessageDialog(null,"Fechando o sistema, até a próxima!");
 				System.exit(0);	
 			default:
 				JOptionPane.showMessageDialog(null,"Escolha uma opcao valida.");
@@ -59,7 +68,12 @@ public class Menu
 				break;
 		}
 	}
-//-------------------------Metodo Chamar Menu Moto--------------------------------------------------------------------------------
+
+	/**
+	 * Metodo que exibe todas as opcoes disponiveis para moto
+	 * @param loja loja sendo trabalhada
+	 * @throws IOException excecoes de entrada e saida
+	 */
 	public static void chamarMenuMoto(Loja loja)
 	throws IOException
 	{
@@ -90,7 +104,7 @@ public class Menu
 				Menu.chamarMenu(loja);
 				break;
 			case 6:
-				JOptionPane.showMessageDialog(null,"Fechando");
+				JOptionPane.showMessageDialog(null,"Fechando o sistema, até a próxima!");
 				System.exit(0);	
 			default:
 				JOptionPane.showMessageDialog(null,"Escolha uma opÃ§Ã£o valida.");
@@ -99,4 +113,3 @@ public class Menu
 		}
 	}
 }
-
