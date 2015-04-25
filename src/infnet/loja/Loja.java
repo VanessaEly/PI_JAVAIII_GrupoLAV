@@ -53,14 +53,35 @@ public class Loja
 	 */
 	public static Loja criarLoja() throws IOException {
 		Loja loja = new Loja();
-		Principal.nomearq = (JOptionPane.showInputDialog("Digite o nome e formato do arquivo (Ex: 'loja.txt'): "));
+		Principal.nomearq = (JOptionPane.showInputDialog("Digite o nome e formato para criar um novo arquivo de estoque(Ex: 'loja.txt'): "));
+		
 		File arq = new File(Principal.nomearq);
 
 		if (!arq.exists()) 
 		{
+			loja.nome = (JOptionPane.showInputDialog("Digite o nome da loja: "));
+			loja.endereco = (JOptionPane.showInputDialog("Digite o endereco da loja: "));
 			arq.createNewFile();
-			new Loja("Loja Infnet", "Rua Sao Jose n90");
+			new Loja(loja.nome, loja.endereco);
+			try
+			{
+				gravarArq = new PrintWriter((new BufferedWriter(new FileWriter(Principal.nomearq, true)))); //true garante que a escrita nao sobrescreva o conteudo atual
+				gravarArq.printf("\nLoja %s", loja.nome);
+				gravarArq.printf(" - Endereco %s", loja.endereco); //dados que serao escritos
+				gravarArq.println();
+				gravarArq.flush(); //limpa buffer
+				JOptionPane.showMessageDialog(null,"Arquivo criado com sucesso.");
+			} 
+			finally 
+			{
+				if (gravarArq != null) 
+				{
+					gravarArq.close();
+				} 
+			}
 		}
+		else
+			JOptionPane.showMessageDialog(null,"Arquivo já existe. Dados acrescentados serão incluídos no mesmo.");
 		return loja;
 	}
 
@@ -170,7 +191,7 @@ public class Loja
 		JOptionPane.showMessageDialog(null,"Carro cadastrado com sucesso.");
 		Menu.chamarMenu(loja);
 	}
-	
+
 	/**
 	 * Adiciona uma nova moto com os atributos imputados pelo usuario
 	 * @param loja loja cujo estoque recebera a moto 

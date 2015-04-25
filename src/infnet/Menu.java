@@ -13,16 +13,21 @@ public class Menu
 	public static void chamarMenu( Loja loja) 
 	throws IOException
 	{
-		JOptionPane.showMessageDialog(null,"Controle de Estoque");
-		Object[] itens = {"Carro", "Moto"};
-	  Object selectedValue = JOptionPane.showInputDialog(null, "Qual tipo de automovel voce deseja?", "OpÃ§ao", JOptionPane.INFORMATION_MESSAGE, null, itens, itens [0]);
+		Object[] itens = {"Controle de Estoque de Carros", "Controle de Estoque de Motos", "Sair"};
+	  Object selectedValue = JOptionPane.showInputDialog(null, "O que voce deseja fazer?", "Opcao", JOptionPane.INFORMATION_MESSAGE, null, itens, itens [0]);
 	    
 //-------------------------Opcao Carro---------------------------------------------------------------------------------
 		if (selectedValue == itens[0])
 		Menu.chamarMenuCarro(loja);
 //-------------------------Opcao Moto----------------------------------------------------------------------------------
 		if (selectedValue == itens[1])
-			Menu.chamarMenuMoto(loja);		
+			Menu.chamarMenuMoto(loja);	
+		if (selectedValue == itens[2])
+		{
+			JOptionPane.showMessageDialog(null,"Fechando o sistema, até a próxima!");
+		System.exit(0);
+		}
+			
 	}
 	
 	/**
@@ -43,24 +48,24 @@ public class Menu
 		switch (opcao) 
 		{
 			case 1: 
-				JOptionPane.showMessageDialog(null,"Adicionar Carro");
+				JOptionPane.showMessageDialog(null,"Voce optou por Adicionar um Carro");
 				Loja.adicionarCarro(loja);
 				break;
 			case 2:
-				JOptionPane.showMessageDialog(null,"Pesquisar Carro");
+				JOptionPane.showMessageDialog(null,"Voce optou por Pesquisar um Carro");
 				break;
 			case 3:
-				JOptionPane.showMessageDialog(null,"Buscar Carro pelo Chassi");
+				JOptionPane.showMessageDialog(null,"Voce optou por Buscar um Carro pelo Chassi");
 				break;
 			case 4:
-				JOptionPane.showMessageDialog(null,"Listar Estoque de Carros");
+				JOptionPane.showMessageDialog(null,"Voce optou por Listar Estoque de Carros");
 				Loja.listarEstoqueDeCarros(loja);
 				break;
 			case 5:
 				Menu.chamarMenu(loja);
 				break;
 			case 6:
-				JOptionPane.showMessageDialog(null,"Fechando o sistema, até a próxima!");
+				JOptionPane.showMessageDialog(null,"Voce optou por sair do sistema, até a próxima!");
 				System.exit(0);	
 			default:
 				JOptionPane.showMessageDialog(null,"Escolha uma opcao valida.");
@@ -87,27 +92,27 @@ public class Menu
 		switch (opcao) 
 		{
 			case 1: 
-				JOptionPane.showMessageDialog(null,"Adicionar Moto");
+				JOptionPane.showMessageDialog(null,"Voce optou por Adicionar uma Moto");
 				Loja.adicionarMoto(loja);
 				break;
 			case 2:
-				JOptionPane.showMessageDialog(null,"Pesquisar Moto");
+				JOptionPane.showMessageDialog(null,"Voc optou por Pesquisar uma Moto");
 				break;
 			case 3:
-				JOptionPane.showMessageDialog(null,"Buscar Moto pelo Chassi");
+				JOptionPane.showMessageDialog(null,"Voce optou por Buscar uma Moto pelo Chassi");
 				break;
 			case 4:
-				JOptionPane.showMessageDialog(null,"Listar Estoque de Motos");
+				JOptionPane.showMessageDialog(null,"Voce optou por Listar Estoque de Motos");
 				Loja.listarEstoqueDeMotocicletas(loja);
 				break;
 			case 5:
 				Menu.chamarMenu(loja);
 				break;
 			case 6:
-				JOptionPane.showMessageDialog(null,"Fechando o sistema, até a próxima!");
+				JOptionPane.showMessageDialog(null,"Voce optou por sair do sistema, até a próxima!");
 				System.exit(0);	
 			default:
-				JOptionPane.showMessageDialog(null,"Escolha uma opÃ§Ã£o valida.");
+				JOptionPane.showMessageDialog(null,"Escolha uma opcao valida.");
 				Menu.chamarMenuMoto(loja);
 				break;
 		}
