@@ -3,9 +3,13 @@ package infnet.loja;
 import infnet.Menu;
 import infnet.loja.veiculos.*;
 import infnet.loja.enums.*;
+
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -20,9 +24,9 @@ public class Loja
 	//VARIAVEIS DA CLASSE
 	private String endereco;
 	private String nome;
-	private static ArrayList <Carro>	estoqueDeCarros       = new ArrayList <Carro>();
-	private static ArrayList <Motocicleta>  estoqueDeMotocicletas = new ArrayList <Motocicleta>();;
-	static Scanner scan = new Scanner(System.in);
+	private ArrayList <Carro>	estoqueDeCarros       = new ArrayList <Carro>();
+	private ArrayList <Motocicleta>  estoqueDeMotocicletas = new ArrayList <Motocicleta>();;
+	Scanner scan = new Scanner(System.in);
 
 	/**
 	 * Construtor Loja constroi uma nova loja
@@ -39,7 +43,7 @@ public class Loja
 	 * Metodo adicionarCarro adiciona um carro ao estoque da loja
 	 * Valores das variáveis são recebidos por input do usuário
 	 */
-	public static void adicionarCarro() 
+	public static void adicionarCarro(Loja loja) 
 	throws IOException
 	{
 		//variaveis nescessarias para a construcao de um novo Carro
@@ -113,15 +117,15 @@ public class Loja
 					_cor = m;
 			}
 		
-		_motorizacao = Float.parseFloat(JOptionPane.showInputDialog("Digite numero do motor:		(1,0/1,4/1,6/1,8/2,0)"));
+		_motorizacao = Float.parseFloat(JOptionPane.showInputDialog("Digite numero do motor:		(1.0/1.4/1.6/1.8/2.0)"));
 		
-		_chassi = (JOptionPane.showInputDialog("Digite numero do motor:		(1,0/1,4/1,6/1,8/2,0)"));
+		_chassi = (JOptionPane.showInputDialog("Digite o chassi: "));
 		
 		_preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preco do carro"));
 		
 		//chamando o metodo construtor e colocando o carro criado no array de carros da loja
 		Carro carroaux = new Carro(_chassi, _montadora, _modelo, _tipo, _cor, _motorizacao, _cambio, _preco);
-		estoqueDeCarros.add(carroaux);
+		loja.estoqueDeCarros.add(carroaux);
 
 //-----------------CRIANDO O ARQUIVO-------------------------------------- --------------------------------//				
 		FileWriter        arq = new FileWriter("c:\\infnet\\carros.txt");
@@ -133,14 +137,14 @@ public class Loja
 		
 		
 		JOptionPane.showMessageDialog(null,"Carro cadastrado com sucesso.");
-		Menu.chamarMenu();
+		Menu.chamarMenu(loja);
 	}
 
 	/**
 	 * Metodo adicionarMoto adiciona uma motocicleta ao estoque da loja
 	 * Valores das variáveis são recebidos por input do usuário
 	 */
-	public static void adicionarMoto() 
+	public static void adicionarMoto(Loja loja) 
 	throws IOException
 	{
 		Montadora   _montadora          = null;
@@ -207,8 +211,7 @@ public class Loja
 		_preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preco da moto:"));
 				
 		Motocicleta motoaux = new Motocicleta (_chassi, _montadora, _modelo, _tipo, _cor, _cilindradas, _capacidadeDoTanque, _preco);
-		estoqueDeMotocicletas.add(motoaux);
-		scan.close();
+		loja.estoqueDeMotocicletas.add(motoaux);
 		
 //-----------------CRIANDO O ARQUIVO-------------------------------------- --------------------------------//				
 		FileWriter        arq = new FileWriter("c:\\infnet\\motos.txt");
@@ -219,7 +222,7 @@ public class Loja
 			arq.close();
 		
 		JOptionPane.showMessageDialog(null,"Moto Cadastrada com Sucesso");
-		Menu.chamarMenuMoto();
+		Menu.chamarMenuMoto(loja);
 	}
 
 	/**
@@ -227,13 +230,13 @@ public class Loja
 	 * Array estoqueDeCarros é percorrido por um enhanced for
 	 */
 	
-	public static void listarEstoqueDeCarros (){
+	public static void listarEstoqueDeCarros (Loja loja){
 		
 	// Criacao de Buffer para receber os valores do Array A
         StringBuilder carrosA = new StringBuilder();
         int i = 1;
     	    	
-		for (Carro c: estoqueDeCarros)
+		for (Carro c: loja.estoqueDeCarros)
 		{
 			carrosA.append(" - " + c + "\n");
 			i++;
@@ -245,12 +248,12 @@ public class Loja
 	 * Metodo listarEstoqueDeMotocicletas exibe todas as motocicletas que foram adicionadas ao estoque da loja
 	 * Array estoqueDeMotocicletas é percorrido por um enhanced for
 	 */
-	public static void listarEstoqueDeMotocicletas (){
+	public static void listarEstoqueDeMotocicletas (Loja loja){
 		// Criacao de Buffer para receber os valores do Array A
         StringBuilder motosA = new StringBuilder();
         int i = 1;
     	    	
-		for (Motocicleta m: estoqueDeMotocicletas)
+		for (Motocicleta m: loja.estoqueDeMotocicletas)
 		{
 			motosA.append(" - " + m + "\n");
 			i++;
@@ -381,6 +384,4 @@ public class Loja
 	public void 		      setEstoqueDeMotocicletas(ArrayList<Motocicleta> estoqueDeMotocicletas) {
 		this.estoqueDeMotocicletas = estoqueDeMotocicletas;
 	}
-
-
 }

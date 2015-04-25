@@ -6,7 +6,7 @@ import infnet.loja.Loja;
 public class Menu 
 {
 //-------------------------Metodo Chamar Menu--------------------------------------------------------------------------
-	public static void chamarMenu() 
+	public static void chamarMenu(Loja loja) 
 	throws IOException
 	{
 		JOptionPane.showMessageDialog(null,"Controle de Estoque");
@@ -15,13 +15,13 @@ public class Menu
 	    
 //-------------------------Opcao Carro---------------------------------------------------------------------------------
 		if (selectedValue == itens[0])
-		Menu.chamarMenuCarro();
+		Menu.chamarMenuCarro(loja);
 //-------------------------Opcao Moto----------------------------------------------------------------------------------
 		if (selectedValue == itens[1])
-			Menu.chamarMenuMoto();		
+			Menu.chamarMenuMoto(loja);		
 	}
 //-------------------------Metodo Chamar Menu Carro-------------------------------------------------------------------------------	
-	public static void chamarMenuCarro()
+	public static void chamarMenuCarro(Loja loja)
 	throws IOException
 	{
 		int opcao = Integer.parseInt(JOptionPane.showInputDialog("O que voce deseja fazer?     \n" + 
@@ -35,7 +35,7 @@ public class Menu
 		{
 			case 1: 
 				JOptionPane.showMessageDialog(null,"Adicionar Carro");
-				Loja.adicionarCarro();
+				Loja.adicionarCarro(loja);
 				break;
 			case 2:
 				JOptionPane.showMessageDialog(null,"Pesquisar Carro");
@@ -45,22 +45,22 @@ public class Menu
 				break;
 			case 4:
 				JOptionPane.showMessageDialog(null,"Listar Estoque de Carros");
-				Loja.listarEstoqueDeCarros();
+				Loja.listarEstoqueDeCarros(loja);
 				break;
 			case 5:
-				Menu.chamarMenu();
+				Menu.chamarMenu(loja);
 				break;
 			case 6:
 				JOptionPane.showMessageDialog(null,"Fechando");
 				System.exit(0);	
 			default:
-				JOptionPane.showMessageDialog(null,"Escolha uma opção valida.");
-				Menu.chamarMenuCarro();
+				JOptionPane.showMessageDialog(null,"Escolha uma opcao valida.");
+				Menu.chamarMenuCarro(loja);
 				break;
 		}
 	}
 //-------------------------Metodo Chamar Menu Moto--------------------------------------------------------------------------------
-	public static void chamarMenuMoto()
+	public static void chamarMenuMoto(Loja loja)
 	throws IOException
 	{
 		int opcao = Integer.parseInt(JOptionPane.showInputDialog("O que voce deseja fazer?    \n" + 
@@ -74,7 +74,7 @@ public class Menu
 		{
 			case 1: 
 				JOptionPane.showMessageDialog(null,"Adicionar Moto");
-				Loja.adicionarMoto();
+				Loja.adicionarMoto(loja);
 				break;
 			case 2:
 				JOptionPane.showMessageDialog(null,"Pesquisar Moto");
@@ -84,17 +84,17 @@ public class Menu
 				break;
 			case 4:
 				JOptionPane.showMessageDialog(null,"Listar Estoque de Motos");
-				Loja.listarEstoqueDeMotocicletas();
+				Loja.listarEstoqueDeMotocicletas(loja);
 				break;
 			case 5:
-				Menu.chamarMenu();
+				Menu.chamarMenu(loja);
 				break;
 			case 6:
 				JOptionPane.showMessageDialog(null,"Fechando");
 				System.exit(0);	
 			default:
 				JOptionPane.showMessageDialog(null,"Escolha uma opção valida.");
-				Menu.chamarMenuMoto();
+				Menu.chamarMenuMoto(loja);
 				break;
 		}
 	}

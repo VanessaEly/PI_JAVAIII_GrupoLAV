@@ -1,6 +1,7 @@
 package infnet;
 
 import infnet.loja.Loja;
+
 import java.io.IOException;
 
 /**
@@ -19,20 +20,8 @@ public class Principal
 	public static void main(String[] args)
 	throws IOException 
 	{
-		Menu.chamarMenu();
 
-		/**
-		//-------------------------Criando nova Loja---------------------------------------------------------------------------------------------------------
-		Loja loja1 = new Loja("Lojas de Teste", "Rua Qualquer, num 2");
-		System.out.println("Loja: " + loja1.getNome() + "\n End: " + loja1.getEndereco() + "\n" );		
-		//-------------------------Adicionando Carros para Teste---------------------------------------------------------------------------------------------		
-		loja1.adicionarCarro();
-		loja1.listarEstoqueDeCarros();
-		System.out.println();
-		//-------------------------Adicionando Motos para Teste----------------------------------------------------------------------------------------------		
-		loja1.adicionarMoto();
-		loja1.listarEstoqueDeMotocicletas();
-		//-------------------------Fim do Main---------------------------------------------------------------------------------------------------------------		
-		*/
+		Loja loja1 = new Loja("Loja1", "Rua Tal n17");
+		Menu.chamarMenu(loja1);
 	}
 }
