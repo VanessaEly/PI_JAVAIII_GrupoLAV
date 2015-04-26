@@ -18,10 +18,8 @@ public class Principal
 	 * @param args argumentos do metodo main
 	 * @throws IOException 
 	 */
-	public static void main(String[] args)
-	throws IOException 
+	public static void main(String[] args) throws IOException 
 	{
-		Loja loja = Loja.criarLoja();
-		Menu.chamarMenu(loja);
+		Loja.criarLoja();
 	}	
 }

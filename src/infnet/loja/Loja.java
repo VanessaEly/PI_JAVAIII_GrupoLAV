@@ -102,7 +102,7 @@ public class Loja
 				gravarArq.printf(" - Endereco %s", loja.endereco); //dados que serao escritos
 				gravarArq.println();
 				gravarArq.flush(); //limpa buffer
-				JOptionPane.showMessageDialog(null,"Arquivo " + Principal.nomearq + " criado com sucesso.");
+				JOptionPane.showMessageDialog(null,"Arquivo " + Principal.nomearq + " criado com sucesso. Agora voce esta trabalhando com essa loja.");
 			} 
 			finally 
 			{
@@ -112,7 +112,7 @@ public class Loja
 		}
 		else
 			JOptionPane.showMessageDialog(null,"Arquivo ja existe. Dados acrescentados serao incluidos no mesmo.");
-		
+		Menu.chamarMenu(loja);
 		return loja;
 	}
 
@@ -134,6 +134,17 @@ public class Loja
 		float 		_preco 		 = 0;
 		int aux;
 
+		String input = (JOptionPane.showInputDialog("Digite o chassi: "));
+		for (Carro c: loja.estoqueDeCarros)
+		{
+			if (c.getChassi().equals(input))
+			{
+				JOptionPane.showMessageDialog(null, "Esse carro ja esta cadastrado.");
+				Menu.chamarMenuCarro(loja);
+			}
+		}
+		_chassi = input;
+		
 		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero da montadora: (VOLKSWAGEN(1),FORD(2),CHEVROLET(3),FIAT(4))"));
 		while (aux <= 0 || aux >=5) //tratamento de excecao limitando o indice que pode ser escolhido, utilizado sempre que tratar-se de uma enumeracao
 		{
@@ -196,8 +207,6 @@ public class Loja
 
 		_motorizacao = Float.parseFloat(JOptionPane.showInputDialog("Digite numero do motor:		(1.0/1.4/1.6/1.8/2.0)"));
 
-		_chassi = (JOptionPane.showInputDialog("Digite o chassi: "));
-
 		_preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preco do carro"));
 
 		//chamando o metodo construtor e colocando o carro criado no array de carros da loja
@@ -241,6 +250,16 @@ public class Loja
 		float 		_preco 		 		= 0;
 		int aux;
 
+		String input = (JOptionPane.showInputDialog("Digite o chassi: "));
+		for (Motocicleta c: loja.estoqueDeMotocicletas)
+		{
+			if (c.getChassi().equals(input))
+			{
+				JOptionPane.showMessageDialog(null, "Essa moto ja esta cadastrada.");
+				Menu.chamarMenuMoto(loja);
+			}
+		}
+		_chassi = input;
 		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da montadora: (HONDA(5),SUZUKI(6),YAMAHA(7),KAWASAKI(8))"));
 		while (aux <= 4 || aux >=9)
 		{
@@ -291,7 +310,6 @@ public class Loja
 
 		_cilindradas = Integer.parseInt(JOptionPane.showInputDialog("Digite numero de cilindradas:	(50cc, 60cc, 100cc, 120cc, 150cc)"));	
 		_capacidadeDoTanque = Integer.parseInt(JOptionPane.showInputDialog("Digite a capacidade do Tanque:"));
-		_chassi = (JOptionPane.showInputDialog("Digite o chassi:"));
 		_preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preco da moto:"));
 
 		Motocicleta motoaux = new Motocicleta (_chassi, _montadora, _modelo, _tipo, _cor, _cilindradas, _capacidadeDoTanque, _preco);

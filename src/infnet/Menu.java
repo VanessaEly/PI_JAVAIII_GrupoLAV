@@ -16,7 +16,7 @@ public class Menu
 	public static void chamarMenu( Loja loja) 
 			throws IOException
 	{
-		Object[] itens = {"Controle de Estoque de Carros", "Controle de Estoque de Motos", "Sair"};
+		Object[] itens = {"Controle de Estoque de Carros", "Controle de Estoque de Motos", "Criar nova Loja", "Sair"};
 		Object selectedValue = JOptionPane.showInputDialog(null, "O que voce deseja fazer?", "Opcao", JOptionPane.INFORMATION_MESSAGE, null, itens, itens [0]);
 
 		//-------------------------Opcao Carro---------------------------------------------------------------------------------
@@ -25,7 +25,9 @@ public class Menu
 		//-------------------------Opcao Moto----------------------------------------------------------------------------------
 		if (selectedValue == itens[1])
 			Menu.chamarMenuMoto(loja);	
-		if ((selectedValue == itens[2])||(selectedValue == null))
+		if (selectedValue == itens[2])
+			loja = Loja.criarLoja();
+		if ((selectedValue == itens[3])||(selectedValue == null))
 		{
 			JOptionPane.showMessageDialog(null,"Fechando o sistema, ate a proxima!");
 			System.exit(0);
