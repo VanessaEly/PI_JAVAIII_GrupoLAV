@@ -4,6 +4,7 @@ import infnet.Menu;
 import infnet.Principal;
 import infnet.loja.veiculos.*;
 import infnet.loja.enums.*;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -47,22 +48,53 @@ public class Loja
 	}
 
 	/**
+	 * Caso o usuario clique em cancel, esse metodo faz com que o sistema seja fechado
+	 * @param input input do usuario
+	 * @return
+	 */
+	public static String validarInput(String input) {
+		
+		//quando usuario clica em cancel, input recebe o valor null
+		if (input == null)
+		{
+			JOptionPane.showMessageDialog(null,"Voce optou por sair do sistema, ate a proxima!");
+			System.exit(0);	
+		}
+		return input;
+	}
+	/**
 	 * Cria uma nova loja e um novo arquivo para a mesma (caso ele ainda nao exista)
 	 * @return loja retorna a loja criada
 	 * @throws IOException para excecoes de entrada e saida
 	 */
 	public static Loja criarLoja() throws IOException {
 		Loja loja = new Loja();
-		Principal.nomearq = (JOptionPane.showInputDialog("Digite o nome e formato para criar um novo arquivo de estoque(Ex: 'loja.txt'): "));
+		String input = (JOptionPane.showInputDialog("Digite o nome do seu arquivo .txt(Ex: 'loja.txt'): "));
+		Principal.nomearq = validarInput(input);
+		
+		//se nome vazio ou sem o formato txt, repete a acao
+		while ((Principal.nomearq == null) || (!(Principal.nomearq.contains(".txt"))))
+		{
+			input = (JOptionPane.showInputDialog("Nome Inv�lido. Digite o nome do seu arquivo .txt(Ex: 'loja.txt'): "));
+			Principal.nomearq = validarInput(input);
+		}
+			
 
+		//cria objeto file
 		File arq = new File(Principal.nomearq);
 
+		//se arquivo nao existir, cria novo arquivo e nova loja
 		if (!arq.exists()) 
 		{
-			loja.nome = (JOptionPane.showInputDialog("Digite o nome da loja: "));
-			loja.endereco = (JOptionPane.showInputDialog("Digite o endereco da loja: "));
+			input = (JOptionPane.showInputDialog("Digite o nome da loja: "));
+			loja.nome = validarInput(input);
+			input = (JOptionPane.showInputDialog("Digite o endereco da loja: "));
+			loja.endereco = validarInput(input);
+			
+			//cria arquivo txt
 			arq.createNewFile();
-			new Loja(loja.nome, loja.endereco);
+			
+			//escreve nome da loja e endereco no arquivo
 			try
 			{
 				gravarArq = new PrintWriter((new BufferedWriter(new FileWriter(Principal.nomearq, true)))); //true garante que a escrita nao sobrescreva o conteudo atual
@@ -70,18 +102,17 @@ public class Loja
 				gravarArq.printf(" - Endereco %s", loja.endereco); //dados que serao escritos
 				gravarArq.println();
 				gravarArq.flush(); //limpa buffer
-				JOptionPane.showMessageDialog(null,"Arquivo criado com sucesso.");
+				JOptionPane.showMessageDialog(null,"Arquivo " + Principal.nomearq + " criado com sucesso.");
 			} 
 			finally 
 			{
 				if (gravarArq != null) 
-				{
 					gravarArq.close();
-				} 
 			}
 		}
 		else
-			JOptionPane.showMessageDialog(null,"Arquivo já existe. Dados acrescentados serão incluídos no mesmo.");
+			JOptionPane.showMessageDialog(null,"Arquivo ja existe. Dados acrescentados serao incluidos no mesmo.");
+		
 		return loja;
 	}
 
