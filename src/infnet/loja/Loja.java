@@ -54,7 +54,7 @@ public class Loja
 	public static Loja criarLoja() throws IOException {
 		Loja loja = new Loja();
 		Principal.nomearq = (JOptionPane.showInputDialog("Digite o nome e formato para criar um novo arquivo de estoque(Ex: 'loja.txt'): "));
-		
+
 		File arq = new File(Principal.nomearq);
 
 		if (!arq.exists()) 
@@ -81,7 +81,7 @@ public class Loja
 			}
 		}
 		else
-			JOptionPane.showMessageDialog(null,"Arquivo j� existe. Dados acrescentados ser�o inclu�dos no mesmo.");
+			JOptionPane.showMessageDialog(null,"Arquivo já existe. Dados acrescentados serão incluídos no mesmo.");
 		return loja;
 	}
 
@@ -111,7 +111,7 @@ public class Loja
 		}
 		for (Montadora m: Montadora.values()) //percorre a enumeracao
 		{
-			if (m.getIndice() == aux) //verifica qual valor da enumeracao possui o índice escolhido
+			if (m.getIndice() == aux) //verifica qual valor da enumeracao possui o Ã­ndice escolhido
 				_montadora = m;
 		}
 
@@ -322,6 +322,24 @@ public class Loja
 	}
 
 	/**
+	 * Busca por um carro baseado pelo chassi recebido por parametro
+	 * @param chassi chassi do carro que sera buscado
+	 * @param loja na qual sera efetada a busca
+	 * @return carro carro que foi encontrado pela busca
+	 */
+	public static Carro buscarCarro(String chassi, Loja loja){
+		Carro carro = null;
+
+		for (Carro car: loja.estoqueDeCarros)
+		{
+			if (chassi.equals(car.getChassi())) {
+				carro = car;
+			}
+		}
+		return carro;
+	}
+
+	/**
 	 * Metodo removerCarro remove o carro desejado da array estoqueDeCarros
 	 * @param car carro a ser removido
 	 */
@@ -341,9 +359,9 @@ public class Loja
 
 	//------------To Do--------------------------------------------------------------------------------------------
 
-	//pesquisarCarro(...);  Retorna um carro, utilizando os atributos passados, caso exista no inventÃ¡rio. 
-	//buscarCarro(Chassi); Retorna um carro, caso exista no estoque um com o Chassi indicado. 
-	//pesquisarMoto(...); Retorna um carro, utilizando os atributos passados, caso exista no inventÃ¡rio. 
+
+	//pesquisarCarro
+	//pesquisarMoto(...); Retorna um carro, utilizando os atributos passados, caso exista no inventario. 
 	//buscarMoto(Chassi); Retorna uma moto, caso exista no estoque uma com o Chassi indicado. 
 
 	/**
