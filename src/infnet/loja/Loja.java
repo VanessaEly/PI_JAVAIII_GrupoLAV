@@ -415,6 +415,158 @@ public class Loja
 	//pesquisarMoto(...); Retorna um carro, utilizando os atributos passados, caso exista no inventario. 
 	//buscarMoto(Chassi); Retorna uma moto, caso exista no estoque uma com o Chassi indicado. 
 
+	
+	/*pesquisar carro com a montadora
+	 * */
+	public static void pesquisaCarroMontadora(int aux, Loja loja){
+		int i = 0;
+		while (aux < 1 || aux > 4)
+		{
+			JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da montadora: (VOLKSWAGEN(1),FORD(2),CHEVROLET(3),FIAT(4))"));
+		}
+		for (Carro m: loja.estoqueDeCarros)
+		{
+			if (m.getMontadora().getIndice() == aux){
+				i++;
+				JOptionPane.showMessageDialog(null, "Carro Encontrado!\n" + m);	
+			}
+		}
+		if(i == 0){
+			JOptionPane.showMessageDialog(null, "Carro Nao Encontrado.");
+		}
+	}
+	
+	/*pesquisar carro pelo modelo
+	 * 
+	 */
+	
+	public static void pesquisaCarroModelo(int aux, Loja loja){
+		int i = 0;
+		while (aux < 1 || aux > 3)
+		{
+			JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: (FOX(1),GOL(2),CELTA(3))"));
+		}
+		for (Carro m: loja.estoqueDeCarros)
+		{
+			if (m.getModelo().getIndice() == aux){
+				i++;
+				JOptionPane.showMessageDialog(null, "Carro Encontrado!\n" + m);	
+			}
+		}
+		if(i == 0){
+			JOptionPane.showMessageDialog(null, "Carro Nao Encontrado.");
+		}
+	}
+	
+	/*pesquisar carro pelo tipo
+	 * 
+	 */
+	public static void pesquisaCarroTipo(int aux, Loja loja){
+		int i = 0;
+		while (aux < 1 || aux > 3)
+		{
+			JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo: (SEDAN (1),HATCH (2),SUV (3))"));
+		}
+		for (Carro m: loja.estoqueDeCarros)
+		{
+			if (m.getModelo().getIndice() == aux){
+				i++;
+				JOptionPane.showMessageDialog(null, "Carro Encontrado!\n" + m);	
+			}
+		}
+		if(i == 0){
+			JOptionPane.showMessageDialog(null, "Carro Nao Encontrado.");
+		}
+	}
+	
+	/*pesquisar pela cor
+	 * 
+	 */
+	
+	public static void pesquisaCarroCor(int aux, Loja loja){
+		int i = 0;
+		while (aux < 1 || aux > 6)
+		{
+			JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo: (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
+		}
+		for (Carro m: loja.estoqueDeCarros)
+		{
+			if (m.getModelo().getIndice() == aux){
+				i++;
+				JOptionPane.showMessageDialog(null, "Carro Encontrado!\n" + m);	
+			}
+		}
+		if(i == 0){
+			JOptionPane.showMessageDialog(null, "Carro Nao Encontrado.");
+		}
+	}
+	
+	/*pesquisar carro pela motorizacao
+	 * 
+	 */
+	
+	public static void pesquisaCarroMotorizacao(float aux, Loja loja){
+		int i = 0;
+		
+		for (Carro m: loja.estoqueDeCarros)
+		{
+			if (m.getMotorizacao() == aux){
+				i++;JOptionPane.showMessageDialog(null, "Carro Encontrado!\n" + m);	
+			}
+		}
+		if(i == 0){
+			JOptionPane.showMessageDialog(null, "Carro Nao Encontrado.");
+		}
+		
+	}
+	
+	/*pesquisar carro pelo preco
+	 * 
+	 */
+	
+	public static void pesquisaCarroPreco(float aux, Loja loja){
+		int i = 0;
+		
+		for (Carro m: loja.estoqueDeCarros)
+		{
+			if (m.getPreco() == aux){
+				i++;
+				JOptionPane.showMessageDialog(null, "Carro Encontrado!\n" + m);	
+			}
+		}
+		if(i == 0){
+			JOptionPane.showMessageDialog(null, "Carro Nao Encontrado.");
+		}
+		
+	}
+	
+	/* pesquisa carro pelo cambio
+	 * 
+	 */
+	
+	public static void pesquisaCarroCambio(int aux, Loja loja){
+		int i = 0;
+		while (aux < 1 || aux > 3)
+		{
+			JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo: (MANUAL(1),SEMI (2),AUTO (3))"));
+		}
+		for (Carro m: loja.estoqueDeCarros)
+		{
+			if (m.getModelo().getIndice() == aux){
+				i++;
+				JOptionPane.showMessageDialog(null, "Carro Encontrado!\n" + m);	
+			}
+		}
+		if(i == 0){
+			JOptionPane.showMessageDialog(null, "Carro Nao Encontrado.");
+		}
+	}
+	
 	/**
 	 * Metodo equals sobrescreve o equals da classe
 	 */
