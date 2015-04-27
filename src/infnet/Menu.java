@@ -46,13 +46,14 @@ public class Menu
 	{
 		try{
 			String input = JOptionPane.showInputDialog("O que voce deseja fazer?     \n" + 
-					"1 - Adicionar Carro                      \n" +
-					"2 - Pesquisar Carro 		   \n" +
-					"3 - Pesquisar Carro Especifico   \n" +
-					"4 - Buscar Carro pelo Chassi     \n" +
-					"5 - Listar Estoque de Carros     \n" +
-					"6 - Voltar para o Menu Principal \n" +
-					"7 - Sair");
+					"1 - Adicionar Carro              \n" + 
+					"2 - Remover Carro                \n" +
+					"3 - Pesquisar Carro     		  \n" +
+					"4 - Pesquisar Carro Especifico   \n" +
+					"5 - Buscar Carro pelo Chassi     \n" +
+					"6 - Listar Estoque de Carros     \n" +
+					"7 - Voltar para o Menu Principal \n" +
+					"8 - Sair");
 			int opcao = Integer.parseInt(Loja.validarInput(input));
 			switch (opcao) 
 			{
@@ -60,15 +61,22 @@ public class Menu
 				JOptionPane.showMessageDialog(null,"Voce optou por Adicionar um Carro");
 				Loja.adicionarCarro(loja);
 				break;
-			case 2:
+			case 2: 
+				JOptionPane.showMessageDialog(null,"Voce optou por Remover um Carro");
+				input = JOptionPane.showInputDialog("Insira o chassi do Carro a ser removido:");
+				String chassi = Loja.validarInput(input);
+				Loja.removerCarro(chassi, loja);
+				Menu.chamarMenuCarro(loja);
+				break;
+			case 3:
 				JOptionPane.showMessageDialog(null,"Voce optou por Pesquisar um Carro");
 				Loja.pesquisarCarro(loja);
 				break;
-			case 3:
+			case 4:
 				JOptionPane.showMessageDialog(null,"Voce optou por Pesquisar um Carro Especifico");
-				
+
 				input = JOptionPane.showInputDialog("Digite o chassi: ");
-				String _chassi = (Loja.validarInput(input));
+				chassi = (Loja.validarInput(input));
 				input = JOptionPane.showInputDialog("Digite o numero da montadora: (VOLKSWAGEN(1),FORD(2),CHEVROLET(3),FIAT(4))");
 				int montadora = Integer.parseInt(Loja.validarInput(input));;
 				input = JOptionPane.showInputDialog("Digite numero do modelo: 	(FOX(1),GOL(2),CELTA(3))");
@@ -83,17 +91,17 @@ public class Menu
 				int cambio = Integer.parseInt(Loja.validarInput(input));
 				input = JOptionPane.showInputDialog("Digite o preco do carro");
 				float preco = Float.parseFloat(Loja.validarInput(input));
-				
-				Carro carro = Loja.pesquisarCarroEspecifico(loja, _chassi, montadora, modelo, tipo, cor, motorizacao, cambio, preco);
+
+				Carro carro = Loja.pesquisarCarroEspecifico(loja, chassi, montadora, modelo, tipo, cor, motorizacao, cambio, preco);
 				if (carro == null)
 					JOptionPane.showMessageDialog(null,"Carro nao encontrado");
 				else
 					JOptionPane.showMessageDialog(null,"Carro Encontrado.\n" + carro);
 				Menu.chamarMenuCarro(loja);
 				break;
-			case 4:
+			case 5:
 				JOptionPane.showMessageDialog(null,"Voce optou por Buscar um Carro pelo Chassi");
-				String chassi = JOptionPane.showInputDialog("Insira o Chassi que voce deseja procurar: ");
+				chassi = JOptionPane.showInputDialog("Insira o Chassi que voce deseja procurar: ");
 				Carro car = Loja.buscarCarro(chassi, loja);
 				if (car != null)
 					JOptionPane.showMessageDialog(null, "Carro Encontrado!\n" + car);
@@ -101,14 +109,15 @@ public class Menu
 					JOptionPane.showMessageDialog(null, "Carro Nao Encontrado.");
 				Menu.chamarMenuCarro(loja);
 				break;
-			case 5:
+			case 6:
 				JOptionPane.showMessageDialog(null,"Voce optou por Listar Estoque de Carros");
 				Loja.listarEstoqueDeCarros(loja);
-				break;
-			case 6:
-				Menu.chamarMenu(loja);
+				Menu.chamarMenuCarro(loja);
 				break;
 			case 7:
+				Menu.chamarMenu(loja);
+				break;
+			case 8:
 				JOptionPane.showMessageDialog(null,"Voce optou por sair do sistema, ate a proxima!");
 				System.exit(0);
 			default:
@@ -134,13 +143,14 @@ public class Menu
 	{
 		try{
 			String input = JOptionPane.showInputDialog("O que voce deseja fazer?    \n" + 
-					"1 - Adicionar Moto          \n" +
-					"2 - Pesquisar Moto 	      \n" +
-					"3 - Pesquisar Moto Especifica \n"+
-					"4 - Buscar Moto pelo Chassi \n" +
-					"5 - Listar Estoque de Motos \n" +
-					"6 - Voltar para o Menu Principal \n"+
-					"7 - Sair");
+					"1 - Adicionar Moto               \n" +
+					"2 - Remover Moto                 \n" +
+					"3 - Pesquisar Moto 	          \n" +
+					"4 - Pesquisar Moto Especifica    \n" +
+					"5 - Buscar Moto pelo Chassi      \n" +
+					"6 - Listar Estoque de Motos      \n" +
+					"7 - Voltar para o Menu Principal \n" +
+					"8 - Sair");
 			int opcao = Integer.parseInt(Loja.validarInput(input));
 			switch (opcao) 
 			{
@@ -149,12 +159,19 @@ public class Menu
 				Loja.adicionarMoto(loja);
 				break;
 			case 2:
+				JOptionPane.showMessageDialog(null,"Voce optou por Remover uma Moto");
+				input = JOptionPane.showInputDialog("Insira o chassi da Moto a ser removido:");
+				String chassi = Loja.validarInput(input);
+				Loja.removerMotocicleta(chassi, loja);
+				Menu.chamarMenuCarro(loja);
+				break;
+			case 3:
 				JOptionPane.showMessageDialog(null,"Voce optou por Pesquisar uma Moto");
 				Loja.pesquisarMoto(loja);
 				break;
-			case 3:
+			case 4:
 				JOptionPane.showMessageDialog(null,"Voce optou por Pesquisar Moto Especifica");
-				
+
 				input = JOptionPane.showInputDialog("Digite o chassi: ");
 				String _chassi = (Loja.validarInput(input));
 				input = JOptionPane.showInputDialog("Digite numero da montadora: (HONDA(5),SUZUKI(6),YAMAHA(7),KAWASAKI(8))");
@@ -171,7 +188,7 @@ public class Menu
 				int capacidadeDoTanque = Integer.parseInt(Loja.validarInput(input));
 				input = JOptionPane.showInputDialog("Digite o preco da Moto");
 				float preco = Float.parseFloat(Loja.validarInput(input));
-				
+
 				Motocicleta motocicleta = Loja.pesquisarMotoEspecifica(loja, _chassi, montadora, modelo, tipo, cor, cilindrada, capacidadeDoTanque, preco);
 				if (motocicleta == null)
 					JOptionPane.showMessageDialog(null,"Moto nao encontrada");
@@ -179,9 +196,9 @@ public class Menu
 					JOptionPane.showMessageDialog(null,"Moto Encontrada.\n" + motocicleta);
 				Menu.chamarMenuMoto(loja);
 				break;
-			case 4:
+			case 5:
 				JOptionPane.showMessageDialog(null,"Voce optou por Buscar uma Moto pelo Chassi");
-				String chassi = JOptionPane.showInputDialog("Insira o Chassi que voce deseja procurar: ");
+				chassi = JOptionPane.showInputDialog("Insira o Chassi que voce deseja procurar: ");
 				Motocicleta moto = Loja.buscarMoto(chassi, loja);
 				if (moto != null)
 					JOptionPane.showMessageDialog(null, "Moto Encontrada!\n" + moto);
@@ -189,14 +206,15 @@ public class Menu
 					JOptionPane.showMessageDialog(null, "Moto Nao Encontrada.");
 				Menu.chamarMenuMoto(loja);
 				break;
-			case 5:
+			case 6:
 				JOptionPane.showMessageDialog(null,"Voce optou por Listar Estoque de Motos");
 				Loja.listarEstoqueDeMotocicletas(loja);
-				break;
-			case 6:
-				Menu.chamarMenu(loja);
+				Menu.chamarMenuCarro(loja);
 				break;
 			case 7:
+				Menu.chamarMenu(loja);
+				break;
+			case 8:
 				JOptionPane.showMessageDialog(null,"Voce optou por sair do sistema, ate a proxima!");
 				System.exit(0);	
 			default:

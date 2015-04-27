@@ -939,21 +939,54 @@ public class Loja
 		return motoOk;
 	}
 	/**
-	 * Metodo removerCarro remove o carro desejado da array estoqueDeCarros
-	 * @param car carro a ser removido
+	 * Metodo removerCarro remove o carro com o chassi desejado da array estoqueDeMotocicletas
+	 * @param chassi chassi do carro
+	 * @param loja loja do estoque
 	 */
-	public void removerCarro(Carro car)
+	public static void removerCarro(String chassi, Loja loja)	
 	{
-		estoqueDeCarros.remove(car);
+		Carro carro = null;
+		for (int i = 0; i< loja.estoqueDeCarros.size(); i++)
+		{
+			if (loja.estoqueDeCarros.get(i).getChassi().equals(chassi))
+			{
+				carro = loja.estoqueDeCarros.get(i);
+				loja.estoqueDeCarros.remove(loja.estoqueDeCarros.get(i));
+				break;
+			}
+		}
+		if (carro == null)
+			JOptionPane.showMessageDialog(null, "Nao existe Carro com esse Chassi no Estoque");
+		else
+		{
+			
+			JOptionPane.showMessageDialog(null, "Carro Removido com sucesso.");
+		}	
 	}
 
 	/**
-	 * Metodo removerMotocicleta remove a motocicleta desejada da array estoqueDeMotocicletas
-	 * @param moto motocicleta a ser removida
+	 * Metodo removerMotocicleta remove a motocicleta com o chassi desejado da array estoqueDeMotocicletas
+	 * @param chassi chassi da moto
+	 * @param loja loja do estoque
 	 */
-	public void removerMotocicleta(Motocicleta moto)	
+	public static void removerMotocicleta(String chassi, Loja loja)	
 	{
-		estoqueDeMotocicletas.remove(moto);
+		Motocicleta moto = null;
+		for (int i = 0; i< loja.estoqueDeMotocicletas.size(); i++)
+		{
+			if (loja.estoqueDeMotocicletas.get(i).getChassi().equals(chassi))
+			{
+				moto = loja.estoqueDeMotocicletas.get(i);
+				loja.estoqueDeMotocicletas.remove(loja.estoqueDeMotocicletas.get(i));
+				break;
+			}
+		}
+		if (moto == null)
+			JOptionPane.showMessageDialog(null, "Nao existe moto com esse Chassi no Estoque");
+		else
+		{
+			JOptionPane.showMessageDialog(null, "Moto Removida com sucesso.");
+		}	
 	}
 
 	/**
@@ -1055,4 +1088,3 @@ public class Loja
 		this.estoqueDeMotocicletas = estoqueDeMotocicletas;
 	}
 }
-
