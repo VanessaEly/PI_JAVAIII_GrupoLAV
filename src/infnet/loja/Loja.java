@@ -50,7 +50,7 @@ public class Loja
 	/**
 	 * Caso o usuario clique em cancel, esse metodo faz com que o sistema seja fechado
 	 * @param input input do usuario
-	 * @return
+	 * @return input input do usuario
 	 */
 	public static String validarInput(String input) {
 		
@@ -75,7 +75,7 @@ public class Loja
 		//se nome vazio ou sem o formato txt, repete a acao
 		while ((Principal.nomearq == null) || (!(Principal.nomearq.contains(".txt"))))
 		{
-			input = (JOptionPane.showInputDialog("Nome Inválido. Digite o nome do seu arquivo .txt(Ex: 'loja.txt'): "));
+			input = (JOptionPane.showInputDialog("Nome Invalido. Digite o nome do seu arquivo .txt(Ex: 'loja.txt'): "));
 			Principal.nomearq = validarInput(input);
 		}
 			

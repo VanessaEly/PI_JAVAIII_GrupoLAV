@@ -130,7 +130,7 @@ public class Menu
 				Menu.chamarMenu(loja);
 				break;
 			case 6:
-				JOptionPane.showMessageDialog(null,"Voce optou por sair do sistema, até a próxima!");
+				JOptionPane.showMessageDialog(null,"Voce optou por sair do sistema, ate a proxima!");
 				System.exit(0);	
 			default:
 				JOptionPane.showMessageDialog(null,"Escolha uma opcao valida.");
