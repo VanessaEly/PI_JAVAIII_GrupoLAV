@@ -511,7 +511,6 @@ public class Loja
 	
 	public static void pesquisaCarroMotorizacao(float aux, Loja loja){
 		int i = 0;
-		
 		for (Carro m: loja.estoqueDeCarros)
 		{
 			if (m.getMotorizacao() == aux){
@@ -521,7 +520,6 @@ public class Loja
 		if(i == 0){
 			JOptionPane.showMessageDialog(null, "Carro Nao Encontrado.");
 		}
-		
 	}
 	
 	/*pesquisar carro pelo preco

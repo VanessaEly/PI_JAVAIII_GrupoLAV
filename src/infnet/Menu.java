@@ -234,8 +234,8 @@ public class Menu
 				Menu.chamarMenuCarro(loja);
 				break;
 			}
-
 		}
+		
 		catch (NumberFormatException e) {
 			JOptionPane.showMessageDialog(null, "Valor inválido, voltando para o menu de carros");
 			chamarMenuCarro(loja);
