@@ -26,7 +26,7 @@ public class Menu
 		if (selectedValue == itens[1])
 			Menu.chamarMenuMoto(loja);	
 		if (selectedValue == itens[2])
-			loja = Loja.criarLoja();
+			loja = Loja.salvarEstoque();
 		if ((selectedValue == itens[3])||(selectedValue == null))
 		{
 			JOptionPane.showMessageDialog(null,"Fechando o sistema, ate a proxima!");

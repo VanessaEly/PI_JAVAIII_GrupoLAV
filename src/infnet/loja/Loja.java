@@ -67,13 +67,15 @@ public class Loja
 	 * @return loja retorna a loja criada
 	 * @throws IOException para excecoes de entrada e saida
 	 */
-	public static Loja criarLoja() throws IOException {
+	public static Loja salvarEstoque() throws IOException {
 		Loja loja = new Loja();
-		String input = (JOptionPane.showInputDialog("Digite o nome do seu arquivo .txt(Ex: 'loja.txt'): "));
+		String input = (JOptionPane.showInputDialog("Digite o nome do seu arquivo de estoque(Ex: 'loja.txt'): "));
 		Principal.nomearq = validarInput(input);
+		if (!(Principal.nomearq.contains(".txt")))
+			Principal.nomearq = Principal.nomearq + ".txt";
 		
 		//se nome vazio ou sem o formato txt, repete a acao
-		while ((Principal.nomearq == null) || (!(Principal.nomearq.contains(".txt"))))
+		while (Principal.nomearq == null)
 		{
 			input = (JOptionPane.showInputDialog("Nome Invalido. Digite o nome do seu arquivo .txt(Ex: 'loja.txt'): "));
 			Principal.nomearq = validarInput(input);
