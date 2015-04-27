@@ -9,12 +9,12 @@ package infnet.loja.enums;
  * AMARELO
  */
 public enum Cor {
-	PRETO(1),
-	BRANCO(2),
-	AZUL(3),
-	VERDE(4),
-	ROSA(5),
-	AMARELO(6);
+	PRETO(0),
+	BRANCO(1),
+	AZUL(2),
+	VERDE(3),
+	ROSA(4),
+	AMARELO(5);
 
 	//variavel do enum
 	private int indice;

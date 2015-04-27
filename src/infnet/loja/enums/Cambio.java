@@ -7,9 +7,9 @@ package infnet.loja.enums;
  * AUTO
  */
 public enum Cambio {
-	MANUAL(1),
-	SEMI (2),
-	AUTO (3);
+	MANUAL(0),
+	SEMI (1),
+	AUTO (2);
 	
 	//variavel do enum
 	private int indice;
