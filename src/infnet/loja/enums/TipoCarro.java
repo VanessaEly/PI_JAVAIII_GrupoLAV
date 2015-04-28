@@ -8,9 +8,9 @@ package infnet.loja.enums;
  */
 public enum TipoCarro 
 {
-	SEDAN (1),
-	HATCH (2),
-	SUV (3);
+	SEDAN (0),
+	HATCH (1),
+	SUV (2);
 	
 	//variavel do enum
 	private int indice;
