@@ -438,7 +438,7 @@ public class Loja
 			for (int i = 0; i < 4; i++)
 			{
 				if (selectedMon == itensMon[i])
-					auxMon = i+5;
+					auxMon = i;
 			}
 
 			ArrayList <Carro> carrosMontadora = new ArrayList <Carro>();
