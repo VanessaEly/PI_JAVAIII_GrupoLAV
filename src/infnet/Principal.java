@@ -16,7 +16,7 @@ public class Principal
 	/**
 	 * Metodo main eh onde a execucao do programa se torna possivel
 	 * @param args argumentos do metodo main
-	 * @throws IOException 
+	 * @throws IOException Excecoes de entrada e saida e seus tratamentos
 	 */
 	public static void main(String[] args) throws IOException 
 	{

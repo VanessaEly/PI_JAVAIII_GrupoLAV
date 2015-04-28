@@ -409,7 +409,7 @@ public class Loja
 	/**
 	 * Printa um carro, utilizando os atributos passados, caso exista no inventário.
 	 * @param loja loja sendo tratada
-	 * @throws IOException
+	 * @throws IOException Excecoes de entrada e saida e seus tratamentos
 	 */
 	public static void pesquisarCarro(Loja loja) throws IOException
 	{
@@ -644,7 +644,7 @@ public class Loja
 	/**
 	 * Printa uma moto, utilizando os atributos passados, caso exista no inventário.
 	 * @param loja loja sendo tratada
-	 * @throws IOException
+	 * @throws IOException Excecoes de entrada e saida e seus tratamentos
 	 */
 	public static void pesquisarMoto(Loja loja) throws IOException
 	{
