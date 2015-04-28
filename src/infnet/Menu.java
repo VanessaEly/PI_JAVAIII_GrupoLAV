@@ -16,7 +16,7 @@ public class Menu
 	 */
 	public static void chamarMenu( Loja loja) 
 			throws IOException
-	{
+			{
 		Object[] itens = {"Controle de Estoque de Carros", "Controle de Estoque de Motos", "Criar nova Loja", "Sair"};
 		Object selectedValue = JOptionPane.showInputDialog(null, "O que voce deseja fazer?", "Opcao", JOptionPane.INFORMATION_MESSAGE, null, itens, itens [0]);
 
@@ -34,18 +34,17 @@ public class Menu
 			System.exit(0);
 		}
 
-	}
+			}
 
 	/**
 	 * Menu que exibe todas as opcoes disponiveis para carro
 	 * @param loja loja sendo trabalhada
 	 * @throws IOException excecoes de entrada e saida
 	 */
-	public static void chamarMenuCarro(Loja loja)
-			throws IOException
+	public static void chamarMenuCarro(Loja loja) throws IOException
 	{
 		try{
-			String input = JOptionPane.showInputDialog("O que voce deseja fazer?     \n" + 
+			int opcao = Integer.parseInt(JOptionPane.showInputDialog("O que voce deseja fazer?     \n" + 
 					"1 - Adicionar Carro              \n" + 
 					"2 - Remover Carro                \n" +
 					"3 - Pesquisar Carro     		  \n" +
@@ -53,8 +52,7 @@ public class Menu
 					"5 - Buscar Carro pelo Chassi     \n" +
 					"6 - Listar Estoque de Carros     \n" +
 					"7 - Voltar para o Menu Principal \n" +
-					"8 - Sair");
-			int opcao = Integer.parseInt(Loja.validarInput(input));
+					"8 - Sair"));
 			switch (opcao) 
 			{
 			case 1: 
@@ -63,8 +61,7 @@ public class Menu
 				break;
 			case 2: 
 				JOptionPane.showMessageDialog(null,"Voce optou por Remover um Carro");
-				input = JOptionPane.showInputDialog("Insira o chassi do Carro a ser removido:");
-				String chassi = Loja.validarInput(input);
+				String chassi = JOptionPane.showInputDialog("Insira o chassi do Carro a ser removido:");
 				Loja.removerCarro(chassi, loja);
 				Menu.chamarMenuCarro(loja);
 				break;
@@ -75,22 +72,14 @@ public class Menu
 			case 4:
 				JOptionPane.showMessageDialog(null,"Voce optou por Pesquisar um Carro Especifico");
 
-				input = JOptionPane.showInputDialog("Digite o chassi: ");
-				chassi = (Loja.validarInput(input));
-				input = JOptionPane.showInputDialog("Digite o numero da montadora: (VOLKSWAGEN(1),FORD(2),CHEVROLET(3),FIAT(4))");
-				int montadora = Integer.parseInt(Loja.validarInput(input));;
-				input = JOptionPane.showInputDialog("Digite numero do modelo: 	(FOX(1),GOL(2),CELTA(3))");
-				int modelo = Integer.parseInt(Loja.validarInput(input));
-				input = JOptionPane.showInputDialog("Digite numero do tipo:      (SEDAN (1),HATCH (2),SUV (3))");
-				int tipo = Integer.parseInt(Loja.validarInput(input));
-				input = JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))");
-				int cor = Integer.parseInt(Loja.validarInput(input));
-				input = JOptionPane.showInputDialog("Digite numero do motor:		(1.0/1.4/1.6/1.8/2.0)");
-				float motorizacao = Float.parseFloat(Loja.validarInput(input));
-				input = JOptionPane.showInputDialog("Digite numero do cambio:    (MANUAL(1),SEMI (2),AUTO (3))");
-				int cambio = Integer.parseInt(Loja.validarInput(input));
-				input = JOptionPane.showInputDialog("Digite o preco do carro");
-				float preco = Float.parseFloat(Loja.validarInput(input));
+				chassi = JOptionPane.showInputDialog("Digite o chassi: ");
+				int montadora = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero da montadora: (VOLKSWAGEN(1),FORD(2),CHEVROLET(3),FIAT(4))"));
+				int modelo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(FOX(1),GOL(2),CELTA(3))"));
+				int tipo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (SEDAN (1),HATCH (2),SUV (3))"));
+				int cor = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
+				float motorizacao = Float.parseFloat(JOptionPane.showInputDialog("Digite numero do motor:		(1.0/1.4/1.6/1.8/2.0)"));
+				int cambio = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do cambio:    (MANUAL(1),SEMI (2),AUTO (3))"));
+				float preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preco do carro"));
 
 				Carro carro = Loja.pesquisarCarroEspecifico(loja, chassi, montadora, modelo, tipo, cor, motorizacao, cambio, preco);
 				if (carro == null)
@@ -125,11 +114,10 @@ public class Menu
 				Menu.chamarMenuCarro(loja);
 				break;
 			}
-
 		}
 		catch (NumberFormatException e) {
-			JOptionPane.showMessageDialog(null, "Valor inválido, voltando para o menu de carros");
-			chamarMenuCarro(loja);
+			JOptionPane.showMessageDialog(null,"Voltando para o Menu Principal.");
+			Menu.chamarMenu(loja);
 		}
 	}
 
@@ -140,9 +128,9 @@ public class Menu
 	 */
 	public static void chamarMenuMoto(Loja loja)
 			throws IOException
-	{
+			{
 		try{
-			String input = JOptionPane.showInputDialog("O que voce deseja fazer?    \n" + 
+			int opcao = Integer.parseInt(JOptionPane.showInputDialog("O que voce deseja fazer?    \n" + 
 					"1 - Adicionar Moto               \n" +
 					"2 - Remover Moto                 \n" +
 					"3 - Pesquisar Moto 	          \n" +
@@ -150,8 +138,7 @@ public class Menu
 					"5 - Buscar Moto pelo Chassi      \n" +
 					"6 - Listar Estoque de Motos      \n" +
 					"7 - Voltar para o Menu Principal \n" +
-					"8 - Sair");
-			int opcao = Integer.parseInt(Loja.validarInput(input));
+					"8 - Sair"));
 			switch (opcao) 
 			{
 			case 1: 
@@ -160,8 +147,7 @@ public class Menu
 				break;
 			case 2:
 				JOptionPane.showMessageDialog(null,"Voce optou por Remover uma Moto");
-				input = JOptionPane.showInputDialog("Insira o chassi da Moto a ser removido:");
-				String chassi = Loja.validarInput(input);
+				String chassi = JOptionPane.showInputDialog("Insira o chassi da Moto a ser removido:");
 				Loja.removerMotocicleta(chassi, loja);
 				Menu.chamarMenuCarro(loja);
 				break;
@@ -172,24 +158,16 @@ public class Menu
 			case 4:
 				JOptionPane.showMessageDialog(null,"Voce optou por Pesquisar Moto Especifica");
 
-				input = JOptionPane.showInputDialog("Digite o chassi: ");
-				String _chassi = (Loja.validarInput(input));
-				input = JOptionPane.showInputDialog("Digite numero da montadora: (HONDA(5),SUZUKI(6),YAMAHA(7),KAWASAKI(8))");
-				int montadora = Integer.parseInt(Loja.validarInput(input));;
-				input = JOptionPane.showInputDialog("Digite numero do modelo: 	(CBR(1),NINJA(2),CB_HORNET(3))");
-				int modelo = Integer.parseInt(Loja.validarInput(input));
-				input = JOptionPane.showInputDialog("Digite numero do tipo:      (CHOPPER (1),SCOOTER (2),ESPORTIVO (3))");
-				int tipo = Integer.parseInt(Loja.validarInput(input));
-				input = JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))");
-				int cor = Integer.parseInt(Loja.validarInput(input));
-				input = JOptionPane.showInputDialog("Digite numero de cilindradas (Ex: 50, 60, 100, 120, 150):");
-				int cilindrada = Integer.parseInt(Loja.validarInput(input));
-				input = JOptionPane.showInputDialog("Digite a Capacidade do Tanque:");
-				int capacidadeDoTanque = Integer.parseInt(Loja.validarInput(input));
-				input = JOptionPane.showInputDialog("Digite o preco da Moto");
-				float preco = Float.parseFloat(Loja.validarInput(input));
+				chassi = JOptionPane.showInputDialog("Digite o chassi: ");
+				int montadora = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da montadora: (HONDA(5),SUZUKI(6),YAMAHA(7),KAWASAKI(8))"));
+				int modelo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(CBR(1),NINJA(2),CB_HORNET(3))"));
+				int tipo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (CHOPPER (1),SCOOTER (2),ESPORTIVO (3))"));
+				int cor = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
+				int cilindrada = Integer.parseInt(JOptionPane.showInputDialog("Digite numero de cilindradas (Ex: 50, 60, 100, 120, 150):"));
+				int capacidadeDoTanque = Integer.parseInt(JOptionPane.showInputDialog("Digite a Capacidade do Tanque:"));
+				float preco = Float.parseFloat((JOptionPane.showInputDialog("Digite o preco da Moto")));
 
-				Motocicleta motocicleta = Loja.pesquisarMotoEspecifica(loja, _chassi, montadora, modelo, tipo, cor, cilindrada, capacidadeDoTanque, preco);
+				Motocicleta motocicleta = Loja.pesquisarMotoEspecifica(loja, chassi, montadora, modelo, tipo, cor, cilindrada, capacidadeDoTanque, preco);
 				if (motocicleta == null)
 					JOptionPane.showMessageDialog(null,"Moto nao encontrada");
 				else
@@ -224,10 +202,10 @@ public class Menu
 			}
 		}
 		catch (NumberFormatException e) {
-			JOptionPane.showMessageDialog(null, "Valor inválido, voltando para o menu de motos.");
-			chamarMenuMoto(loja);
+			JOptionPane.showMessageDialog(null,"Voltando para o Menu Principal.");
+			Menu.chamarMenu(loja);
 		}
-	}
+			}
 
 	public static int menuPesquisaCarro(Loja loja) throws IOException
 	{

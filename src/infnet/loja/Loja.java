@@ -4,12 +4,14 @@ import infnet.Menu;
 import infnet.Principal;
 import infnet.loja.veiculos.*;
 import infnet.loja.enums.*;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -44,22 +46,6 @@ public class Loja
 		this.endereco              = endereco;
 		this.nome                  = nome;
 	}
-
-	/**
-	 * Caso o usuario clique em cancel, esse metodo faz com que o sistema seja fechado
-	 * @param input input do usuario
-	 * @return input input do usuario
-	 */
-	public static String validarInput(String input) {
-
-		//quando usuario clica em cancel, input recebe o valor null
-		if (input == null)
-		{
-			JOptionPane.showMessageDialog(null,"Voce optou por sair do sistema, ate a proxima!");
-			System.exit(0);	
-		}
-		return input;
-	}
 	/**
 	 * Cria uma nova loja e um novo arquivo para a mesma (caso ele ainda nao exista)
 	 * @return loja retorna a loja criada
@@ -67,53 +53,57 @@ public class Loja
 	 */
 	public static Loja salvarEstoque() throws IOException {
 		Loja loja = new Loja();
-		String input = (JOptionPane.showInputDialog("Digite o nome do seu arquivo de estoque(Ex: 'loja.txt'): "));
-		Principal.nomearq = validarInput(input);
-		if (!(Principal.nomearq.contains(".txt")))
-			Principal.nomearq = Principal.nomearq + ".txt";
+		try{
+			Principal.nomearq = (JOptionPane.showInputDialog("Digite o nome do seu arquivo de estoque(Ex: 'loja.txt'): "));
 
-		//se nome vazio ou sem o formato txt, repete a acao
-		while (Principal.nomearq == null)
-		{
-			input = (JOptionPane.showInputDialog("Nome Invalido. Digite o nome do seu arquivo .txt(Ex: 'loja.txt'): "));
-			Principal.nomearq = validarInput(input);
-		}
+			while (Principal.nomearq.isEmpty())
+				Principal.nomearq = (JOptionPane.showInputDialog("Nome Invalido. Digite o nome do seu arquivo .txt(Ex: 'loja.txt'): "));
 
+			if (!(Principal.nomearq.contains(".txt")))
+				Principal.nomearq = Principal.nomearq + ".txt";
 
-		//cria objeto file
-		File arq = new File(Principal.nomearq);
+			//cria objeto file
+			File arq = new File(Principal.nomearq);
 
-		//se arquivo nao existir, cria novo arquivo e nova loja
-		if (!arq.exists()) 
-		{
-			input = (JOptionPane.showInputDialog("Digite o nome da loja: "));
-			loja.nome = validarInput(input);
-			input = (JOptionPane.showInputDialog("Digite o endereco da loja: "));
-			loja.endereco = validarInput(input);
-
-			//cria arquivo txt
-			arq.createNewFile();
-
-			//escreve nome da loja e endereco no arquivo
-			try
+			//se arquivo nao existir, cria novo arquivo e nova loja
+			if (!arq.exists()) 
 			{
-				gravarArq = new PrintWriter((new BufferedWriter(new FileWriter(Principal.nomearq, true)))); //true garante que a escrita nao sobrescreva o conteudo atual
-				gravarArq.printf("\nLoja %s", loja.nome);
-				gravarArq.printf(" - Endereco %s", loja.endereco); //dados que serao escritos
-				gravarArq.println();
-				gravarArq.flush(); //limpa buffer
-				JOptionPane.showMessageDialog(null,"Arquivo " + Principal.nomearq + " criado com sucesso. Agora voce esta trabalhando com essa loja.");
-			} 
-			finally 
-			{
-				if (gravarArq != null) 
-					gravarArq.close();
+				loja.nome = (JOptionPane.showInputDialog("Digite o nome da loja: "));
+				while (loja.nome.isEmpty())
+					loja.nome = (JOptionPane.showInputDialog("Nome Invalido. Digite o nome da loja: "));
+				loja.endereco = (JOptionPane.showInputDialog("Digite o endereco da loja: "));
+				while (loja.endereco.isEmpty())
+					loja.endereco = (JOptionPane.showInputDialog("Nome Invalido. Digite o endereco da loja: "));
+				//cria arquivo txt
+				arq.createNewFile();
+
+				//escreve nome da loja e endereco no arquivo
+				try
+				{
+					gravarArq = new PrintWriter((new BufferedWriter(new FileWriter(Principal.nomearq, true)))); //true garante que a escrita nao sobrescreva o conteudo atual
+					gravarArq.printf("\nLoja %s", loja.nome);
+					gravarArq.printf(" - Endereco %s", loja.endereco); //dados que serao escritos
+					gravarArq.println();
+					gravarArq.flush(); //limpa buffer
+					JOptionPane.showMessageDialog(null,"Arquivo " + Principal.nomearq + " criado com sucesso. Agora voce esta trabalhando com essa loja.");
+				} 
+				finally 
+				{
+					if (gravarArq != null) 
+						gravarArq.close();
+				}
 			}
+			else
+				JOptionPane.showMessageDialog(null,"Arquivo ja existe. Dados acrescentados serao incluidos no mesmo.");
+			Menu.chamarMenu(loja);
+
 		}
-		else
-			JOptionPane.showMessageDialog(null,"Arquivo ja existe. Dados acrescentados serao incluidos no mesmo.");
-		Menu.chamarMenu(loja);
+		catch (NullPointerException e){
+			JOptionPane.showMessageDialog(null,"Fechando o sistema, ate a proxima!");
+			System.exit(0);
+		}
 		return loja;
+
 	}
 
 	/**
@@ -123,113 +113,120 @@ public class Loja
 	 */
 	public static void adicionarCarro(Loja loja) throws IOException
 	{
-		//variaveis nescessarias para a construcao de um novo Carro
-		Montadora   _montadora   = null;
-		ModeloCarro _modelo      = null;
-		TipoCarro   _tipo 	     = null;
-		Cambio 		_cambio      = null;
-		Cor 		_cor 	     = null;
-		float 		_motorizacao = 0; 
-		String 		_chassi      = "";
-		float 		_preco 		 = 0;
-		int aux;
+		try{
+			//variaveis nescessarias para a construcao de um novo Carro
+			Montadora   _montadora   = null;
+			ModeloCarro _modelo      = null;
+			TipoCarro   _tipo 	     = null;
+			Cambio 		_cambio      = null;
+			Cor 		_cor 	     = null;
+			float 		_motorizacao = 0; 
+			String 		_chassi      = "";
+			float 		_preco 		 = 0;
+			int aux;
 
-		String input = (JOptionPane.showInputDialog("Digite o chassi: "));
-		for (Carro c: loja.estoqueDeCarros)
-		{
-			if (c.getChassi().equals(input))
+			String input = (JOptionPane.showInputDialog("Digite o chassi: "));
+			for (Carro c: loja.estoqueDeCarros)
 			{
-				JOptionPane.showMessageDialog(null, "Esse carro ja esta cadastrado.");
-				Menu.chamarMenuCarro(loja);
+				if (c.getChassi().equals(input))
+				{
+					JOptionPane.showMessageDialog(null, "Esse carro ja esta cadastrado.");
+					Menu.chamarMenuCarro(loja);
+				}
 			}
-		}
-		_chassi = input;
+			_chassi = input;
 
-		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero da montadora: (VOLKSWAGEN(1),FORD(2),CHEVROLET(3),FIAT(4))"));
-		while (aux <= 0 || aux >=5) //tratamento de excecao limitando o indice que pode ser escolhido, utilizado sempre que tratar-se de uma enumeracao
-		{
-			JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero da montadora: \n (VOLKSWAGEN(1),FORD(2),CHEVROLET(3),FIAT(4))"));
-		}
-		for (Montadora m: Montadora.values()) //percorre a enumeracao
-		{
-			if (m.getIndice() == (aux-1)) //verifica qual valor da enumeracao possui o indice escolhido
-				_montadora = m;
-		}
-
-		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(FOX(1),GOL(2),CELTA(3))"));
-		while (aux <= 0 || aux >=4)
-		{
-			JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(FOX(1),GOL(2),CELTA(3))"));
-		}
-		for (ModeloCarro m: ModeloCarro.values())
-		{
-			if (m.getIndice() == (aux-1))
-				_modelo = m;
-		}
-
-		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (SEDAN (1),HATCH (2),SUV (3))"));
-		while (aux <= 0 || aux >=4)
-		{
-			JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (SEDAN (1),HATCH (2),SUV (3))"));
-		}
-		for (TipoCarro m: TipoCarro.values())
-		{
-			if (m.getIndice() == (aux-1))
-				_tipo = m;
-		}
-
-		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do cambio:    (MANUAL(1),SEMI (2),AUTO (3))"));
-		while (aux <= 0 || aux >=4)
-		{
-			JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do cambio:    (MANUAL(1),SEMI (2),AUTO (3))"));
-		}
-		for (Cambio m: Cambio.values())
-		{
-			if (m.getIndice() == (aux-1))
-				_cambio = m;
-		}
-
-		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
-		while (aux <= 0 || aux >=7)
-		{
-			JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
-		}
-		for (Cor m: Cor.values())
-		{
-			if (m.getIndice() == (aux-1))
-				_cor = m;
-		}
-
-		_motorizacao = Float.parseFloat(JOptionPane.showInputDialog("Digite numero do motor:		(1.0/1.4/1.6/1.8/2.0)"));
-
-		_preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preco do carro"));
-
-		//chamando o metodo construtor e colocando o carro criado no array de carros da loja
-		Carro carroaux = new Carro(_chassi, _montadora, _modelo, _tipo, _cor, _motorizacao, _cambio, _preco);
-		loja.estoqueDeCarros.add(carroaux);
-
-		//-----------------ESCREVENDO NO ARQUIVO-------------------------------------------------------------------//
-		try
-		{
-			gravarArq = new PrintWriter((new BufferedWriter(new FileWriter(Principal.nomearq, true)))); //true garante que a escrita nao sobrescreva o conteudo atual
-			gravarArq.printf("\nCarro %s", carroaux); //dados que serao escritos
-			gravarArq.println();
-			gravarArq.flush(); //limpa buffer
-		} 
-		finally 
-		{
-			if (gravarArq != null) 
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero da montadora: (VOLKSWAGEN(1),FORD(2),CHEVROLET(3),FIAT(4))"));
+			while (aux <= 0 || aux >=5) //tratamento de excecao limitando o indice que pode ser escolhido, utilizado sempre que tratar-se de uma enumeracao
 			{
-				gravarArq.close();
+				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero da montadora: \n (VOLKSWAGEN(1),FORD(2),CHEVROLET(3),FIAT(4))"));
+			}
+			for (Montadora m: Montadora.values()) //percorre a enumeracao
+			{
+				if (m.getIndice() == (aux-1)) //verifica qual valor da enumeracao possui o indice escolhido
+					_montadora = m;
+			}
+
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(FOX(1),GOL(2),CELTA(3))"));
+			while (aux <= 0 || aux >=4)
+			{
+				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(FOX(1),GOL(2),CELTA(3))"));
+			}
+			for (ModeloCarro m: ModeloCarro.values())
+			{
+				if (m.getIndice() == (aux-1))
+					_modelo = m;
+			}
+
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (SEDAN (1),HATCH (2),SUV (3))"));
+			while (aux <= 0 || aux >=4)
+			{
+				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (SEDAN (1),HATCH (2),SUV (3))"));
+			}
+			for (TipoCarro m: TipoCarro.values())
+			{
+				if (m.getIndice() == (aux-1))
+					_tipo = m;
+			}
+
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do cambio:    (MANUAL(1),SEMI (2),AUTO (3))"));
+			while (aux <= 0 || aux >=4)
+			{
+				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do cambio:    (MANUAL(1),SEMI (2),AUTO (3))"));
+			}
+			for (Cambio m: Cambio.values())
+			{
+				if (m.getIndice() == (aux-1))
+					_cambio = m;
+			}
+
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
+			while (aux <= 0 || aux >=7)
+			{
+				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
+			}
+			for (Cor m: Cor.values())
+			{
+				if (m.getIndice() == (aux-1))
+					_cor = m;
+			}
+
+			_motorizacao = Float.parseFloat(JOptionPane.showInputDialog("Digite numero do motor:		(1.0/1.4/1.6/1.8/2.0)"));
+
+			_preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preco do carro"));
+
+			//chamando o metodo construtor e colocando o carro criado no array de carros da loja
+			Carro carroaux = new Carro(_chassi, _montadora, _modelo, _tipo, _cor, _motorizacao, _cambio, _preco);
+			loja.estoqueDeCarros.add(carroaux);
+
+			//-----------------ESCREVENDO NO ARQUIVO-------------------------------------------------------------------//
+			try
+			{
+				gravarArq = new PrintWriter((new BufferedWriter(new FileWriter(Principal.nomearq, true)))); //true garante que a escrita nao sobrescreva o conteudo atual
+				gravarArq.printf("\nCarro %s", carroaux); //dados que serao escritos
+				gravarArq.println();
+				gravarArq.flush(); //limpa buffer
 			} 
+			finally 
+			{
+				if (gravarArq != null) 
+				{
+					gravarArq.close();
+				} 
+			}
+			JOptionPane.showMessageDialog(null,"Carro cadastrado com sucesso.");
+			Menu.chamarMenuCarro(loja);
 		}
-		JOptionPane.showMessageDialog(null,"Carro cadastrado com sucesso.");
-		Menu.chamarMenu(loja);
+		catch (NullPointerException e)
+		{
+			JOptionPane.showMessageDialog(null, "Valor inválido, voltando para o menu de carros");
+			Menu.chamarMenuCarro(loja);
+		}
 	}
 
 	/**
@@ -237,102 +234,107 @@ public class Loja
 	 * @param loja loja cujo estoque recebera a moto 
 	 * @throws IOException para excecoes de entrada e saida
 	 */
-	public static void adicionarMoto(Loja loja) 
-			throws IOException
-	{
-		Montadora   _montadora          = null;
-		ModeloMoto  _modelo             = null;
-		TipoMoto    _tipo 	    	    = null;
-		int 		_capacidadeDoTanque = 0;
-		Cor 		_cor 	            = null;
-		int 		_cilindradas 		= 0; 
-		String 		_chassi      		= "";
-		float 		_preco 		 		= 0;
-		int aux;
+	public static void adicionarMoto(Loja loja) throws IOException{
+		try{
+			Montadora   _montadora          = null;
+			ModeloMoto  _modelo             = null;
+			TipoMoto    _tipo 	    	    = null;
+			int 		_capacidadeDoTanque = 0;
+			Cor 		_cor 	            = null;
+			int 		_cilindradas 		= 0; 
+			String 		_chassi      		= "";
+			float 		_preco 		 		= 0;
+			int aux;
 
-		String input = (JOptionPane.showInputDialog("Digite o chassi: "));
-		for (Motocicleta c: loja.estoqueDeMotocicletas)
-		{
-			if (c.getChassi().equals(input))
+			String input = (JOptionPane.showInputDialog("Digite o chassi: "));
+			for (Motocicleta c: loja.estoqueDeMotocicletas)
 			{
-				JOptionPane.showMessageDialog(null, "Essa moto ja esta cadastrada.");
-				Menu.chamarMenuMoto(loja);
+				if (c.getChassi().equals(input))
+				{
+					JOptionPane.showMessageDialog(null, "Essa moto ja esta cadastrada.");
+					Menu.chamarMenuMoto(loja);
+				}
 			}
-		}
-		_chassi = input;
-		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da montadora: (HONDA(5),SUZUKI(6),YAMAHA(7),KAWASAKI(8))"));
-		while (aux <= 4 || aux >=9)
-		{
-			JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+			_chassi = input;
 			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da montadora: (HONDA(5),SUZUKI(6),YAMAHA(7),KAWASAKI(8))"));
-		}
-		for (Montadora m: Montadora.values())
-		{
-			if (m.getIndice() == aux)
-				_montadora = m;
-		}
-
-		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(CBR(1),NINJA(2),CB_HORNET(3))"));
-		while (aux <= 0 || aux >=4)
-		{
-			JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(CBR(1),NINJA(2),CB_HORNET(3))"));
-		}
-		for (ModeloMoto m: ModeloMoto.values())
-		{
-			if (m.getIndice() == (aux-1))
-				_modelo = m;
-		}
-
-		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (CHOPPER (1),SCOOTER (2),ESPORTIVO (3))"));
-		while (aux <= 0 || aux >=4)
-		{
-			JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (CHOPPER (1),SCOOTER (2),ESPORTIVO (3))"));
-		}
-		for (TipoMoto m: TipoMoto.values())
-		{
-			if (m.getIndice() == (aux-1))
-				_tipo = m;
-		}
-
-		aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
-		while (aux <= 0 || aux >= 7)
-		{
-			JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
-		}
-		for (Cor m: Cor.values())
-		{
-			if (m.getIndice() == (aux-1))
-				_cor = m;
-		}
-
-		_cilindradas = Integer.parseInt(JOptionPane.showInputDialog("Digite numero de cilindradas (Ex: 50, 60, 100, 120, 150):"));	
-		_capacidadeDoTanque = Integer.parseInt(JOptionPane.showInputDialog("Digite a capacidade do Tanque:"));
-		_preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preco da moto:"));
-
-		Motocicleta motoaux = new Motocicleta (_chassi, _montadora, _modelo, _tipo, _cor, _cilindradas, _capacidadeDoTanque, _preco);
-		loja.estoqueDeMotocicletas.add(motoaux);
-
-		//-----------------ESCREVENDO NO ARQUIVO-------------------------------------------------------------------//
-		try
-		{
-			gravarArq = new PrintWriter((new BufferedWriter(new FileWriter(Principal.nomearq, true))));
-			gravarArq.printf("Moto %s", motoaux);
-			gravarArq.println();
-			gravarArq.flush();
-		} 
-		finally 
-		{
-			if (gravarArq != null) 
+			while (aux <= 4 || aux >=9)
 			{
-				gravarArq.close();
-			} 
-		}
+				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da montadora: (HONDA(5),SUZUKI(6),YAMAHA(7),KAWASAKI(8))"));
+			}
+			for (Montadora m: Montadora.values())
+			{
+				if (m.getIndice() == aux)
+					_montadora = m;
+			}
 
-		JOptionPane.showMessageDialog(null,"Moto Cadastrada com Sucesso");
-		Menu.chamarMenu(loja);
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(CBR(1),NINJA(2),CB_HORNET(3))"));
+			while (aux <= 0 || aux >=4)
+			{
+				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(CBR(1),NINJA(2),CB_HORNET(3))"));
+			}
+			for (ModeloMoto m: ModeloMoto.values())
+			{
+				if (m.getIndice() == (aux-1))
+					_modelo = m;
+			}
+
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (CHOPPER (1),SCOOTER (2),ESPORTIVO (3))"));
+			while (aux <= 0 || aux >=4)
+			{
+				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (CHOPPER (1),SCOOTER (2),ESPORTIVO (3))"));
+			}
+			for (TipoMoto m: TipoMoto.values())
+			{
+				if (m.getIndice() == (aux-1))
+					_tipo = m;
+			}
+
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
+			while (aux <= 0 || aux >= 7)
+			{
+				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
+			}
+			for (Cor m: Cor.values())
+			{
+				if (m.getIndice() == (aux-1))
+					_cor = m;
+			}
+
+			_cilindradas = Integer.parseInt(JOptionPane.showInputDialog("Digite numero de cilindradas (Ex: 50, 60, 100, 120, 150):"));	
+			_capacidadeDoTanque = Integer.parseInt(JOptionPane.showInputDialog("Digite a capacidade do Tanque:"));
+			_preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preco da moto:"));
+
+			Motocicleta motoaux = new Motocicleta (_chassi, _montadora, _modelo, _tipo, _cor, _cilindradas, _capacidadeDoTanque, _preco);
+			loja.estoqueDeMotocicletas.add(motoaux);
+
+			//-----------------ESCREVENDO NO ARQUIVO-------------------------------------------------------------------//
+			try
+			{
+				gravarArq = new PrintWriter((new BufferedWriter(new FileWriter(Principal.nomearq, true))));
+				gravarArq.printf("Moto %s", motoaux);
+				gravarArq.println();
+				gravarArq.flush();
+			} 
+			finally 
+			{
+				if (gravarArq != null) 
+				{
+					gravarArq.close();
+				} 
+			}
+
+			JOptionPane.showMessageDialog(null,"Moto Cadastrada com Sucesso");
+			Menu.chamarMenuMoto(loja);
+		}
+		catch (NullPointerException e)
+		{
+			JOptionPane.showMessageDialog(null, "Valor inválido, voltando para o menu de motos");
+			Menu.chamarMenuMoto(loja);
+		}
 	}
 
 	/**
@@ -418,6 +420,10 @@ public class Loja
 		{
 		case 0:
 			String chassi = JOptionPane.showInputDialog("Insira o Chassi que voce deseja procurar: ");
+			while (chassi.isEmpty())
+				chassi = JOptionPane.showInputDialog("Valor vazio. Insira o Chassi que voce deseja procurar: ");
+			JOptionPane.showMessageDialog(null, "Valor inválido, voltando para o menu de motos");
+			Menu.chamarMenuMoto(loja);
 			Carro car = Loja.buscarCarro(chassi, loja);
 			if (car != null)
 				JOptionPane.showMessageDialog(null, "Carro Encontrado!\n" + car);
@@ -555,28 +561,21 @@ public class Loja
 				JOptionPane.showMessageDialog(null,"Nenhuma Carro dessa Cor foi encontrado");
 			break;
 		case 5:
-			try{
-				String input = JOptionPane.showInputDialog("Insira a Motorizacao que voce deseja procurar: ");
-				float motorizacao = Float.parseFloat(validarInput(input));
-				ArrayList <Carro> carrosMotor = new ArrayList <Carro>();
-				for (Carro c: loja.estoqueDeCarros)
-				{
-					if (c.getMotorizacao() == motorizacao)
-						carrosMotor.add(c);
-				}
-				if ((carrosMotor.size() != 0))
-				{
-					JOptionPane.showMessageDialog(null,"Carros encontrados:");
-					for (Carro c: carrosMotor)
-						JOptionPane.showMessageDialog(null, c);			
-				}
-				else
-					JOptionPane.showMessageDialog(null,"Nenhum Carro dessa Motorizacao foi encontrado");	
+			float motorizacao = Float.parseFloat(JOptionPane.showInputDialog("Insira a Motorizacao que voce deseja procurar: "));
+			ArrayList <Carro> carrosMotor = new ArrayList <Carro>();
+			for (Carro c: loja.estoqueDeCarros)
+			{
+				if (c.getMotorizacao() == motorizacao)
+					carrosMotor.add(c);
 			}
-			catch (NumberFormatException e) {
-				JOptionPane.showMessageDialog(null, "Valor invalido. Voltando para o menu Pesquisa de Carros");
-				Menu.menuPesquisaCarro(loja);
+			if ((carrosMotor.size() != 0))
+			{
+				JOptionPane.showMessageDialog(null,"Carros encontrados:");
+				for (Carro c: carrosMotor)
+					JOptionPane.showMessageDialog(null, c);			
 			}
+			else
+				JOptionPane.showMessageDialog(null,"Nenhum Carro dessa Motorizacao foi encontrado");	
 			break;
 		case 6:
 			int auxCambio = -1;
@@ -611,28 +610,21 @@ public class Loja
 				JOptionPane.showMessageDialog(null,"Nenhuma Carro desse Cambio foi encontrado");
 			break;
 		case 7:
-			try{
-				String input = JOptionPane.showInputDialog("Insira o Preco que voce deseja procurar: ");
-				float preco = Float.parseFloat(validarInput(input));
-				ArrayList <Carro> carrosPreco = new ArrayList <Carro>();
-				for (Carro c: loja.estoqueDeCarros)
-				{
-					if (c.getPreco() == preco)
-						carrosPreco.add(c);
-				}
-				if ((carrosPreco.size() != 0))
-				{
-					JOptionPane.showMessageDialog(null,"Carros encontrados:");
-					for (Carro c: carrosPreco)
-						JOptionPane.showMessageDialog(null, c);			
-				}
-				else
-					JOptionPane.showMessageDialog(null,"Nenhum Carro desse Preco foi encontrado");	
+			float preco = Float.parseFloat(JOptionPane.showInputDialog("Insira o Preco que voce deseja procurar: "));
+			ArrayList <Carro> carrosPreco = new ArrayList <Carro>();
+			for (Carro c: loja.estoqueDeCarros)
+			{
+				if (c.getPreco() == preco)
+					carrosPreco.add(c);
 			}
-			catch (NumberFormatException e) {
-				JOptionPane.showMessageDialog(null, "Valor invalido. Voltando para o menu Pesquisa de Carros");
-				Menu.menuPesquisaCarro(loja);
+			if ((carrosPreco.size() != 0))
+			{
+				JOptionPane.showMessageDialog(null,"Carros encontrados:");
+				for (Carro c: carrosPreco)
+					JOptionPane.showMessageDialog(null, c);			
 			}
+			else
+				JOptionPane.showMessageDialog(null,"Nenhum Carro desse Preco foi encontrado");	
 			break;
 		default:
 			JOptionPane.showMessageDialog(null, "Valor Inválido, escolha outra opcao.");
@@ -648,152 +640,153 @@ public class Loja
 	 */
 	public static void pesquisarMoto(Loja loja) throws IOException
 	{
-		int indice = Menu.menuPesquisaMoto(loja);
-		switch (indice)
-		{
-		case 0:
-			String chassi = JOptionPane.showInputDialog("Insira o Chassi que voce deseja procurar: ");
-			Motocicleta moto = Loja.buscarMoto(chassi, loja);
-			if (moto != null)
-				JOptionPane.showMessageDialog(null, "Moto Encontrada!\n" + moto);
-			else
-				JOptionPane.showMessageDialog(null, "Moto Nao Encontrada.");
-			Menu.chamarMenuMoto(loja);
-			break;
-		case 1:
-			int auxMon = 0;
-			Object[] itensMon = {"Listar motos " + Montadora.HONDA, "Listar motos " + Montadora.SUZUKI, "Listar motos " + Montadora.YAMAHA, "Listar motos " + Montadora.KAWASAKI,
-			"Voltar para o Menu Pesquisa de Motos"};
-			Object selectedMon = JOptionPane.showInputDialog(null, "O que voce deseja fazer?", "Opcao", JOptionPane.INFORMATION_MESSAGE, null, itensMon, itensMon [0]);
+		try{
+			int indice = Menu.menuPesquisaMoto(loja);
+			switch (indice)
+			{
+			case 0:
+				String chassi = JOptionPane.showInputDialog("Insira o Chassi que voce deseja procurar: ");
+				while (chassi.isEmpty())
+					chassi = JOptionPane.showInputDialog("Valor vazio. Insira o Chassi que voce deseja procurar: ");
+				Motocicleta moto = Loja.buscarMoto(chassi, loja);
+				if (moto != null)
+					JOptionPane.showMessageDialog(null, "Moto Encontrada!\n" + moto);
+				else
+					JOptionPane.showMessageDialog(null, "Moto Nao Encontrada.");
+				Menu.chamarMenuMoto(loja);
+				break;
+			case 1:
+				int auxMon = 0;
+				Object[] itensMon = {"Listar motos " + Montadora.HONDA, "Listar motos " + Montadora.SUZUKI, "Listar motos " + Montadora.YAMAHA, "Listar motos " + Montadora.KAWASAKI,
+				"Voltar para o Menu Pesquisa de Motos"};
+				Object selectedMon = JOptionPane.showInputDialog(null, "O que voce deseja fazer?", "Opcao", JOptionPane.INFORMATION_MESSAGE, null, itensMon, itensMon [0]);
 
-			if ((selectedMon == itensMon[4])||(selectedMon == null))
-			{
-				JOptionPane.showMessageDialog(null,"Voltando para o menu Pesquisa de Motos");
-				Menu.menuPesquisaMoto(loja);
-			}
-			for (int i = 0; i < 4; i++)
-			{
-				if (selectedMon == itensMon[i])
-					auxMon = i+5;
-			}
+				if ((selectedMon == itensMon[4])||(selectedMon == null))
+				{
+					JOptionPane.showMessageDialog(null,"Voltando para o menu Pesquisa de Motos");
+					Menu.menuPesquisaMoto(loja);
+				}
+				for (int i = 0; i < 4; i++)
+				{
+					if (selectedMon == itensMon[i])
+						auxMon = i+5;
+				}
 
-			ArrayList <Motocicleta> motosMontadora = new ArrayList <Motocicleta>();
-			for (Motocicleta m: loja.estoqueDeMotocicletas)
-			{
-				int indMont = m.getMontadora().getIndice();
-				if (indMont == auxMon)
-					motosMontadora.add(m);
-			}
-			if ((motosMontadora.size() != 0))
-			{
-				JOptionPane.showMessageDialog(null,"Motos encontradas:");
-				for (Motocicleta m: motosMontadora)
-					JOptionPane.showMessageDialog(null, m);			
-			}
-			else
-				JOptionPane.showMessageDialog(null,"Nenhuma Moto dessa Montadora foi encontrada.");
-			break;
-		case 2:
-			int auxMod = -1;
-			Object[] itensMod = {"Listar motos " + ModeloMoto.CBR, "Listar motos " + ModeloMoto.NINJA, "Listar motos " + ModeloMoto.CB_HORNET, "Voltar para Menu Pesquisa de Motos"};
-			Object selectedMod = JOptionPane.showInputDialog(null, "O que voce deseja fazer?", "Opcao", JOptionPane.INFORMATION_MESSAGE, null, itensMod, itensMod [0]);
+				ArrayList <Motocicleta> motosMontadora = new ArrayList <Motocicleta>();
+				for (Motocicleta m: loja.estoqueDeMotocicletas)
+				{
+					int indMont = m.getMontadora().getIndice();
+					if (indMont == auxMon)
+						motosMontadora.add(m);
+				}
+				if ((motosMontadora.size() != 0))
+				{
+					JOptionPane.showMessageDialog(null,"Motos encontradas:");
+					for (Motocicleta m: motosMontadora)
+						JOptionPane.showMessageDialog(null, m);			
+				}
+				else
+					JOptionPane.showMessageDialog(null,"Nenhuma Moto dessa Montadora foi encontrada.");
+				break;
+			case 2:
+				int auxMod = -1;
+				Object[] itensMod = {"Listar motos " + ModeloMoto.CBR, "Listar motos " + ModeloMoto.NINJA, "Listar motos " + ModeloMoto.CB_HORNET, "Voltar para Menu Pesquisa de Motos"};
+				Object selectedMod = JOptionPane.showInputDialog(null, "O que voce deseja fazer?", "Opcao", JOptionPane.INFORMATION_MESSAGE, null, itensMod, itensMod [0]);
 
-			if ((selectedMod == itensMod[3])||(selectedMod == null))
-			{
-				JOptionPane.showMessageDialog(null,"Voltando para o menu Pesquisa de Motos");
-				Menu.menuPesquisaMoto(loja);
-			}
-			for (int i = 0; i < 3; i++)
-			{
-				if (selectedMod == itensMod[i])
-					auxMod = i;
-			}
+				if ((selectedMod == itensMod[3])||(selectedMod == null))
+				{
+					JOptionPane.showMessageDialog(null,"Voltando para o menu Pesquisa de Motos");
+					Menu.menuPesquisaMoto(loja);
+				}
+				for (int i = 0; i < 3; i++)
+				{
+					if (selectedMod == itensMod[i])
+						auxMod = i;
+				}
 
-			ArrayList <Motocicleta> motosModelo = new ArrayList <Motocicleta>();
-			for (Motocicleta m: loja.estoqueDeMotocicletas)
-			{
-				int indMod = m.getModelo().getIndice();
-				if (indMod == auxMod)
-					motosModelo.add(m);
-			}
-			if ((motosModelo.size() != 0))
-			{
-				JOptionPane.showMessageDialog(null,"Motos encontradas:");
-				for (Motocicleta m: motosModelo)
-					JOptionPane.showMessageDialog(null, m);			
-			}
-			else
-				JOptionPane.showMessageDialog(null,"Nenhuma Moto desse Modelo foi encontrada.");
-			break;
-		case 3:
-			int auxTipo = -1;
-			Object[] itensTipo = {"Listar motos " + TipoMoto.CHOPPER, "Listar motos " + TipoMoto.SCOOTER, "Listar motos " + TipoMoto.ESPORTIVO, "Voltar para Menu Pesquisa de Motos"};
-			Object selectedTipo = JOptionPane.showInputDialog(null, "O que voce deseja fazer?", "Opcao", JOptionPane.INFORMATION_MESSAGE, null, itensTipo, itensTipo [0]);
+				ArrayList <Motocicleta> motosModelo = new ArrayList <Motocicleta>();
+				for (Motocicleta m: loja.estoqueDeMotocicletas)
+				{
+					int indMod = m.getModelo().getIndice();
+					if (indMod == auxMod)
+						motosModelo.add(m);
+				}
+				if ((motosModelo.size() != 0))
+				{
+					JOptionPane.showMessageDialog(null,"Motos encontradas:");
+					for (Motocicleta m: motosModelo)
+						JOptionPane.showMessageDialog(null, m);			
+				}
+				else
+					JOptionPane.showMessageDialog(null,"Nenhuma Moto desse Modelo foi encontrada.");
+				break;
+			case 3:
+				int auxTipo = -1;
+				Object[] itensTipo = {"Listar motos " + TipoMoto.CHOPPER, "Listar motos " + TipoMoto.SCOOTER, "Listar motos " + TipoMoto.ESPORTIVO, "Voltar para Menu Pesquisa de Motos"};
+				Object selectedTipo = JOptionPane.showInputDialog(null, "O que voce deseja fazer?", "Opcao", JOptionPane.INFORMATION_MESSAGE, null, itensTipo, itensTipo [0]);
 
-			if ((selectedTipo == itensTipo[3])||(selectedTipo == null))
-			{
-				JOptionPane.showMessageDialog(null,"Voltando para o menu Pesquisa de Motos");
-				Menu.menuPesquisaMoto(loja);
-			}
-			for (int i = 0; i < 3; i++)
-			{
-				if (selectedTipo == itensTipo[i])
-					auxTipo = i;
-			}
+				if ((selectedTipo == itensTipo[3])||(selectedTipo == null))
+				{
+					JOptionPane.showMessageDialog(null,"Voltando para o menu Pesquisa de Motos");
+					Menu.menuPesquisaMoto(loja);
+				}
+				for (int i = 0; i < 3; i++)
+				{
+					if (selectedTipo == itensTipo[i])
+						auxTipo = i;
+				}
 
-			ArrayList <Motocicleta> motosTipo = new ArrayList <Motocicleta>();
-			for (Motocicleta m: loja.estoqueDeMotocicletas)
-			{
-				int indTipo = m.getTipo().getIndice();
-				if (indTipo == auxTipo)
-					motosTipo.add(m);
-			}
-			if ((motosTipo.size() != 0))
-			{
-				JOptionPane.showMessageDialog(null,"Motos encontradas:");
-				for (Motocicleta m: motosTipo)
-					JOptionPane.showMessageDialog(null, m);			
-			}
-			else
-				JOptionPane.showMessageDialog(null,"Nenhuma Moto desse Tipo foi encontrada");
-			break;
-		case 4:
-			int auxCor = -1;
-			Object[] itensCor = {"Listar motos na cor " + Cor.PRETO, "Listar motos na cor " + Cor.BRANCO, "Listar motos na cor " + Cor.AZUL,"Listar motos na cor " + Cor.VERDE,
-					"Listar motos na cor " + Cor.ROSA, "Listar motos na cor " + Cor.AMARELO, "Voltar para Menu Pesquisa de Motos"};
-			Object selectedCor = JOptionPane.showInputDialog(null, "O que voce deseja fazer?", "Opcao", JOptionPane.INFORMATION_MESSAGE, null, itensCor, itensCor [0]);
+				ArrayList <Motocicleta> motosTipo = new ArrayList <Motocicleta>();
+				for (Motocicleta m: loja.estoqueDeMotocicletas)
+				{
+					int indTipo = m.getTipo().getIndice();
+					if (indTipo == auxTipo)
+						motosTipo.add(m);
+				}
+				if ((motosTipo.size() != 0))
+				{
+					JOptionPane.showMessageDialog(null,"Motos encontradas:");
+					for (Motocicleta m: motosTipo)
+						JOptionPane.showMessageDialog(null, m);			
+				}
+				else
+					JOptionPane.showMessageDialog(null,"Nenhuma Moto desse Tipo foi encontrada");
+				break;
+			case 4:
+				int auxCor = -1;
+				Object[] itensCor = {"Listar motos na cor " + Cor.PRETO, "Listar motos na cor " + Cor.BRANCO, "Listar motos na cor " + Cor.AZUL,"Listar motos na cor " + Cor.VERDE,
+						"Listar motos na cor " + Cor.ROSA, "Listar motos na cor " + Cor.AMARELO, "Voltar para Menu Pesquisa de Motos"};
+				Object selectedCor = JOptionPane.showInputDialog(null, "O que voce deseja fazer?", "Opcao", JOptionPane.INFORMATION_MESSAGE, null, itensCor, itensCor [0]);
 
-			if ((selectedCor == itensCor[6])||(selectedCor == null))
-			{
-				JOptionPane.showMessageDialog(null,"Voltando para o menu Pesquisa de Motos");
-				Menu.menuPesquisaMoto(loja);
-			}
-			for (int i = 0; i < 6; i++)
-			{
-				if (selectedCor == itensCor[i])
-					auxCor = i;
-			}
+				if ((selectedCor == itensCor[6])||(selectedCor == null))
+				{
+					JOptionPane.showMessageDialog(null,"Voltando para o menu Pesquisa de Motos");
+					Menu.menuPesquisaMoto(loja);
+				}
+				for (int i = 0; i < 6; i++)
+				{
+					if (selectedCor == itensCor[i])
+						auxCor = i;
+				}
 
-			ArrayList <Motocicleta> motosCor = new ArrayList <Motocicleta>();
-			for (Motocicleta m: loja.estoqueDeMotocicletas)
-			{
-				int indCor = m.getCor().getIndice();
-				if (indCor == auxCor)
-					motosCor.add(m);
-			}
-			if ((motosCor.size() != 0))
-			{
-				JOptionPane.showMessageDialog(null,"Motos encontradas:");
-				for (Motocicleta m: motosCor)
-					JOptionPane.showMessageDialog(null, m);			
-			}
-			else
-				JOptionPane.showMessageDialog(null,"Nenhuma Moto dessa Cor foi encontrada");
-			break;
-		case 5:
-			try{
-				String input = JOptionPane.showInputDialog("Insira as Cilindradas que voce deseja procurar: ");
-				int cilindrada = Integer.parseInt(validarInput(input));
+				ArrayList <Motocicleta> motosCor = new ArrayList <Motocicleta>();
+				for (Motocicleta m: loja.estoqueDeMotocicletas)
+				{
+					int indCor = m.getCor().getIndice();
+					if (indCor == auxCor)
+						motosCor.add(m);
+				}
+				if ((motosCor.size() != 0))
+				{
+					JOptionPane.showMessageDialog(null,"Motos encontradas:");
+					for (Motocicleta m: motosCor)
+						JOptionPane.showMessageDialog(null, m);			
+				}
+				else
+					JOptionPane.showMessageDialog(null,"Nenhuma Moto dessa Cor foi encontrada");
+				break;
+			case 5:
+				int cilindrada = Integer.parseInt(JOptionPane.showInputDialog("Insira as Cilindradas que voce deseja procurar: "));
 				ArrayList <Motocicleta> motosCilin = new ArrayList <Motocicleta>();
 				for (Motocicleta m: loja.estoqueDeMotocicletas)
 				{
@@ -808,16 +801,9 @@ public class Loja
 				}
 				else
 					JOptionPane.showMessageDialog(null,"Nenhuma Moto dessa Cilindrada foi encontrada");	
-			}
-			catch (NumberFormatException e) {
-				JOptionPane.showMessageDialog(null, "Valor invalido. Voltando para o menu Pesquisa de Motos");
-				Menu.menuPesquisaMoto(loja);
-			}
-			break;
-		case 6:
-			try{
-				String input = JOptionPane.showInputDialog("Insira a Capacidade do Tanque que voce deseja procurar: ");
-				float capacidade = Float.parseFloat(validarInput(input));
+				break;
+			case 6:
+				float capacidade = Float.parseFloat(JOptionPane.showInputDialog("Insira a Capacidade do Tanque que voce deseja procurar: "));
 				ArrayList <Motocicleta> motosCap = new ArrayList <Motocicleta>();
 				for (Motocicleta m: loja.estoqueDeMotocicletas)
 				{
@@ -832,16 +818,10 @@ public class Loja
 				}
 				else
 					JOptionPane.showMessageDialog(null,"Nenhuma Moto dessa Capacidade de Tanque foi encontrada");	
-			}
-			catch (NumberFormatException e) {
-				JOptionPane.showMessageDialog(null, "Valor invalido. Voltando para o menu Pesquisa de Motos");
-				Menu.menuPesquisaMoto(loja);
-			}
-			break;
-		case 7:
-			try{
-				String input = JOptionPane.showInputDialog("Insira o Preco que voce deseja procurar: ");
-				float preco = Float.parseFloat(validarInput(input));
+				break;
+			case 7:
+
+				float preco = Float.parseFloat(JOptionPane.showInputDialog("Insira o Preco que voce deseja procurar: "));
 				ArrayList <Motocicleta> motosPreco = new ArrayList <Motocicleta>();
 				for (Motocicleta m: loja.estoqueDeMotocicletas)
 				{
@@ -856,17 +836,17 @@ public class Loja
 				}
 				else
 					JOptionPane.showMessageDialog(null,"Nenhuma Moto desse Preco foi encontrada");	
-			}
-			catch (NumberFormatException e) {
-				JOptionPane.showMessageDialog(null, "Valor invalido. Voltando para o menu Pesquisa de Motos");
+				break;
+			default:
+				JOptionPane.showMessageDialog(null, "Valor Inválido, escolha outra opcao.");
 				Menu.menuPesquisaMoto(loja);
+				Menu.chamarMenuMoto(loja);
 			}
-			break;
-		default:
-			JOptionPane.showMessageDialog(null, "Valor Inválido, escolha outra opcao.");
+		}
+		catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(null, "Valor invalido. Voltando para o menu Pesquisa de Motos");
 			Menu.menuPesquisaMoto(loja);
 		}
-		Menu.chamarMenuMoto(loja);
 	}
 
 	/**
@@ -903,7 +883,7 @@ public class Loja
 		}
 		return carroOk;
 	}
-	
+
 	/**
 	 * Pesquisa e retorna uma moto com valores específicos no estoque, caso ela exista
 	 * @param loja loja do estoque
@@ -925,16 +905,16 @@ public class Loja
 			if (m.getChassi().equals(chassi))
 				if (m.getMontadora().getIndice() == (montadora+4))
 					System.out.println("ok");
-					if (m.getModelo().getIndice() == (modelo-1))
-						if (m.getTipo().getIndice() == (tipo-1))
-							if (m.getCor().getIndice() == (cor-1))
-								if (m.getCilindrada() == cilindrada)
-									if (m.getCapacidadeDoTanque() == capacidadeDoTanque)
-										if (m.getPreco() == preco)
-										{
-											motoOk = m;
-											break;
-										}
+			if (m.getModelo().getIndice() == (modelo-1))
+				if (m.getTipo().getIndice() == (tipo-1))
+					if (m.getCor().getIndice() == (cor-1))
+						if (m.getCilindrada() == cilindrada)
+							if (m.getCapacidadeDoTanque() == capacidadeDoTanque)
+								if (m.getPreco() == preco)
+								{
+									motoOk = m;
+									break;
+								}
 		}
 		return motoOk;
 	}
@@ -959,7 +939,7 @@ public class Loja
 			JOptionPane.showMessageDialog(null, "Nao existe Carro com esse Chassi no Estoque");
 		else
 		{
-			
+
 			JOptionPane.showMessageDialog(null, "Carro Removido com sucesso.");
 		}	
 	}
