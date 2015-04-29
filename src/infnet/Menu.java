@@ -70,12 +70,12 @@ public class Menu
 				JOptionPane.showMessageDialog(null,"Voce optou por Pesquisar um Carro Especifico");
 
 				chassi = JOptionPane.showInputDialog("Digite o chassi: ");
-				int montadora = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero da montadora: (VOLKSWAGEN(1),FORD(2),CHEVROLET(3),FIAT(4))"));
-				int modelo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(FOX(1),GOL(2),CELTA(3))"));
-				int tipo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (SEDAN (1),HATCH (2),SUV (3))"));
-				int cor = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
-				float motorizacao = Float.parseFloat(JOptionPane.showInputDialog("Digite numero do motor:		(1.0/1.4/1.6/1.8/2.0)"));
-				int cambio = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do cambio:    (MANUAL(1),SEMI (2),AUTO (3))"));
+				int montadora = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero da montadora: \n1 - VOLKSWAGEN\n2 - FORD\n3 - CHEVROLET\n4 - FIAT"));
+				int modelo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo:\n1 - FOX\n2 - GOL\n2 - CELTA"));
+				int tipo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:\n1 - SEDAN\n2 - HATCH\n3 - SUV"));
+				int cor = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:\n1 - PRETO\n2 - BRANCO\n3 - AZUL\n4 - VERDE\n5 - ROSA\n6 - AMARELO"));
+				float motorizacao = Float.parseFloat(JOptionPane.showInputDialog("Digite numero do motor:"));
+				int cambio = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do cambio:\n1 - MANUAL\n2 - SEMI\n3 - AUTO"));
 				float preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preco do carro"));
 
 				Carro carro = Loja.pesquisarCarroEspecifico(loja, chassi, montadora, modelo, tipo, cor, motorizacao, cambio, preco);
@@ -155,11 +155,11 @@ public class Menu
 				JOptionPane.showMessageDialog(null,"Voce optou por Pesquisar Moto Especifica");
 
 				chassi = JOptionPane.showInputDialog("Digite o chassi: ");
-				int montadora = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da montadora: (HONDA(5),SUZUKI(6),YAMAHA(7),KAWASAKI(8))"));
-				int modelo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(CBR(1),NINJA(2),CB_HORNET(3))"));
-				int tipo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (CHOPPER (1),SCOOTER (2),ESPORTIVO (3))"));
-				int cor = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
-				int cilindrada = Integer.parseInt(JOptionPane.showInputDialog("Digite numero de cilindradas (Ex: 50, 60, 100, 120, 150):"));
+				int montadora = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da montadora:\n1 - HONDA\n2 - SUZUKI\n3 - YAMAHA\n4 - KAWASAKI"));
+				int modelo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo:\n1 - CBR\n2 - NINJA\n3 - CB_HORNET"));
+				int tipo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:\n1 - CHOPPER\n2 - SCOOTER\n3 - ESPORTIVO"));
+				int cor = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:\n1 - PRETO\n2 - BRANCO\n3 - AZUL\n4 - VERDE\n5 - ROSA\n6 - AMARELO"));
+				int cilindrada = Integer.parseInt(JOptionPane.showInputDialog("Digite numero de cilindradas:"));
 				int capacidadeDoTanque = Integer.parseInt(JOptionPane.showInputDialog("Digite a Capacidade do Tanque:"));
 				float preco = Float.parseFloat((JOptionPane.showInputDialog("Digite o preco da Moto")));
 

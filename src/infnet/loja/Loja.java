@@ -142,67 +142,52 @@ public class Loja
 					Menu.chamarMenuCarro(loja);
 				}
 			}
-			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero da montadora: (VOLKSWAGEN(1),FORD(2),CHEVROLET(3),FIAT(4))"));
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero da montadora: \n1 - VOLKSWAGEN\n2 - FORD\n3 - CHEVROLET\n4 - FIAT"));
 			while (aux <= 0 || aux >=5) //tratamento de excecao limitando o indice que pode ser escolhido, utilizado sempre que tratar-se de uma enumeracao
-			{
-				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero da montadora: \n (VOLKSWAGEN(1),FORD(2),CHEVROLET(3),FIAT(4))"));
-			}
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Valor Invalido. Digite o numero da montadora: \n1 - VOLKSWAGEN\n2 - FORD\n3 - CHEVROLET\n4 - FIAT"));
 			for (Montadora m: Montadora.values()) //percorre a enumeracao
 			{
 				if (m.getIndice() == (aux-1)) //verifica qual valor da enumeracao possui o indice escolhido
 					_montadora = m;
 			}
 
-			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(FOX(1),GOL(2),CELTA(3))"));
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo:\n1 - FOX\n2 - GOL\n2 - CELTA"));
 			while (aux <= 0 || aux >=4)
-			{
-				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(FOX(1),GOL(2),CELTA(3))"));
-			}
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Valor Invalido. Digite numero do modelo:\n1 - FOX\n2 - GOL\n2 - CELTA"));
 			for (ModeloCarro m: ModeloCarro.values())
 			{
 				if (m.getIndice() == (aux-1))
 					_modelo = m;
 			}
 
-			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (SEDAN (1),HATCH (2),SUV (3))"));
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:\n1 - SEDAN\n2 - HATCH\n3 - SUV"));
 			while (aux <= 0 || aux >=4)
-			{
-				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (SEDAN (1),HATCH (2),SUV (3))"));
-			}
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Valor Invalido. Digite numero do tipo:\n1 - SEDAN\n2 - HATCH\n3 - SUV"));
 			for (TipoCarro m: TipoCarro.values())
 			{
 				if (m.getIndice() == (aux-1))
 					_tipo = m;
 			}
 
-			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do cambio:    (MANUAL(1),SEMI (2),AUTO (3))"));
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do cambio:\n1 - MANUAL\n2 - SEMI\n3 - AUTO"));
 			while (aux <= 0 || aux >=4)
-			{
-				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do cambio:    (MANUAL(1),SEMI (2),AUTO (3))"));
-			}
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Valor Invalido. Digite numero do cambio:\n1 - MANUAL\n2 - SEMI\n3 - AUTO"));
 			for (Cambio m: Cambio.values())
 			{
 				if (m.getIndice() == (aux-1))
 					_cambio = m;
 			}
 
-			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:\n1 - PRETO\n2 - BRANCO\n3 - AZUL\n4 - VERDE\n5 - ROSA\n6 - AMARELO"));
 			while (aux <= 0 || aux >=7)
-			{
-				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
-			}
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Valor Invalido. Digite numero da Cor:\n1 - PRETO\n2 - BRANCO\n3 - AZUL\n4 - VERDE\n5 - ROSA\n6 - AMARELO"));
 			for (Cor m: Cor.values())
 			{
 				if (m.getIndice() == (aux-1))
 					_cor = m;
 			}
 
-			_motorizacao = Float.parseFloat(JOptionPane.showInputDialog("Digite numero do motor:		(1.0/1.4/1.6/1.8/2.0)"));
+			_motorizacao = Float.parseFloat(JOptionPane.showInputDialog("Digite numero do motor:"));
 
 			_preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preco do carro"));
 
@@ -270,55 +255,45 @@ public class Loja
 				}
 			}
 			_chassi = input;
-			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da montadora: (HONDA(5),SUZUKI(6),YAMAHA(7),KAWASAKI(8))"));
-			while (aux <= 4 || aux >=9)
-			{
-				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da montadora: (HONDA(5),SUZUKI(6),YAMAHA(7),KAWASAKI(8))"));
-			}
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da montadora:\n1 - HONDA\n2 - SUZUKI\n3 - YAMAHA\n4 - KAWASAKI"));
+			while (aux <= 0 || aux >= 5)
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Valor Invalido. Digite numero da montadora:\n1 - HONDA\n2 - SUZUKI\n3 - YAMAHA\n4 - KAWASAKI"));
+			aux = aux+3;
+			
 			for (Montadora m: Montadora.values())
 			{
 				if (m.getIndice() == aux)
 					_montadora = m;
 			}
 
-			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(CBR(1),NINJA(2),CB_HORNET(3))"));
-			while (aux <= 0 || aux >=4)
-			{
-				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: 	(CBR(1),NINJA(2),CB_HORNET(3))"));
-			}
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo:\n1 - CBR\n2 - NINJA\n3 - CB_HORNET"));
+			while (aux <= 0 || aux >= 4)
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Valor Invalido. Digite numero do modelo:\n1 - CBR\n2 - NINJA\n3 - CB_HORNET"));
 			for (ModeloMoto m: ModeloMoto.values())
 			{
 				if (m.getIndice() == (aux-1))
 					_modelo = m;
 			}
 
-			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (CHOPPER (1),SCOOTER (2),ESPORTIVO (3))"));
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:\n1 - CHOPPER\n2 - SCOOTER\n3 - ESPORTIVO"));
 			while (aux <= 0 || aux >=4)
-			{
-				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:      (CHOPPER (1),SCOOTER (2),ESPORTIVO (3))"));
-			}
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Valor Invalido. Digite numero do tipo:\n1 - CHOPPER\n2 - SCOOTER\n3 - ESPORTIVO"));
 			for (TipoMoto m: TipoMoto.values())
 			{
 				if (m.getIndice() == (aux-1))
 					_tipo = m;
 			}
 
-			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
-			while (aux <= 0 || aux >= 7)
-			{
-				JOptionPane.showMessageDialog(null,"Valor Invalido. Insira outro valor:");
-				aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:       (PRETO(1),BRANCO(2),AZUL(3),VERDE(4),ROSA(5),AMARELO(6))"));
-			}
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:\n1 - PRETO\n2 - BRANCO\n3 - AZUL\n4 - VERDE\n5 - ROSA\n6 - AMARELO"));
+			while (aux <= 0 || aux >= 7);
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Valor Invalido. Digite numero da Cor:\n1 - PRETO\n2 - BRANCO\n3 - AZUL\n4 - VERDE\n5 - ROSA\n6 - AMARELO"));
 			for (Cor m: Cor.values())
 			{
 				if (m.getIndice() == (aux-1))
 					_cor = m;
 			}
 
-			_cilindradas = Integer.parseInt(JOptionPane.showInputDialog("Digite numero de cilindradas (Ex: 50, 60, 100, 120, 150):"));	
+			_cilindradas = Integer.parseInt(JOptionPane.showInputDialog("Digite numero de cilindradas:"));	
 			_capacidadeDoTanque = Integer.parseInt(JOptionPane.showInputDialog("Digite a capacidade do Tanque:"));
 			_preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preco da moto:"));
 
@@ -639,7 +614,7 @@ public class Loja
 				JOptionPane.showMessageDialog(null,"Nenhum Carro desse Preco foi encontrado");	
 			break;
 		default:
-			JOptionPane.showMessageDialog(null, "Valor Inválido, escolha outra opcao.");
+			JOptionPane.showMessageDialog(null, "Valor Invalido, escolha outra opcao.");
 			Menu.menuPesquisaCarro(loja);
 		}
 		Menu.chamarMenuCarro(loja);
@@ -681,14 +656,14 @@ public class Loja
 				for (int i = 0; i < 4; i++)
 				{
 					if (selectedMon == itensMon[i])
-						auxMon = i+5;
+						auxMon = i;
 				}
 
 				ArrayList <Motocicleta> motosMontadora = new ArrayList <Motocicleta>();
 				for (Motocicleta m: loja.estoqueDeMotocicletas)
 				{
 					int indMont = m.getMontadora().getIndice();
-					if (indMont == auxMon)
+					if (indMont == (auxMon+4))
 						motosMontadora.add(m);
 				}
 				if ((motosMontadora.size() != 0))
@@ -699,6 +674,7 @@ public class Loja
 				}
 				else
 					JOptionPane.showMessageDialog(null,"Nenhuma Moto dessa Montadora foi encontrada.");
+				Menu.chamarMenuMoto(loja);
 				break;
 			case 2:
 				int auxMod = -1;
@@ -731,6 +707,7 @@ public class Loja
 				}
 				else
 					JOptionPane.showMessageDialog(null,"Nenhuma Moto desse Modelo foi encontrada.");
+				Menu.chamarMenuMoto(loja);
 				break;
 			case 3:
 				int auxTipo = -1;
@@ -763,6 +740,7 @@ public class Loja
 				}
 				else
 					JOptionPane.showMessageDialog(null,"Nenhuma Moto desse Tipo foi encontrada");
+				Menu.chamarMenuMoto(loja);
 				break;
 			case 4:
 				int auxCor = -1;
@@ -796,6 +774,7 @@ public class Loja
 				}
 				else
 					JOptionPane.showMessageDialog(null,"Nenhuma Moto dessa Cor foi encontrada");
+				Menu.chamarMenuMoto(loja);
 				break;
 			case 5:
 				int cilindrada = Integer.parseInt(JOptionPane.showInputDialog("Insira as Cilindradas que voce deseja procurar: "));
@@ -813,6 +792,7 @@ public class Loja
 				}
 				else
 					JOptionPane.showMessageDialog(null,"Nenhuma Moto dessa Cilindrada foi encontrada");	
+				Menu.chamarMenuMoto(loja);
 				break;
 			case 6:
 				float capacidade = Float.parseFloat(JOptionPane.showInputDialog("Insira a Capacidade do Tanque que voce deseja procurar: "));
@@ -830,6 +810,7 @@ public class Loja
 				}
 				else
 					JOptionPane.showMessageDialog(null,"Nenhuma Moto dessa Capacidade de Tanque foi encontrada");	
+				Menu.chamarMenuMoto(loja);
 				break;
 			case 7:
 
@@ -848,15 +829,16 @@ public class Loja
 				}
 				else
 					JOptionPane.showMessageDialog(null,"Nenhuma Moto desse Preco foi encontrada");	
+				Menu.chamarMenuMoto(loja);
 				break;
 			default:
-				JOptionPane.showMessageDialog(null, "Valor Inválido, escolha outra opcao.");
+				JOptionPane.showMessageDialog(null, "Valor Invalido, escolha outra opcao.");
 				Menu.menuPesquisaMoto(loja);
 				Menu.chamarMenuMoto(loja);
 			}
 		}
 		catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Valor invalido. Voltando para o menu Pesquisa de Motos");
+			JOptionPane.showMessageDialog(null, "Valor Invalido. Voltando para o menu Pesquisa de Motos");
 			Menu.menuPesquisaMoto(loja);
 		}
 	}
