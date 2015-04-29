@@ -422,8 +422,6 @@ public class Loja
 			String chassi = JOptionPane.showInputDialog("Insira o Chassi que voce deseja procurar: ");
 			while (chassi.isEmpty())
 				chassi = JOptionPane.showInputDialog("Valor vazio. Insira o Chassi que voce deseja procurar: ");
-			JOptionPane.showMessageDialog(null, "Valor inválido, voltando para o menu de motos");
-			Menu.chamarMenuMoto(loja);
 			Carro car = Loja.buscarCarro(chassi, loja);
 			if (car != null)
 				JOptionPane.showMessageDialog(null, "Carro Encontrado!\n" + car);
