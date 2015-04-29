@@ -14,16 +14,13 @@ public class Menu
 	 * @param loja loja que esta sendo trabalhada
 	 * @throws IOException para excecoes de entrada e saida
 	 */
-	public static void chamarMenu( Loja loja) 
-			throws IOException
-			{
+	public static void chamarMenu( Loja loja) throws IOException
+	{
 		Object[] itens = {"Controle de Estoque de Carros", "Controle de Estoque de Motos", "Criar nova Loja", "Sair"};
 		Object selectedValue = JOptionPane.showInputDialog(null, "O que voce deseja fazer?", "Opcao", JOptionPane.INFORMATION_MESSAGE, null, itens, itens [0]);
 
-		//-------------------------Opcao Carro---------------------------------------------------------------------------------
 		if (selectedValue == itens[0])
 			Menu.chamarMenuCarro(loja);
-		//-------------------------Opcao Moto----------------------------------------------------------------------------------
 		if (selectedValue == itens[1])
 			Menu.chamarMenuMoto(loja);	
 		if (selectedValue == itens[2])
@@ -34,7 +31,7 @@ public class Menu
 			System.exit(0);
 		}
 
-			}
+	}
 
 	/**
 	 * Menu que exibe todas as opcoes disponiveis para carro
@@ -115,7 +112,7 @@ public class Menu
 				break;
 			}
 		}
-		catch (NumberFormatException e) {
+		catch (Exception e) {
 			JOptionPane.showMessageDialog(null,"Voltando para o Menu Principal.");
 			Menu.chamarMenu(loja);
 		}
@@ -126,9 +123,8 @@ public class Menu
 	 * @param loja loja sendo trabalhada
 	 * @throws IOException excecoes de entrada e saida
 	 */
-	public static void chamarMenuMoto(Loja loja)
-			throws IOException
-			{
+	public static void chamarMenuMoto(Loja loja) throws IOException
+	{
 		try{
 			int opcao = Integer.parseInt(JOptionPane.showInputDialog("O que voce deseja fazer?    \n" + 
 					"1 - Adicionar Moto               \n" +
@@ -201,11 +197,11 @@ public class Menu
 				break;
 			}
 		}
-		catch (NumberFormatException e) {
+		catch (Exception e) {
 			JOptionPane.showMessageDialog(null,"Voltando para o Menu Principal.");
 			Menu.chamarMenu(loja);
 		}
-			}
+	}
 
 	public static int menuPesquisaCarro(Loja loja) throws IOException
 	{

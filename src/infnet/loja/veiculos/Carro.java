@@ -86,7 +86,7 @@ public class Carro
 	public String      getChassi() {
 		return chassi;
 	}
-	
+
 	/**
 	 * setChassi altera o valor da variavel chassi para String que foi passado pelo parametro chassi
 	 * @param chassi chassi do carro
@@ -94,7 +94,7 @@ public class Carro
 	public void        setChassi(String chassi) {
 		this.chassi = chassi;
 	}
-	
+
 	/**
 	 * getMontadora Retorna a montadora do carro
 	 * @return montadora montadora do carro
@@ -102,7 +102,7 @@ public class Carro
 	public Montadora   getMontadora() {
 		return montadora;
 	}
-	
+
 	/**
 	 * setMontadora altera o valor da variavel montadora para enum Montadora que foi passado pelo parametro montadora
 	 * @param montadora montadora do carro
@@ -110,7 +110,7 @@ public class Carro
 	public void        setMontadora(Montadora montadora) {
 		this.montadora = montadora;
 	}
-	
+
 	/**
 	 * getModelo Retorna o modelo do carro
 	 * @return modelo modelo do carro
@@ -118,7 +118,7 @@ public class Carro
 	public ModeloCarro getModelo() {
 		return modelo;
 	}
-	
+
 	/**
 	 * setModelo altera o valor da variavel modelo para enum ModeloCarro que foi passado pelo parametro modelo
 	 * @param modelo modelo do carro
@@ -126,7 +126,7 @@ public class Carro
 	public void        setModelo(ModeloCarro modelo) {
 		this.modelo = modelo;
 	}
-	
+
 	/**
 	 * getTipo Retorna o tipo do carro
 	 * @return tipo tipo do carro
@@ -134,7 +134,7 @@ public class Carro
 	public TipoCarro   getTipo() {
 		return tipo;
 	}
-	
+
 	/**
 	 * setTipo altera o valor da variavel tipo para enum TipoCarro que foi passado pelo parametro tipo
 	 * @param tipo tipo do carro
@@ -142,7 +142,7 @@ public class Carro
 	public void        setTipo(TipoCarro tipo) {
 		this.tipo = tipo;
 	}
-	
+
 	/**
 	 * getCor retorna a cor do carro
 	 * @return cor cor do carro
@@ -150,7 +150,7 @@ public class Carro
 	public Cor         getCor() {
 		return cor;
 	}
-	
+
 	/**
 	 * setCor altera o valor da variavel cor para enum Cor que foi passado pelo parametro cor
 	 * @param cor cor do carro
@@ -158,7 +158,7 @@ public class Carro
 	public void        setCor(Cor cor) {
 		this.cor = cor;
 	}
-	
+
 	/**
 	 * getMotorizacao retorna a motorizacao do carro
 	 * @return motorizacao motorizacao do carro
@@ -166,7 +166,7 @@ public class Carro
 	public float       getMotorizacao() {
 		return motorizacao;
 	}
-	
+
 	/**
 	 * setMotorizacao altera o valor da variavel motorizacao para o float que foi passado pelo parametro motorizacao
 	 * @param motorizacao motorizacao do carro
@@ -174,7 +174,7 @@ public class Carro
 	public void        setMotorizacao(float motorizacao) {
 		this.motorizacao = motorizacao;
 	}
-	
+
 	/**
 	 * getCambio retorna o cambio do carro
 	 * @return cambio cambio do carro
@@ -182,7 +182,7 @@ public class Carro
 	public Cambio      getCambio() {
 		return cambio;
 	}
-	
+
 	/**
 	 * setCambio altera o valor da variavel cambio para enum Cambio que foi passado pelo parametro cambio
 	 * @param cambio cambio do carro
@@ -190,7 +190,7 @@ public class Carro
 	public void        setCambio(Cambio cambio) {
 		this.cambio = cambio;
 	}
-	
+
 	/**
 	 * getPreco retorna o preco do carro
 	 * @return preco preco do carro
@@ -198,7 +198,7 @@ public class Carro
 	public float       getPreco() {
 		return preco;
 	}
-	
+
 	/**
 	 * setPreco altera o valor da variavel preco para o float que foi passado pelo parametro preco
 	 * @param preco preco do carro

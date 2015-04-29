@@ -98,7 +98,7 @@ public class Loja
 			Menu.chamarMenu(loja);
 
 		}
-		catch (NullPointerException e){
+		catch (Exception e){
 			JOptionPane.showMessageDialog(null,"Fechando o sistema, ate a proxima!");
 			System.exit(0);
 		}
@@ -126,16 +126,22 @@ public class Loja
 			int aux;
 
 			String input = (JOptionPane.showInputDialog("Digite o chassi: "));
+			if (input == null)
+			{
+				JOptionPane.showMessageDialog(null, "Voltando para o Menu de Carros.");
+				Menu.chamarMenuCarro(loja);
+			}
+			while (input.isEmpty())
+				input = (JOptionPane.showInputDialog("Valor vazio. Digite o chassi: "));
+			_chassi = input;
 			for (Carro c: loja.estoqueDeCarros)
 			{
-				if (c.getChassi().equals(input))
+				if (c.getChassi().equals(_chassi))
 				{
 					JOptionPane.showMessageDialog(null, "Esse carro ja esta cadastrado.");
 					Menu.chamarMenuCarro(loja);
 				}
 			}
-			_chassi = input;
-
 			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero da montadora: (VOLKSWAGEN(1),FORD(2),CHEVROLET(3),FIAT(4))"));
 			while (aux <= 0 || aux >=5) //tratamento de excecao limitando o indice que pode ser escolhido, utilizado sempre que tratar-se de uma enumeracao
 			{
@@ -222,9 +228,9 @@ public class Loja
 			JOptionPane.showMessageDialog(null,"Carro cadastrado com sucesso.");
 			Menu.chamarMenuCarro(loja);
 		}
-		catch (NullPointerException e)
+		catch (Exception e)
 		{
-			JOptionPane.showMessageDialog(null, "Valor inválido, voltando para o menu de carros");
+			JOptionPane.showMessageDialog(null, "Operacao cancelada, voltando para o menu de carros");
 			Menu.chamarMenuCarro(loja);
 		}
 	}
@@ -247,6 +253,14 @@ public class Loja
 			int aux;
 
 			String input = (JOptionPane.showInputDialog("Digite o chassi: "));
+			if (input == null)
+			{
+				JOptionPane.showMessageDialog(null, "Voltando para o Menu de Motos.");
+				Menu.chamarMenuMoto(loja);
+			}
+			while (input.isEmpty())
+				input = (JOptionPane.showInputDialog("Valor vazio. Digite o chassi: "));
+			_chassi = input;
 			for (Motocicleta c: loja.estoqueDeMotocicletas)
 			{
 				if (c.getChassi().equals(input))
@@ -330,9 +344,9 @@ public class Loja
 			JOptionPane.showMessageDialog(null,"Moto Cadastrada com Sucesso");
 			Menu.chamarMenuMoto(loja);
 		}
-		catch (NullPointerException e)
+		catch (Exception e)
 		{
-			JOptionPane.showMessageDialog(null, "Valor inválido, voltando para o menu de motos");
+			JOptionPane.showMessageDialog(null, "Operacao cancelada, voltando para o menu de motos");
 			Menu.chamarMenuMoto(loja);
 		}
 	}
@@ -841,7 +855,7 @@ public class Loja
 				Menu.chamarMenuMoto(loja);
 			}
 		}
-		catch (NumberFormatException e) {
+		catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Valor invalido. Voltando para o menu Pesquisa de Motos");
 			Menu.menuPesquisaMoto(loja);
 		}
@@ -902,17 +916,16 @@ public class Loja
 		{
 			if (m.getChassi().equals(chassi))
 				if (m.getMontadora().getIndice() == (montadora+4))
-					System.out.println("ok");
-			if (m.getModelo().getIndice() == (modelo-1))
-				if (m.getTipo().getIndice() == (tipo-1))
-					if (m.getCor().getIndice() == (cor-1))
-						if (m.getCilindrada() == cilindrada)
-							if (m.getCapacidadeDoTanque() == capacidadeDoTanque)
-								if (m.getPreco() == preco)
-								{
-									motoOk = m;
-									break;
-								}
+					if (m.getModelo().getIndice() == (modelo-1))
+						if (m.getTipo().getIndice() == (tipo-1))
+							if (m.getCor().getIndice() == (cor-1))
+								if (m.getCilindrada() == cilindrada)
+									if (m.getCapacidadeDoTanque() == capacidadeDoTanque)
+										if (m.getPreco() == preco)
+										{
+											motoOk = m;
+											break;
+										}
 		}
 		return motoOk;
 	}

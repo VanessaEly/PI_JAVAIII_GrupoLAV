@@ -11,7 +11,7 @@ public enum ModeloMoto
 	CBR(0),
 	NINJA(1),
 	CB_HORNET(2);
-	
+
 	//variavel do enum
 	private int indice;
 
@@ -32,5 +32,5 @@ public enum ModeloMoto
 	{
 		return indice;
 	}
-	
+
 }

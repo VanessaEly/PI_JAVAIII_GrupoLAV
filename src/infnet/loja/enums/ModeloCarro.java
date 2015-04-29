@@ -11,7 +11,7 @@ public enum ModeloCarro
 	FOX(0),
 	GOL(1),
 	CELTA(2);
-	
+
 	//variavel do enum
 	private int indice;
 
@@ -32,5 +32,5 @@ public enum ModeloCarro
 	{
 		return indice;
 	}
-	
+
 }

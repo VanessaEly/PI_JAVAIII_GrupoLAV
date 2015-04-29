@@ -11,7 +11,7 @@ public enum TipoMoto
 	CHOPPER (0),
 	SCOOTER (1),
 	ESPORTIVO (2);
-	
+
 	//variavel do enum
 	private int indice;
 

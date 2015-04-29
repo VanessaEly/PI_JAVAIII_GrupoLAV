@@ -11,7 +11,7 @@ public enum TipoCarro
 	SEDAN (0),
 	HATCH (1),
 	SUV (2);
-	
+
 	//variavel do enum
 	private int indice;
 

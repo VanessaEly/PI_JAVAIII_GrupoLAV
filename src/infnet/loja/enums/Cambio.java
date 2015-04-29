@@ -10,7 +10,7 @@ public enum Cambio {
 	MANUAL(0),
 	SEMI (1),
 	AUTO (2);
-	
+
 	//variavel do enum
 	private int indice;
 
@@ -29,5 +29,5 @@ public enum Cambio {
 	public int getIndice() {
 		return indice;
 	}
-	
+
 }

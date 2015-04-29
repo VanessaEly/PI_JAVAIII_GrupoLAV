@@ -33,7 +33,7 @@ public enum Montadora
 	{
 		this.indice = indice ;
 	}
-	
+
 	/**
 	 * Retorna o valor do indice
 	 * @return indice indice do enum
