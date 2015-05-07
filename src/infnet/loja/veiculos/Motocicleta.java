@@ -8,17 +8,13 @@ import infnet.loja.enums.*;
  * @version 1.0
  * @since 15-04-2015
  */
-public class Motocicleta 
+public class Motocicleta extends Veiculo
 {
 	//VARIAVEIS DA CLASSE
-	private String chassi;
-	private Montadora montadora;
 	private ModeloMoto modelo;
 	private TipoMoto tipo;
-	private Cor cor;
 	private int cilindrada;
-	private int capacidadeDoTanque; 
-	private float preco;
+	private int capacidadeDoTanque;
 
 	/**
 	 * Construtor Motocicleta constroi uma nova motocicleta
@@ -78,38 +74,6 @@ public class Motocicleta
 	}
 	//-------------------------GETTERS AND SETTERS------------------------------------------------------------------------
 	/**
-	 *getChassi Retorna o chassi da moto
-	 * @return chassi chassi da moto
-	 */
-	public String     getChassi() {
-		return chassi;
-	}
-
-	/**
-	 * setChassi altera o valor da variavel chassi para String que foi passado pelo parametro chassi
-	 * @param chassi chassi da moto
-	 */
-	public void       setChassi(String chassi) {
-		this.chassi = chassi;
-	}
-
-	/**
-	 * getMontadora Retorna a montadora da moto
-	 * @return montadora montadora da moto
-	 */
-	public Montadora  getMontadora() {
-		return montadora;
-	}
-
-	/**
-	 * setMontadora altera o valor da variavel montadora para enum Montadora que foi passado pelo parametro montadora
-	 * @param montadora montadora da moto
-	 */
-	public void       setMontadora(Montadora montadora) {
-		this.montadora = montadora;
-	}
-
-	/**
 	 * getModelo Retorna o modelo da moto
 	 * @return modelo modelo da moto
 	 */
@@ -142,22 +106,6 @@ public class Motocicleta
 	}
 
 	/**
-	 * getCor retorna a cor da moto
-	 * @return cor cor da moto
-	 */
-	public Cor        getCor() {
-		return cor;
-	}
-
-	/**
-	 * setCor altera o valor da variavel cor para enum Cor que foi passado pelo parametro cor
-	 * @param cor cor da moto
-	 */
-	public void       setCor(Cor cor) {
-		this.cor = cor;
-	}
-
-	/**
 	 * getCilindrada retorna as cilindradas da moto
 	 * @return cilindrada cilindradas da moto
 	 */
@@ -187,22 +135,6 @@ public class Motocicleta
 	 */
 	public void       setCapacidadeDoTanque(int capacidadeDoTanque) {
 		this.capacidadeDoTanque = capacidadeDoTanque;
-	}
-
-	/**
-	 * getPreco retorna o preco da moto
-	 * @return preco preco da moto
-	 */
-	public float      getPreco() {
-		return preco;
-	}
-
-	/**
-	 * setPreco altera o valor da variavel preco para o float que foi passado pelo parametro preco
-	 * @param preco preco da moto
-	 */
-	public void       setPreco(float preco) {
-		this.preco = preco;
 	}
 
 	/**

@@ -8,17 +8,14 @@ import infnet.loja.enums.*;
  * @version 1.0
  * @since 15-04-2015
  */
-public class Carro 
+public class Carro extends Veiculo 
 {
 	//VARIAVEIS DA CLASSE
-	private String chassi;
-	private Montadora montadora;
+	
 	private ModeloCarro modelo;
 	private TipoCarro tipo; 
-	private Cor cor;
 	private float motorizacao;
 	private Cambio cambio;
-	private float preco;
 
 	/**
 	 * Construtor Carro constroi um novo carro
@@ -80,38 +77,6 @@ public class Carro
 
 	//-------------------------GETTERS AND SETTERS------------------------------------------------------------------------
 	/**
-	 *getChassi Retorna o chassi do carro
-	 * @return chassi chassi do carro
-	 */
-	public String      getChassi() {
-		return chassi;
-	}
-
-	/**
-	 * setChassi altera o valor da variavel chassi para String que foi passado pelo parametro chassi
-	 * @param chassi chassi do carro
-	 */
-	public void        setChassi(String chassi) {
-		this.chassi = chassi;
-	}
-
-	/**
-	 * getMontadora Retorna a montadora do carro
-	 * @return montadora montadora do carro
-	 */
-	public Montadora   getMontadora() {
-		return montadora;
-	}
-
-	/**
-	 * setMontadora altera o valor da variavel montadora para enum Montadora que foi passado pelo parametro montadora
-	 * @param montadora montadora do carro
-	 */
-	public void        setMontadora(Montadora montadora) {
-		this.montadora = montadora;
-	}
-
-	/**
 	 * getModelo Retorna o modelo do carro
 	 * @return modelo modelo do carro
 	 */
@@ -141,22 +106,6 @@ public class Carro
 	 */
 	public void        setTipo(TipoCarro tipo) {
 		this.tipo = tipo;
-	}
-
-	/**
-	 * getCor retorna a cor do carro
-	 * @return cor cor do carro
-	 */
-	public Cor         getCor() {
-		return cor;
-	}
-
-	/**
-	 * setCor altera o valor da variavel cor para enum Cor que foi passado pelo parametro cor
-	 * @param cor cor do carro
-	 */
-	public void        setCor(Cor cor) {
-		this.cor = cor;
 	}
 
 	/**
@@ -190,23 +139,6 @@ public class Carro
 	public void        setCambio(Cambio cambio) {
 		this.cambio = cambio;
 	}
-
-	/**
-	 * getPreco retorna o preco do carro
-	 * @return preco preco do carro
-	 */
-	public float       getPreco() {
-		return preco;
-	}
-
-	/**
-	 * setPreco altera o valor da variavel preco para o float que foi passado pelo parametro preco
-	 * @param preco preco do carro
-	 */
-	public void        setPreco(float preco) {
-		this.preco = preco;
-	}
-
 
 	/**
 	 * Metodo toString sobrepondo o original, formatando a String da forma desejada.
