@@ -10,7 +10,6 @@ import infnet.loja.enums.*;
  */
 public class Motocicleta extends Veiculo
 {
-	//VARIAVEIS DA CLASSE
 	private ModeloMoto modelo;
 	private TipoMoto tipo;
 	private int cilindrada;
@@ -69,7 +68,6 @@ public class Motocicleta extends Veiculo
 			return false;
 		return true;
 	}
-	//-------------------------GETTERS AND SETTERS------------------------------------------------------------------------
 	/**
 	 * getModelo Retorna o modelo da moto
 	 * @return modelo modelo da moto

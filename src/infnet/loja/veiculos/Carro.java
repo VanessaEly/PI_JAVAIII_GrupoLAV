@@ -10,8 +10,6 @@ import infnet.loja.enums.*;
  */
 public class Carro extends Veiculo 
 {
-	//VARIAVEIS DA CLASSE
-	
 	private ModeloCarro modelo;
 	private TipoCarro tipo; 
 	private float motorizacao;
@@ -72,7 +70,6 @@ public class Carro extends Veiculo
 		return true;
 	}
 
-	//-------------------------GETTERS AND SETTERS------------------------------------------------------------------------
 	/**
 	 * getModelo Retorna o modelo do carro
 	 * @return modelo modelo do carro

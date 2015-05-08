@@ -3,7 +3,7 @@ package infnet.loja.veiculos;
 import infnet.loja.enums.Cor;
 import infnet.loja.enums.Montadora;
 
-public class Veiculo {
+public abstract class Veiculo {
 	protected String chassi;
 	protected Montadora montadora;
 	protected Cor cor;
@@ -11,10 +11,10 @@ public class Veiculo {
 	
 	/**
 	 * Construtor veiculo constroi um novo veiculo
-	 * @param chassi
-	 * @param montadora
-	 * @param cor
-	 * @param preco
+	 * @param chassi chassi do veiculo
+	 * @param montadora montadora do veiculo
+	 * @param cor cor do veiculo
+	 * @param preco preco do veiculo
 	 */
 	public Veiculo(String chassi, Montadora montadora, Cor cor, float preco) {
 		this.chassi = chassi;
@@ -72,8 +72,8 @@ public class Veiculo {
 	}
 	
 	/**
-	 * getPreco retorna o preco da moto
-	 * @return preco preco da moto
+	 * getPreco retorna o preco do veiculo
+	 * @return preco preco do veiculo
 	 */
 	public float      getPreco() {
 		return preco;
@@ -81,7 +81,7 @@ public class Veiculo {
 
 	/**
 	 * setPreco altera o valor da variavel preco para o float que foi passado pelo parametro preco
-	 * @param preco preco da moto
+	 * @param preco preco do veiculo
 	 */
 	public void       setPreco(float preco) {
 		this.preco = preco;
