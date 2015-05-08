@@ -10,6 +10,20 @@ public class Veiculo {
 	protected float preco;
 	
 	/**
+	 * Construtor veiculo constroi um novo veiculo
+	 * @param chassi
+	 * @param montadora
+	 * @param cor
+	 * @param preco
+	 */
+	public Veiculo(String chassi, Montadora montadora, Cor cor, float preco) {
+		this.chassi = chassi;
+		this.montadora = montadora;
+		this.cor = cor;
+		this.preco = preco;
+	}
+
+	/**
 	 *getChassi Retorna o chassi do veiculo
 	 * @return chassi chassi do veiculo
 	 */

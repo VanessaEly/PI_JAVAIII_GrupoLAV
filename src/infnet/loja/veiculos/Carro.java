@@ -5,8 +5,8 @@ import infnet.loja.enums.*;
 /**
  * Classe Carro define um novo carro
  * @author Antonio Henrique, Leandro Varella, Vanessa Ely
- * @version 1.0
- * @since 15-04-2015
+ * @version 2.0
+ * @since 08-04-2015
  */
 public class Carro extends Veiculo 
 {
@@ -31,14 +31,11 @@ public class Carro extends Veiculo
 	public Carro(String chassi, Montadora montadora, ModeloCarro modelo, TipoCarro tipo, Cor cor, 
 			float motorizacao, Cambio cambio, float preco) 
 	{
-		this.chassi      = chassi;
-		this.montadora   = montadora;	
-		this.modelo      = modelo;
+		super(chassi, montadora, cor, preco);
 		this.tipo        = tipo;
-		this.cor         = cor;
+		this.modelo         = modelo;
 		this.motorizacao = motorizacao;
 		this.cambio      = cambio;
-		this.preco       = preco;
 	}
 
 	/**
