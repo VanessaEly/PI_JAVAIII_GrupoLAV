@@ -259,7 +259,7 @@ public class Loja
 			while (aux <= 0 || aux >= 5)
 				aux = Integer.parseInt(JOptionPane.showInputDialog("Valor Invalido. Digite numero da montadora:\n1 - HONDA\n2 - SUZUKI\n3 - YAMAHA\n4 - KAWASAKI"));
 			aux = aux+3;
-			
+
 			for (Montadora m: Montadora.values())
 			{
 				if (m.getIndice() == aux)
@@ -286,7 +286,7 @@ public class Loja
 
 			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:\n1 - PRETO\n2 - BRANCO\n3 - AZUL\n4 - VERDE\n5 - ROSA\n6 - AMARELO"));
 			while (aux <= 0 || aux >= 7);
-				aux = Integer.parseInt(JOptionPane.showInputDialog("Valor Invalido. Digite numero da Cor:\n1 - PRETO\n2 - BRANCO\n3 - AZUL\n4 - VERDE\n5 - ROSA\n6 - AMARELO"));
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Valor Invalido. Digite numero da Cor:\n1 - PRETO\n2 - BRANCO\n3 - AZUL\n4 - VERDE\n5 - ROSA\n6 - AMARELO"));
 			for (Cor m: Cor.values())
 			{
 				if (m.getIndice() == (aux-1))
@@ -854,11 +854,10 @@ public class Loja
 	 * @param motorizacao motorizacao do carro
 	 * @param cambio cambio do carro
 	 * @param preco preco do carro
-	 * @return carroOk retorna o carro, caso ele exista
+	 * @return carrosOk retorna lista de carros
 	 */
 	public static ArrayList<Carro> pesquisarCarroEspecifico(Loja loja, String chassi, int montadora, int modelo, int tipo, int cor, float motorizacao, int cambio, float preco)
 	{
-		Carro carroOk = null;
 		ArrayList <Carro> carrosOk = new ArrayList <Carro>();
 		if (!chassi.equals("0"))
 		{
@@ -959,11 +958,10 @@ public class Loja
 	 * @param cilindrada cilindrada da moto
 	 * @param capacidadeDoTanque capacidade do tanque da moto
 	 * @param preco preco da moto
-	 * @return motoOk retorna motocicleta, caso ela exista
+	 * @return motosOk retorna lista de motocicletas
 	 */
 	public static ArrayList <Motocicleta> pesquisarMotoEspecifica(Loja loja, String chassi, int montadora, int modelo, int tipo, int cor, int cilindrada, int capacidadeDoTanque, float preco)
 	{
-		Motocicleta motoOk = null;
 		ArrayList <Motocicleta> motosOk = new ArrayList <Motocicleta>();
 		if (!chassi.equals("0"))
 		{
@@ -980,7 +978,7 @@ public class Loja
 				if (m.getMontadora().getIndice() == (montadora+4))
 				{
 					if (!motosOk.contains(m))
-					    motosOk.add(m);
+						motosOk.add(m);
 				}
 			}
 		}
@@ -991,7 +989,7 @@ public class Loja
 				if (m.getModelo().getIndice() == (modelo-1))
 				{
 					if (!motosOk.contains(m))
-					    motosOk.add(m);
+						motosOk.add(m);
 				}
 			}
 		}
@@ -1002,7 +1000,7 @@ public class Loja
 				if (m.getTipo().getIndice() == (tipo-1))
 				{
 					if (!motosOk.contains(m))
-					    motosOk.add(m);
+						motosOk.add(m);
 				}
 			}
 		}
@@ -1013,7 +1011,7 @@ public class Loja
 				if (m.getCor().getIndice() == (cor-1))
 				{
 					if (!motosOk.contains(m))
-					    motosOk.add(m);
+						motosOk.add(m);
 				}
 			}
 		}
@@ -1024,7 +1022,7 @@ public class Loja
 				if (m.getCilindrada() == cilindrada)
 				{
 					if (!motosOk.contains(m))
-					    motosOk.add(m);
+						motosOk.add(m);
 				}
 			}
 		}
@@ -1035,7 +1033,7 @@ public class Loja
 				if (m.getCapacidadeDoTanque() == capacidadeDoTanque)
 				{
 					if (!motosOk.contains(m))
-					    motosOk.add(m);
+						motosOk.add(m);
 				}
 			}
 		}
@@ -1046,13 +1044,13 @@ public class Loja
 				if (m.getPreco() == preco)
 				{
 					if (!motosOk.contains(m))
-					    motosOk.add(m);
+						motosOk.add(m);
 				}
 			}
 		}
 		return motosOk;
 	}
-	
+
 	/**
 	 * Metodo removerCarro remove o carro com o chassi desejado da array estoqueDeMotocicletas
 	 * @param chassi chassi do carro
