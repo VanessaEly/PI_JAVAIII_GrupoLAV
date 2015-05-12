@@ -871,7 +871,7 @@ public class Loja
 		{
 			for (Carro m: loja.estoqueDeCarros)
 			{
-				if (m.getMontadora().getIndice() == (montadora+4))
+				if (m.getMontadora().getIndice() == (montadora-1))
 				{
 					if (!carrosOk.contains(m))
 						carrosOk.add(m);

@@ -70,19 +70,19 @@ public class Menu
 			case 4:
 				JOptionPane.showMessageDialog(null,"Voce optou por Pesquisar um Carro Especifico");
 
-				chassi = JOptionPane.showInputDialog("Digite o chassi: ");
+				chassi = JOptionPane.showInputDialog("Digite o chassi, insira 0 para ignorar este item: ");
 				if (chassi.isEmpty())
 				{
 					JOptionPane.showMessageDialog(null,"Voltando para o Menu Carro.");
 					Menu.chamarMenuCarro(loja);
 				}
-				int montadora = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero da montadora: \n1 - VOLKSWAGEN\n2 - FORD\n3 - CHEVROLET\n4 - FIAT"));
-				int modelo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo:\n1 - FOX\n2 - GOL\n3 - CELTA"));
-				int tipo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:\n1 - SEDAN\n2 - HATCH\n3 - SUV"));
-				int cor = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:\n1 - PRETO\n2 - BRANCO\n3 - AZUL\n4 - VERDE\n5 - ROSA\n6 - AMARELO"));
-				float motorizacao = Float.parseFloat(JOptionPane.showInputDialog("Digite numero do motor:"));
-				int cambio = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do cambio:\n1 - MANUAL\n2 - SEMI\n3 - AUTO"));
-				float preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preco do carro"));
+				int montadora = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero da montadora: \n0 - Ignorar este item\n1 - VOLKSWAGEN\n2 - FORD\n3 - CHEVROLET\n4 - FIAT"));
+				int modelo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo:\n0 - Ignorar este item\n1 - FOX\n2 - GOL\n3 - CELTA"));
+				int tipo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:\n0 - Ignorar este item\n1 - SEDAN\n2 - HATCH\n3 - SUV"));
+				int cor = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:\n0 - Ignorar este item\n1 - PRETO\n2 - BRANCO\n3 - AZUL\n4 - VERDE\n5 - ROSA\n6 - AMARELO"));
+				float motorizacao = Float.parseFloat(JOptionPane.showInputDialog("Digite numero do motor, insira 0 para ignorar este item:"));
+				int cambio = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do cambio:\n0 - Ignorar este item\n1 - MANUAL\n2 - SEMI\n3 - AUTO"));
+				float preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preco do carro, insira 0 para ignorar este item:"));
 
 				ArrayList <Carro> carrosEncontrados = new ArrayList <Carro> (Loja.pesquisarCarroEspecifico(loja, chassi, montadora, modelo, tipo, cor, motorizacao, cambio, preco));
 				if (carrosEncontrados.isEmpty())
@@ -161,14 +161,14 @@ public class Menu
 			case 4:
 				JOptionPane.showMessageDialog(null,"Voce optou por Pesquisar Moto Especifica");
 
-				chassi = JOptionPane.showInputDialog("Digite o chassi: ");
-				int montadora = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da montadora:\n1 - HONDA\n2 - SUZUKI\n3 - YAMAHA\n4 - KAWASAKI"));
-				int modelo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo:\n1 - CBR\n2 - NINJA\n3 - CB_HORNET"));
-				int tipo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:\n1 - CHOPPER\n2 - SCOOTER\n3 - ESPORTIVO"));
-				int cor = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:\n1 - PRETO\n2 - BRANCO\n3 - AZUL\n4 - VERDE\n5 - ROSA\n6 - AMARELO"));
-				int cilindrada = Integer.parseInt(JOptionPane.showInputDialog("Digite numero de cilindradas:"));
-				int capacidadeDoTanque = Integer.parseInt(JOptionPane.showInputDialog("Digite a Capacidade do Tanque:"));
-				float preco = Float.parseFloat((JOptionPane.showInputDialog("Digite o preco da Moto")));
+				chassi = JOptionPane.showInputDialog("Digite o chassi, insira 0 para ignorar este item: ");
+				int montadora = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da montadora:\n0 - Ignorar este item\n1 - HONDA\n2 - SUZUKI\n3 - YAMAHA\n4 - KAWASAKI"));
+				int modelo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo:\n0 - Ignorar este item\n1 - CBR\n2 - NINJA\n3 - CB_HORNET"));
+				int tipo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:\n0 - Ignorar este item\n1 - CHOPPER\n2 - SCOOTER\n3 - ESPORTIVO"));
+				int cor = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:\n0 - Ignorar este item\n1 - PRETO\n2 - BRANCO\n3 - AZUL\n4 - VERDE\n5 - ROSA\n6 - AMARELO"));
+				int cilindrada = Integer.parseInt(JOptionPane.showInputDialog("Digite numero de cilindradas, insira 0 para ignorar este item:"));
+				int capacidadeDoTanque = Integer.parseInt(JOptionPane.showInputDialog("Digite a Capacidade do Tanque, insira 0 para ignorar este item:"));
+				float preco = Float.parseFloat((JOptionPane.showInputDialog("Digite o preco da Moto, insira 0 para ignorar este item:")));
 
 				ArrayList <Motocicleta> motosEncontradas = new ArrayList <Motocicleta> (Loja.pesquisarMotoEspecifica(loja, chassi, montadora, modelo, tipo, cor, cilindrada, capacidadeDoTanque, preco));
 				if (motosEncontradas.isEmpty())
