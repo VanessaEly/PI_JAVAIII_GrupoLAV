@@ -1,6 +1,5 @@
 package infnet;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -70,23 +69,26 @@ public class Menu
 			case 4:
 				JOptionPane.showMessageDialog(null,"Voce optou por Pesquisar um Carro Especifico");
 
-				chassi = JOptionPane.showInputDialog("Digite o chassi, digite 0 para ignorar este item: ");
-				int montadora = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero da montadora: \n0 - Ignorar este item\n1 - VOLKSWAGEN\n2 - FORD\n3 - CHEVROLET\n4 - FIAT"));
-				int modelo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: \n0 - Ignorar este item\n1 - FOX\n2 - GOL\n3 - CELTA"));
-				int tipo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo: \n0 - Ignorar este item\n1 - SEDAN\n2 - HATCH\n3 - SUV"));
-				int cor = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor: \n0 - Ignorar este item\n1 - PRETO\n2 - BRANCO\n3 - AZUL\n4 - VERDE\n5 - ROSA\n6 - AMARELO"));
-				float motorizacao = Float.parseFloat(JOptionPane.showInputDialog("Digite numero do motor, digite 0 caso queira ignorar este item:"));
-				int cambio = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do cambio: \n0 - Ignorar este item\n1 - MANUAL\n2 - SEMI\n3 - AUTO"));
-				float preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preco do carro, digite 0 caso queira ignorar este item: "));
+				chassi = JOptionPane.showInputDialog("Digite o chassi: ");
+				if (chassi.isEmpty())
+				{
+					JOptionPane.showMessageDialog(null,"Voltando para o Menu Carro.");
+					Menu.chamarMenuCarro(loja);
+				}
+				int montadora = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero da montadora: \n1 - VOLKSWAGEN\n2 - FORD\n3 - CHEVROLET\n4 - FIAT"));
+				int modelo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo:\n1 - FOX\n2 - GOL\n3 - CELTA"));
+				int tipo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:\n1 - SEDAN\n2 - HATCH\n3 - SUV"));
+				int cor = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:\n1 - PRETO\n2 - BRANCO\n3 - AZUL\n4 - VERDE\n5 - ROSA\n6 - AMARELO"));
+				float motorizacao = Float.parseFloat(JOptionPane.showInputDialog("Digite numero do motor:"));
+				int cambio = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do cambio:\n1 - MANUAL\n2 - SEMI\n3 - AUTO"));
+				float preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preco do carro"));
 
-				ArrayList <Carro> carrosEncontrados = new ArrayList <Carro> (Loja.pesquisarCarroEspecifico(loja, chassi, montadora, modelo, tipo, cor, motorizacao, cambio, preco));
-				if (carrosEncontrados.isEmpty())
-					JOptionPane.showMessageDialog(null,"Nenhuma moto foi encontrada");
+				Carro carro = Loja.pesquisarCarroEspecifico(loja, chassi, montadora, modelo, tipo, cor, motorizacao, cambio, preco);
+				if (carro == null)
+					JOptionPane.showMessageDialog(null,"Carro nao encontrado");
 				else
-					for (Carro m: carrosEncontrados)
-						JOptionPane.showMessageDialog(null, m);
-				JOptionPane.showMessageDialog(null,"Voltando para o menu de Carros");
-				chamarMenuCarro(loja);
+					JOptionPane.showMessageDialog(null,"Carro Encontrado.\n" + carro);
+				Menu.chamarMenuCarro(loja);
 				break;
 			case 5:
 				JOptionPane.showMessageDialog(null,"Voce optou por Buscar um Carro pelo Chassi");
@@ -157,23 +159,21 @@ public class Menu
 			case 4:
 				JOptionPane.showMessageDialog(null,"Voce optou por Pesquisar Moto Especifica");
 
-				chassi = JOptionPane.showInputDialog("Digite o chassi, digite 0 para ignorar este item: ");
-				int montadora = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da montadora: \n0 - Ignorar este item\n1 - HONDA\n2 - SUZUKI\n3 - YAMAHA\n4 - KAWASAKI"));
-				int modelo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo: \n0 - Ignorar este item\n1 - CBR\n2 - NINJA\n3 - CB_HORNET"));
-				int tipo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo: \n0 - Ignorar este item\n1 - CHOPPER\n2 - SCOOTER\n3 - ESPORTIVO"));
-				int cor = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor: \n0 - Ignorar este item\n1 - PRETO\n2 - BRANCO\n3 - AZUL\n4 - VERDE\n5 - ROSA\n6 - AMARELO"));
-				int cilindrada = Integer.parseInt(JOptionPane.showInputDialog("Digite numero de cilindradas, digite 0 para ignorar este item:"));
-				int capacidadeDoTanque = Integer.parseInt(JOptionPane.showInputDialog("Digite a Capacidade do Tanque, digite 0 para ignorar este item:"));
-				float preco = Float.parseFloat((JOptionPane.showInputDialog("Digite o preco da Moto, digite 0 para ignorar este item:")));
+				chassi = JOptionPane.showInputDialog("Digite o chassi: ");
+				int montadora = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da montadora:\n1 - HONDA\n2 - SUZUKI\n3 - YAMAHA\n4 - KAWASAKI"));
+				int modelo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo:\n1 - CBR\n2 - NINJA\n3 - CB_HORNET"));
+				int tipo = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:\n1 - CHOPPER\n2 - SCOOTER\n3 - ESPORTIVO"));
+				int cor = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:\n1 - PRETO\n2 - BRANCO\n3 - AZUL\n4 - VERDE\n5 - ROSA\n6 - AMARELO"));
+				int cilindrada = Integer.parseInt(JOptionPane.showInputDialog("Digite numero de cilindradas:"));
+				int capacidadeDoTanque = Integer.parseInt(JOptionPane.showInputDialog("Digite a Capacidade do Tanque:"));
+				float preco = Float.parseFloat((JOptionPane.showInputDialog("Digite o preco da Moto")));
 
-				ArrayList <Motocicleta> motosEncontradas = new ArrayList <Motocicleta> (Loja.pesquisarMotoEspecifica(loja, chassi, montadora, modelo, tipo, cor, cilindrada, capacidadeDoTanque, preco));
-				if (motosEncontradas.isEmpty())
-					JOptionPane.showMessageDialog(null,"Nenhuma moto foi encontrada");
+				Motocicleta motocicleta = Loja.pesquisarMotoEspecifica(loja, chassi, montadora, modelo, tipo, cor, cilindrada, capacidadeDoTanque, preco);
+				if (motocicleta == null)
+					JOptionPane.showMessageDialog(null,"Moto nao encontrada");
 				else
-					for (Motocicleta m: motosEncontradas)
-						JOptionPane.showMessageDialog(null, m);
-				JOptionPane.showMessageDialog(null,"Voltando para o menu de Motos");
-				chamarMenuMoto(loja);
+					JOptionPane.showMessageDialog(null,"Moto Encontrada.\n" + motocicleta);
+				Menu.chamarMenuMoto(loja);
 				break;
 			case 5:
 				JOptionPane.showMessageDialog(null,"Voce optou por Buscar uma Moto pelo Chassi");

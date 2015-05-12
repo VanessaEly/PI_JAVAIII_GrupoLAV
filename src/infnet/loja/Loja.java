@@ -17,8 +17,8 @@ import javax.swing.JOptionPane;
 /**
  * Classe Loja define uma loja e faz a manutencao de seu "estoque"
  * @author Antonio Henrique, Leandro Varella, Vanessa Ely
- * @version 2.0
- * @since 12-05-2015
+ * @version 1.0
+ * @since 15-04-2015
  */
 public class Loja 
 {
@@ -131,7 +131,7 @@ public class Loja
 				JOptionPane.showMessageDialog(null, "Voltando para o Menu de Carros.");
 				Menu.chamarMenuCarro(loja);
 			}
-			while (input.isEmpty() || input.equals("0"))
+			while (input.isEmpty())
 				input = (JOptionPane.showInputDialog("Valor vazio. Digite o chassi: "));
 			_chassi = input;
 			for (Carro c: loja.estoqueDeCarros)
@@ -243,8 +243,9 @@ public class Loja
 				JOptionPane.showMessageDialog(null, "Voltando para o Menu de Motos.");
 				Menu.chamarMenuMoto(loja);
 			}
-			while ((input.isEmpty() || input.equals("0")))
+			while (input.isEmpty())
 				input = (JOptionPane.showInputDialog("Valor vazio. Digite o chassi: "));
+			_chassi = input;
 			for (Motocicleta c: loja.estoqueDeMotocicletas)
 			{
 				if (c.getChassi().equals(input))
@@ -397,7 +398,7 @@ public class Loja
 	}
 
 	/**
-	 * Printa um carro, utilizando os atributos passados, caso exista no invent√°rio.
+	 * Printa um carro, utilizando os atributos passados, caso exista no invent·rio.
 	 * @param loja loja sendo tratada
 	 * @throws IOException Excecoes de entrada e saida e seus tratamentos
 	 */
@@ -620,7 +621,7 @@ public class Loja
 	}
 
 	/**
-	 * Printa uma moto, utilizando os atributos passados, caso exista no invent√°rio.
+	 * Printa uma moto, utilizando os atributos passados, caso exista no invent·rio.
 	 * @param loja loja sendo tratada
 	 * @throws IOException Excecoes de entrada e saida e seus tratamentos
 	 */
@@ -843,7 +844,7 @@ public class Loja
 	}
 
 	/**
-	 * Pesquisa e retorna um carro com valores espec√≠ficos no estoque, caso ele exista
+	 * Pesquisa e retorna um carro com valores especÌficos no estoque, caso ele exista
 	 * @param loja loja do estoque
 	 * @param chassi chassi do carro
 	 * @param montadora montadora do carro
@@ -853,101 +854,32 @@ public class Loja
 	 * @param motorizacao motorizacao do carro
 	 * @param cambio cambio do carro
 	 * @param preco preco do carro
-	 * @return carrosOk retorna lista de carros
+	 * @return carroOk retorna o carro, caso ele exista
 	 */
-	public static ArrayList<Carro> pesquisarCarroEspecifico(Loja loja, String chassi, int montadora, int modelo, int tipo, int cor, float motorizacao, int cambio, float preco)
+	public static Carro pesquisarCarroEspecifico(Loja loja, String chassi, int montadora, int modelo, int tipo, int cor, float motorizacao, int cambio, float preco)
 	{
-		ArrayList <Carro> carrosOk = new ArrayList <Carro>();
-		if (!chassi.equals("0"))
+		Carro carroOk = null;
+		for (Carro c: loja.estoqueDeCarros)
 		{
-			for (Carro m: loja.estoqueDeCarros)
-			{
-				if (m.getChassi().equals(chassi))
-					carrosOk.add(m);
-			}
+			if (c.getChassi().equals(chassi))
+				if (c.getMontadora().getIndice() == (montadora-1))
+					if (c.getModelo().getIndice() == (modelo-1))
+						if (c.getTipo().getIndice() == (tipo-1))
+							if (c.getCor().getIndice() == (cor-1))
+								if (c.getMotorizacao() == motorizacao)
+									if (c.getCambio().getIndice() == (cambio-1))
+										if (c.getPreco() == preco)
+										{
+											carroOk = c;
+											break;
+										}
+
 		}
-		if (!(montadora == 0))
-		{
-			for (Carro m: loja.estoqueDeCarros)
-			{
-				if (m.getMontadora().getIndice() == (montadora+4))
-				{
-					if (!carrosOk.contains(m))
-						carrosOk.add(m);
-				}
-			}
-		}
-		if (!(modelo == 0))
-		{
-			for (Carro m: loja.estoqueDeCarros)
-			{
-				if (m.getModelo().getIndice() == (modelo-1))
-				{
-					if (!carrosOk.contains(m))
-						carrosOk.add(m);
-				}
-			}
-		}
-		if (!(tipo == 0))
-		{
-			for (Carro m: loja.estoqueDeCarros)
-			{
-				if (m.getTipo().getIndice() == (tipo-1))
-				{
-					if (!carrosOk.contains(m))
-						carrosOk.add(m);
-				}
-			}
-		}
-		if (!(cor == 0))
-		{
-			for (Carro m: loja.estoqueDeCarros)
-			{
-				if (m.getCor().getIndice() == (cor-1))
-				{
-					if (!carrosOk.contains(m))
-						carrosOk.add(m);
-				}
-			}
-		}
-		if (!(motorizacao == 0))
-		{
-			for (Carro m: loja.estoqueDeCarros)
-			{
-				if (m.getMotorizacao() == motorizacao)
-				{
-					if (!carrosOk.contains(m))
-						carrosOk.add(m);
-				}
-			}
-		}
-		if (!(cambio == 0))
-		{
-			for (Carro m: loja.estoqueDeCarros)
-			{
-				if (m.getCambio().getIndice() == cambio)
-				{
-					if (!carrosOk.contains(m))
-						carrosOk.add(m);
-				}
-			}
-		}
-		if (!(preco == 0))
-		{
-			for (Carro m: loja.estoqueDeCarros)
-			{
-				if (m.getPreco() == preco)
-				{
-					if (!carrosOk.contains(m))
-						carrosOk.add(m);
-				}
-			}
-		}
-		return carrosOk;
+		return carroOk;
 	}
 
 	/**
-	 * Pesquisa e retorna uma moto com valores espec√≠ficos no estoque, caso ela exista
+	 * Pesquisa e retorna uma moto com valores especÌficos no estoque, caso ela exista
 	 * @param loja loja do estoque
 	 * @param chassi chassi da moto
 	 * @param montadora montadora da moto
@@ -957,99 +889,28 @@ public class Loja
 	 * @param cilindrada cilindrada da moto
 	 * @param capacidadeDoTanque capacidade do tanque da moto
 	 * @param preco preco da moto
-	 * @return motosOk retorna lista de motocicletas
+	 * @return motoOk retorna motocicleta, caso ela exista
 	 */
-	public static ArrayList <Motocicleta> pesquisarMotoEspecifica(Loja loja, String chassi, int montadora, int modelo, int tipo, int cor, int cilindrada, int capacidadeDoTanque, float preco)
+	public static Motocicleta pesquisarMotoEspecifica(Loja loja, String chassi, int montadora, int modelo, int tipo, int cor, int cilindrada, int capacidadeDoTanque, float preco)
 	{
-		ArrayList <Motocicleta> motosOk = new ArrayList <Motocicleta>();
-		if (!chassi.equals("0"))
+		Motocicleta motoOk = null;
+		for (Motocicleta m: loja.estoqueDeMotocicletas)
 		{
-			for (Motocicleta m: loja.estoqueDeMotocicletas)
-			{
-				if (m.getChassi().equals(chassi))
-					motosOk.add(m);
-			}
-		}
-		if (!(montadora == 0))
-		{
-			for (Motocicleta m: loja.estoqueDeMotocicletas)
-			{
+			if (m.getChassi().equals(chassi))
 				if (m.getMontadora().getIndice() == (montadora+4))
-				{
-					if (!motosOk.contains(m))
-						motosOk.add(m);
-				}
-			}
+					if (m.getModelo().getIndice() == (modelo-1))
+						if (m.getTipo().getIndice() == (tipo-1))
+							if (m.getCor().getIndice() == (cor-1))
+								if (m.getCilindrada() == cilindrada)
+									if (m.getCapacidadeDoTanque() == capacidadeDoTanque)
+										if (m.getPreco() == preco)
+										{
+											motoOk = m;
+											break;
+										}
 		}
-		if (!(modelo == 0))
-		{
-			for (Motocicleta m: loja.estoqueDeMotocicletas)
-			{
-				if (m.getModelo().getIndice() == (modelo-1))
-				{
-					if (!motosOk.contains(m))
-						motosOk.add(m);
-				}
-			}
-		}
-		if (!(tipo == 0))
-		{
-			for (Motocicleta m: loja.estoqueDeMotocicletas)
-			{
-				if (m.getTipo().getIndice() == (tipo-1))
-				{
-					if (!motosOk.contains(m))
-						motosOk.add(m);
-				}
-			}
-		}
-		if (!(cor == 0))
-		{
-			for (Motocicleta m: loja.estoqueDeMotocicletas)
-			{
-				if (m.getCor().getIndice() == (cor-1))
-				{
-					if (!motosOk.contains(m))
-						motosOk.add(m);
-				}
-			}
-		}
-		if (!(cilindrada == 0))
-		{
-			for (Motocicleta m: loja.estoqueDeMotocicletas)
-			{
-				if (m.getCilindrada() == cilindrada)
-				{
-					if (!motosOk.contains(m))
-						motosOk.add(m);
-				}
-			}
-		}
-		if (!(capacidadeDoTanque == 0))
-		{
-			for (Motocicleta m: loja.estoqueDeMotocicletas)
-			{
-				if (m.getCapacidadeDoTanque() == capacidadeDoTanque)
-				{
-					if (!motosOk.contains(m))
-						motosOk.add(m);
-				}
-			}
-		}
-		if (!(preco == 0))
-		{
-			for (Motocicleta m: loja.estoqueDeMotocicletas)
-			{
-				if (m.getPreco() == preco)
-				{
-					if (!motosOk.contains(m))
-						motosOk.add(m);
-				}
-			}
-		}
-		return motosOk;
+		return motoOk;
 	}
-
 	/**
 	 * Metodo removerCarro remove o carro com o chassi desejado da array estoqueDeMotocicletas
 	 * @param chassi chassi do carro
