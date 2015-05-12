@@ -17,8 +17,8 @@ import javax.swing.JOptionPane;
 /**
  * Classe Loja define uma loja e faz a manutencao de seu "estoque"
  * @author Antonio Henrique, Leandro Varella, Vanessa Ely
- * @version 1.0
- * @since 15-04-2015
+ * @version 2.0
+ * @since 12-05-2015
  */
 public class Loja 
 {
@@ -397,7 +397,7 @@ public class Loja
 	}
 
 	/**
-	 * Printa um carro, utilizando os atributos passados, caso exista no invent·rio.
+	 * Printa um carro, utilizando os atributos passados, caso exista no invent√°rio.
 	 * @param loja loja sendo tratada
 	 * @throws IOException Excecoes de entrada e saida e seus tratamentos
 	 */
@@ -620,7 +620,7 @@ public class Loja
 	}
 
 	/**
-	 * Printa uma moto, utilizando os atributos passados, caso exista no invent·rio.
+	 * Printa uma moto, utilizando os atributos passados, caso exista no invent√°rio.
 	 * @param loja loja sendo tratada
 	 * @throws IOException Excecoes de entrada e saida e seus tratamentos
 	 */
@@ -843,7 +843,7 @@ public class Loja
 	}
 
 	/**
-	 * Pesquisa e retorna um carro com valores especÌficos no estoque, caso ele exista
+	 * Pesquisa e retorna um carro com valores espec√≠ficos no estoque, caso ele exista
 	 * @param loja loja do estoque
 	 * @param chassi chassi do carro
 	 * @param montadora montadora do carro
@@ -947,7 +947,7 @@ public class Loja
 	}
 
 	/**
-	 * Pesquisa e retorna uma moto com valores especÌficos no estoque, caso ela exista
+	 * Pesquisa e retorna uma moto com valores espec√≠ficos no estoque, caso ela exista
 	 * @param loja loja do estoque
 	 * @param chassi chassi da moto
 	 * @param montadora montadora da moto
