@@ -131,7 +131,7 @@ public class Loja
 				JOptionPane.showMessageDialog(null, "Voltando para o Menu de Carros.");
 				Menu.chamarMenuCarro(loja);
 			}
-			while (input.isEmpty())
+			while (input.isEmpty() || input.equals("0"))
 				input = (JOptionPane.showInputDialog("Valor vazio. Digite o chassi: "));
 			_chassi = input;
 			for (Carro c: loja.estoqueDeCarros)
@@ -153,7 +153,7 @@ public class Loja
 
 			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo:\n1 - FOX\n2 - GOL\n2 - CELTA"));
 			while (aux <= 0 || aux >=4)
-				aux = Integer.parseInt(JOptionPane.showInputDialog("Valor Invalido. Digite numero do modelo:\n1 - FOX\n2 - GOL\n2 - CELTA"));
+				aux = Integer.parseInt(JOptionPane.showInputDialog("Valor Invalido. Digite numero do modelo:\n1 - FOX\n2 - GOL\n3 - CELTA"));
 			for (ModeloCarro m: ModeloCarro.values())
 			{
 				if (m.getIndice() == (aux-1))
@@ -243,9 +243,8 @@ public class Loja
 				JOptionPane.showMessageDialog(null, "Voltando para o Menu de Motos.");
 				Menu.chamarMenuMoto(loja);
 			}
-			while (input.isEmpty())
+			while ((input.isEmpty() || input.equals("0")))
 				input = (JOptionPane.showInputDialog("Valor vazio. Digite o chassi: "));
-			_chassi = input;
 			for (Motocicleta c: loja.estoqueDeMotocicletas)
 			{
 				if (c.getChassi().equals(input))

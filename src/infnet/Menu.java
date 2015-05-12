@@ -85,6 +85,8 @@ public class Menu
 				else
 					for (Carro m: carrosEncontrados)
 						JOptionPane.showMessageDialog(null, m);
+				JOptionPane.showMessageDialog(null,"Voltando para o menu de Carros");
+				chamarMenuCarro(loja);
 				break;
 			case 5:
 				JOptionPane.showMessageDialog(null,"Voce optou por Buscar um Carro pelo Chassi");
@@ -170,6 +172,8 @@ public class Menu
 				else
 					for (Motocicleta m: motosEncontradas)
 						JOptionPane.showMessageDialog(null, m);
+				JOptionPane.showMessageDialog(null,"Voltando para o menu de Motos");
+				chamarMenuMoto(loja);
 				break;
 			case 5:
 				JOptionPane.showMessageDialog(null,"Voce optou por Buscar uma Moto pelo Chassi");
