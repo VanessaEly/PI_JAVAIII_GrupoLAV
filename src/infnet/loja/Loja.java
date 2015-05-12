@@ -151,7 +151,7 @@ public class Loja
 					_montadora = m;
 			}
 
-			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo:\n1 - FOX\n2 - GOL\n2 - CELTA"));
+			aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo:\n1 - FOX\n2 - GOL\n3 - CELTA"));
 			while (aux <= 0 || aux >=4)
 				aux = Integer.parseInt(JOptionPane.showInputDialog("Valor Invalido. Digite numero do modelo:\n1 - FOX\n2 - GOL\n3 - CELTA"));
 			for (ModeloCarro m: ModeloCarro.values())
