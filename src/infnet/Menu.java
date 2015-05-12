@@ -1,5 +1,6 @@
 package infnet;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -83,12 +84,13 @@ public class Menu
 				int cambio = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do cambio:\n1 - MANUAL\n2 - SEMI\n3 - AUTO"));
 				float preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preco do carro"));
 
-				Carro carro = Loja.pesquisarCarroEspecifico(loja, chassi, montadora, modelo, tipo, cor, motorizacao, cambio, preco);
-				if (carro == null)
-					JOptionPane.showMessageDialog(null,"Carro nao encontrado");
-				else
-					JOptionPane.showMessageDialog(null,"Carro Encontrado.\n" + carro);
-				Menu.chamarMenuCarro(loja);
+				ArrayList <Carro> carrosEncontrados = new ArrayList <Carro> (Loja.pesquisarCarroEspecifico(loja, chassi, montadora, modelo, tipo, cor, motorizacao, cambio, preco));
+				if (carrosEncontrados.isEmpty())
+					JOptionPane.showMessageDialog(null,"Nenhum carro foi encontrado");
+				for (Carro m: carrosEncontrados)
+					JOptionPane.showMessageDialog(null, m);
+				JOptionPane.showMessageDialog(null,"Voltando para o menu de Carros");
+				chamarMenuCarro(loja);
 				break;
 			case 5:
 				JOptionPane.showMessageDialog(null,"Voce optou por Buscar um Carro pelo Chassi");
@@ -168,12 +170,13 @@ public class Menu
 				int capacidadeDoTanque = Integer.parseInt(JOptionPane.showInputDialog("Digite a Capacidade do Tanque:"));
 				float preco = Float.parseFloat((JOptionPane.showInputDialog("Digite o preco da Moto")));
 
-				Motocicleta motocicleta = Loja.pesquisarMotoEspecifica(loja, chassi, montadora, modelo, tipo, cor, cilindrada, capacidadeDoTanque, preco);
-				if (motocicleta == null)
-					JOptionPane.showMessageDialog(null,"Moto nao encontrada");
-				else
-					JOptionPane.showMessageDialog(null,"Moto Encontrada.\n" + motocicleta);
-				Menu.chamarMenuMoto(loja);
+				ArrayList <Motocicleta> motosEncontradas = new ArrayList <Motocicleta> (Loja.pesquisarMotoEspecifica(loja, chassi, montadora, modelo, tipo, cor, cilindrada, capacidadeDoTanque, preco));
+				if (motosEncontradas.isEmpty())
+					JOptionPane.showMessageDialog(null,"Nenhuma moto foi encontrada");
+				for (Motocicleta m: motosEncontradas)
+					JOptionPane.showMessageDialog(null, m);
+				JOptionPane.showMessageDialog(null,"Voltando para o menu de Motos");
+				chamarMenuMoto(loja);
 				break;
 			case 5:
 				JOptionPane.showMessageDialog(null,"Voce optou por Buscar uma Moto pelo Chassi");
