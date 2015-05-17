@@ -37,38 +37,6 @@ public class Motocicleta extends Veiculo
 	}
 
 	/**
-	 * Metodo equals sobrescreve o equals da classe
-	 */
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Motocicleta other = (Motocicleta) obj;
-		if (capacidadeDoTanque != other.capacidadeDoTanque)
-			return false;
-		if (chassi == null) {
-			if (other.chassi != null)
-				return false;
-		} else if (!chassi.equals(other.chassi))
-			return false;
-		if (cilindrada != other.cilindrada)
-			return false;
-		if (cor != other.cor)
-			return false;
-		if (modelo != other.modelo)
-			return false;
-		if (montadora != other.montadora)
-			return false;
-		if (Float.floatToIntBits(preco) != Float.floatToIntBits(other.preco))
-			return false;
-		if (tipo != other.tipo)
-			return false;
-		return true;
-	}
-	/**
 	 * getModelo Retorna o modelo da moto
 	 * @return modelo modelo da moto
 	 */
@@ -80,7 +48,7 @@ public class Motocicleta extends Veiculo
 	 * setModelo altera o valor da variavel modelo para enum ModeloCarro que foi passado pelo parametro modelo
 	 * @param modelo modelo da moto
 	 */
-	public void       setModelo(ModeloMoto modelo) {
+	public void setModelo(ModeloMoto modelo) {
 		this.modelo = modelo;
 	}
 
@@ -96,7 +64,7 @@ public class Motocicleta extends Veiculo
 	 * setTipo altera o valor da variavel tipo para enum TipoCarro que foi passado pelo parametro tipo
 	 * @param tipo tipo da moto
 	 */
-	public void       setTipo(TipoMoto tipo) {
+	public void setTipo(TipoMoto tipo) {
 		this.tipo = tipo;
 	}
 
@@ -112,7 +80,7 @@ public class Motocicleta extends Veiculo
 	 * setCilindrada altera o valor da variavel cilindrada para o float que foi passado pelo parametro cilindrada
 	 * @param cilindrada cilindradas da moto
 	 */
-	public void       setCilindrada(int cilindrada) {
+	public void setCilindrada(int cilindrada) {
 		this.cilindrada = cilindrada;
 	}
 

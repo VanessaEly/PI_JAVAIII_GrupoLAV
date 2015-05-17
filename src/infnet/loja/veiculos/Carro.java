@@ -74,7 +74,7 @@ public class Carro extends Veiculo
 	 * getModelo Retorna o modelo do carro
 	 * @return modelo modelo do carro
 	 */
-	public ModeloCarro getModelo() {
+	public  ModeloCarro getModelo() {
 		return modelo;
 	}
 
@@ -82,7 +82,7 @@ public class Carro extends Veiculo
 	 * setModelo altera o valor da variavel modelo para enum ModeloCarro que foi passado pelo parametro modelo
 	 * @param modelo modelo do carro
 	 */
-	public void        setModelo(ModeloCarro modelo) {
+	public void setModelo(ModeloCarro modelo) {
 		this.modelo = modelo;
 	}
 
@@ -90,15 +90,16 @@ public class Carro extends Veiculo
 	 * getTipo Retorna o tipo do carro
 	 * @return tipo tipo do carro
 	 */
-	public TipoCarro   getTipo() {
+	public TipoCarro getTipo() {
 		return tipo;
 	}
 
 	/**
 	 * setTipo altera o valor da variavel tipo para enum TipoCarro que foi passado pelo parametro tipo
 	 * @param tipo tipo do carro
+	 * @return 
 	 */
-	public void        setTipo(TipoCarro tipo) {
+	public void setTipo(TipoCarro tipo) {
 		this.tipo = tipo;
 	}
 
@@ -106,7 +107,7 @@ public class Carro extends Veiculo
 	 * getMotorizacao retorna a motorizacao do carro
 	 * @return motorizacao motorizacao do carro
 	 */
-	public float       getMotorizacao() {
+	public float getMotorizacao() {
 		return motorizacao;
 	}
 
@@ -114,7 +115,7 @@ public class Carro extends Veiculo
 	 * setMotorizacao altera o valor da variavel motorizacao para o float que foi passado pelo parametro motorizacao
 	 * @param motorizacao motorizacao do carro
 	 */
-	public void        setMotorizacao(float motorizacao) {
+	public void setMotorizacao(float motorizacao) {
 		this.motorizacao = motorizacao;
 	}
 
@@ -122,7 +123,7 @@ public class Carro extends Veiculo
 	 * getCambio retorna o cambio do carro
 	 * @return cambio cambio do carro
 	 */
-	public Cambio      getCambio() {
+	public Cambio getCambio() {
 		return cambio;
 	}
 
@@ -130,7 +131,7 @@ public class Carro extends Veiculo
 	 * setCambio altera o valor da variavel cambio para enum Cambio que foi passado pelo parametro cambio
 	 * @param cambio cambio do carro
 	 */
-	public void        setCambio(Cambio cambio) {
+	public void setCambio(Cambio cambio) {
 		this.cambio = cambio;
 	}
 
