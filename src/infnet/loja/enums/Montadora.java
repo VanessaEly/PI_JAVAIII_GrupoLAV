@@ -13,14 +13,14 @@ package infnet.loja.enums;
  */
 public enum Montadora 
 {
-	VOLKSWAGEN(0), 
-	FORD(1), 
-	CHEVROLET(2), 
-	FIAT(3), 
-	HONDA(4), 
-	SUZUKI(5), 
-	YAMAHA(6),
-	KAWASAKI(7);
+	VOLKSWAGEN(1), 
+	FORD(2), 
+	CHEVROLET(3), 
+	FIAT(4), 
+	HONDA(5), 
+	SUZUKI(6), 
+	YAMAHA(7),
+	KAWASAKI(8);
 
 	//variavel do enum
 	private int indice;

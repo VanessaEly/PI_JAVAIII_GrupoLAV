@@ -3,8 +3,10 @@ package infnet.loja;
 import infnet.Arquivo;
 import infnet.Menu;
 import infnet.loja.veiculos.*;
+
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -57,8 +59,25 @@ public class Loja
 	public static void adicionarCarro(Loja loja) throws IOException
 	{
 		try{
-			loja.estoqueDeCarros.add(EspecCarro.criaCarro(loja));
-			Arquivo.escreveCarro(loja);
+			Carro carro = EspecCarro.criaCarro(loja);
+			for (Carro c: loja.getEstoqueDeCarros())
+			{
+				if (c.getChassi().equals(carro.getChassi()))
+				{
+					JOptionPane.showMessageDialog(null, "Um carro com esse chassi ja esta cadastrado.");
+					Menu.chamarMenu(loja);
+				}
+			}
+			if ((carro.getCambio() == null)||(carro.getChassi()== null)||(carro.getCor()== null)||(carro.getModelo()== null)||(carro.getMontadora()== null)||(carro.getMotorizacao()<= 0)||(carro.getPreco()<= 0)||(carro.getTipo()== null))
+			{
+				JOptionPane.showMessageDialog(null, "Você inseriu valores invalidos e o carro nao pode ser adicionado.\n Voltando para o menu de Carros.");
+				Menu.chamarMenuCarro(loja);
+			}
+			else
+			{
+				loja.estoqueDeCarros.add(carro);
+				Arquivo.escreveCarro(loja);
+			}
 		}
 		catch (Exception e)
 		{
@@ -74,8 +93,25 @@ public class Loja
 	 */
 	public static void adicionarMoto(Loja loja) throws IOException{
 		try{
-			loja.estoqueDeCarros.add(EspecCarro.criaCarro(loja));
-			Arquivo.escreveCarro(loja);
+			Motocicleta moto = EspecMoto.criaMoto(loja);
+			for (Motocicleta m: loja.getEstoqueDeMotocicletas())
+			{
+				if (m.getChassi().equals(moto.getChassi()))
+				{
+					JOptionPane.showMessageDialog(null, "Uma moto com esse chassi ja esta cadastrada.");
+					Menu.chamarMenu(loja);
+				}
+			}
+			if ((moto.getCapacidadeDoTanque() <= 0)||(moto.getChassi()== null)||(moto.getCor()== null)||(moto.getModelo()== null)||(moto.getMontadora()== null)||(moto.getCilindrada()<= 0)||(moto.getPreco()<= 0)||(moto.getTipo()== null))
+			{
+				JOptionPane.showMessageDialog(null, "Você inseriu valores invalidos e a moto nao pode ser adicionada.\n Voltando para o menu de Motos.");
+				Menu.chamarMenuMoto(loja);
+			}
+			else
+			{
+				loja.estoqueDeMotocicletas.add(moto);
+				Arquivo.escreveMoto(loja);
+			}
 		}
 		catch (Exception e)
 		{
@@ -149,6 +185,42 @@ public class Loja
 			}
 		}
 		return moto;
+	}
+
+	/**
+	 * Pesquisa e retorna carros com valores específicos no estoque, caso eles exista,
+	 * @param loja loja do estoque
+	 * @throws IOException 
+	 * @return carrosOk arraylist do resultado obtido
+	 * */
+	public static ArrayList<Carro> pesquisarCarro(Loja loja) throws IOException
+	{
+		ArrayList <Carro> carrosOk = new ArrayList <Carro>();
+		Carro carro = EspecCarro.criaCarro(loja);
+		for (Carro c: loja.estoqueDeCarros)
+		{
+			if (c.equals(carro) == true)
+				carrosOk.add(c);
+		}
+		return carrosOk;
+	}
+
+	/**
+	 * Pesquisa e retorna motos com valores específicos no estoque, caso elas existam
+	 * @param loja loja do estoque
+	 * @throws IOException 
+	 * @return motosOk arraylist do resultado obtido
+	 */
+	public static ArrayList <Motocicleta> pesquisarMoto(Loja loja) throws IOException
+	{
+		ArrayList <Motocicleta> motosOk = new ArrayList <Motocicleta>();
+		Motocicleta moto = EspecMoto.criaMoto(loja);
+		for (Motocicleta c: loja.estoqueDeMotocicletas)
+		{
+			if (c.equals(moto) == true)
+				motosOk.add(c);
+		}
+		return motosOk;
 	}
 
 	/**

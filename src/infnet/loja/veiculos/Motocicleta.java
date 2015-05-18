@@ -37,6 +37,19 @@ public class Motocicleta extends Veiculo
 	}
 
 	/**
+	 * Metodo equals sobrescreve o equals da classe
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		Motocicleta other = (Motocicleta) obj;
+		if (!super.equals(obj) && (this.capacidadeDoTanque != other.capacidadeDoTanque)&&(this.cilindrada != other.cilindrada)&&(this.modelo != other.modelo)&&(this.tipo != other.tipo))
+			return false;
+		return true;
+	}
+
+	/**
 	 * getModelo Retorna o modelo da moto
 	 * @return modelo modelo da moto
 	 */

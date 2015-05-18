@@ -1,6 +1,5 @@
 package infnet.loja.veiculos;
 
-import java.io.IOException;
 import infnet.loja.enums.Cor;
 import infnet.loja.enums.Montadora;
 
@@ -31,6 +30,19 @@ public abstract class Veiculo {
 	}
 
 	/**
+	 * Metodo equals sobrescreve o equals da classe
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		Veiculo other = (Veiculo) obj;
+		if ((this.chassi.equals(other.chassi) == false)&&(this.cor != other.cor)&&(this.montadora != other.montadora)&&(Float.floatToIntBits(this.preco) != Float.floatToIntBits(other.preco)))
+			return false;
+		return true;
+	}
+
+	/**
 	 *getChassi Retorna o chassi do veiculo
 	 * @return chassi chassi do veiculo
 	 */
@@ -41,9 +53,6 @@ public abstract class Veiculo {
 	/**
 	 * setChassi altera o valor da variavel chassi para String que foi passado pelo parametro chassi
 	 * @param chassi 
-	 * @param loja loja do veiculo
-	 * @return 
-	 * @throws IOException 
 	 */
 	public void setChassi(String chassi){
 		this.chassi = chassi;
@@ -59,10 +68,7 @@ public abstract class Veiculo {
 
 	/**
 	 * setMontadora altera o valor da variavel montadora para enum Montadora que foi passado pelo parametro montadora
-	 * @param montadora 
-	 * @param loja loja do veiculo
-	 * @return 
-	 * @return 
+	 * @param montadora
 	 */
 	public void setMontadora(Montadora montadora) {
 		this.montadora = montadora;
@@ -78,12 +84,10 @@ public abstract class Veiculo {
 
 	/**
 	 * setCor altera o valor da variavel cor para enum Cor que foi passado pelo parametro cor
-	 * @param cor 
 	 * @param cor cor do veiculo
-	 * @return 
 	 */
-	public Cor setCor(Cor cor) {
-		return this.cor = cor;
+	public void setCor(Cor cor) {
+		this.cor = cor;
 	}
 
 	/**
@@ -96,12 +100,10 @@ public abstract class Veiculo {
 
 	/**
 	 * setPreco altera o valor da variavel preco para o float que foi passado pelo parametro preco
-	 * @param preco 
 	 * @param preco preco do veiculo
-	 * @return 
 	 */
-	public float setPreco(float preco) { 
-		return this.preco = preco;
+	public void setPreco(float preco) { 
+		this.preco = preco;
 	}
 
 }

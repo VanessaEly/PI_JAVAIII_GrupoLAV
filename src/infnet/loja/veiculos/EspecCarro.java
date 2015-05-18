@@ -4,9 +4,7 @@ import infnet.loja.Loja;
 import infnet.loja.enums.Cambio;
 import infnet.loja.enums.ModeloCarro;
 import infnet.loja.enums.TipoCarro;
-
 import java.io.IOException;
-
 import javax.swing.JOptionPane;
 
 /**
@@ -37,12 +35,15 @@ public class EspecCarro {
 	public static ModeloCarro addModeloCarro() {
 		ModeloCarro modelo = null;
 		int aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo:\n1 - FOX\n2 - GOL\n3 - CELTA"));
-		while (aux <= 0 || aux >=4)
-			aux = Integer.parseInt(JOptionPane.showInputDialog("Valor Invalido. Digite numero do modelo:\n1 - FOX\n2 - GOL\n3 - CELTA"));
-		for (ModeloCarro m: ModeloCarro.values())
+		if (aux <= 0 || aux >=4)
+			modelo = null;
+		else
 		{
-			if (m.getIndice() == (aux-1))
-				modelo = m;
+			for (ModeloCarro m: ModeloCarro.values())
+			{
+				if (m.getIndice() == (aux-1))
+					modelo = m;
+			}
 		}
 		return modelo;
 	}
@@ -54,12 +55,15 @@ public class EspecCarro {
 	public static TipoCarro addTipoCarro() {
 		TipoCarro tipo = null;
 		int aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:\n1 - SEDAN\n2 - HATCH\n3 - SUV"));
-		while (aux <= 0 || aux >=4)
-			aux = Integer.parseInt(JOptionPane.showInputDialog("Valor Invalido. Digite numero do tipo:\n1 - SEDAN\n2 - HATCH\n3 - SUV"));
-		for (TipoCarro m: TipoCarro.values())
+		if (aux <= 0 || aux >=4)
+			tipo = null;
+		else
 		{
-			if (m.getIndice() == (aux-1))
-				tipo = m;
+			for (TipoCarro m: TipoCarro.values())
+			{
+				if (m.getIndice() == (aux-1))
+					tipo = m;
+			}
 		}
 		return tipo;
 	}
@@ -80,14 +84,16 @@ public class EspecCarro {
 	public static Cambio addCambio() {
 		Cambio cambio = null;
 		int aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do cambio:\n1 - MANUAL\n2 - SEMI\n3 - AUTO"));
-		while (aux <= 0 || aux >=4)
-			aux = Integer.parseInt(JOptionPane.showInputDialog("Valor Invalido. Digite numero do cambio:\n1 - MANUAL\n2 - SEMI\n3 - AUTO"));
-		for (Cambio m: Cambio.values())
+		if (aux <= 0 || aux >=4)
+			cambio = null;
+		else
 		{
-			if (m.getIndice() == (aux-1))
-				cambio = m;
+			for (Cambio m: Cambio.values())
+			{
+				if (m.getIndice() == (aux-1))
+					cambio = m;
+			}
 		}
 		return cambio;
 	}
-
 }

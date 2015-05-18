@@ -37,45 +37,24 @@ public class Carro extends Veiculo
 	}
 
 	/**
-	 * Metodo equals sobrescreve o equals da classe
-	 */
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Carro other = (Carro) obj;
-		if (cambio != other.cambio)
-			return false;
-		if (chassi == null) {
-			if (other.chassi != null)
-				return false;
-		} else if (!chassi.equals(other.chassi))
-			return false;
-		if (cor != other.cor)
-			return false;
-		if (modelo != other.modelo)
-			return false;
-		if (montadora != other.montadora)
-			return false;
-		if (Float.floatToIntBits(motorizacao) != Float
-				.floatToIntBits(other.motorizacao))
-			return false;
-		if (Float.floatToIntBits(preco) != Float.floatToIntBits(other.preco))
-			return false;
-		if (tipo != other.tipo)
-			return false;
-		return true;
-	}
-
-	/**
 	 * getModelo Retorna o modelo do carro
 	 * @return modelo modelo do carro
 	 */
 	public  ModeloCarro getModelo() {
 		return modelo;
+	}
+
+	/**
+	 * Metodo equals sobrescreve o equals da classe
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		Carro other = (Carro) obj;
+		if ((!super.equals(obj))&&(this.cambio != other.cambio)&&(this.modelo != other.modelo)&&(Float.floatToIntBits(this.motorizacao) != Float.floatToIntBits(other.motorizacao))&&(this.tipo != other.tipo))
+			return false;
+		return true;
 	}
 
 	/**

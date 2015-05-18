@@ -13,7 +13,7 @@ import infnet.loja.enums.TipoMoto;
  * @since 12-05-2015
  */
 public class EspecMoto {
-	public Motocicleta criaMoto(Loja loja) throws IOException
+	public static Motocicleta criaMoto(Loja loja) throws IOException
 	{
 		Motocicleta moto = new Motocicleta(EspecVeiculo.addChassi(loja), EspecVeiculo.addMontadora(), addModeloMoto(), addTipoMoto(), EspecVeiculo.addCor(), 
 				addCilindrada(), addCapacidadeDoTanque(), EspecVeiculo.addPreco());
@@ -27,12 +27,15 @@ public class EspecMoto {
 	public static  ModeloMoto addModeloMoto(){
 		ModeloMoto modelo = null;
 		int aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo:\n1 - CBR\n2 - NINJA\n3 - CB_HORNET"));
-		while (aux <= 0 || aux >= 4)
-			aux = Integer.parseInt(JOptionPane.showInputDialog("Valor Invalido. Digite numero do modelo:\n1 - CBR\n2 - NINJA\n3 - CB_HORNET"));
-		for (ModeloMoto m: ModeloMoto.values())
+		if (aux <= 0 || aux >= 4)
+			modelo = null;
+		else
 		{
-			if (m.getIndice() == (aux-1))
-				modelo = m;
+			for (ModeloMoto m: ModeloMoto.values())
+			{
+				if (m.getIndice() == (aux-1))
+					modelo = m;
+			}
 		}
 		return modelo;
 	}
@@ -44,12 +47,15 @@ public class EspecMoto {
 	public static TipoMoto addTipoMoto() {
 		TipoMoto tipo = null;
 		int aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:\n1 - CHOPPER\n2 - SCOOTER\n3 - ESPORTIVO"));
-		while (aux <= 0 || aux >=4)
-			aux = Integer.parseInt(JOptionPane.showInputDialog("Valor Invalido. Digite numero do tipo:\n1 - CHOPPER\n2 - SCOOTER\n3 - ESPORTIVO"));
-		for (TipoMoto m: TipoMoto.values())
+		if (aux <= 0 || aux >=4)
+			tipo = null;
+		else
 		{
-			if (m.getIndice() == (aux-1))
-				tipo = m;
+			for (TipoMoto m: TipoMoto.values())
+			{
+				if (m.getIndice() == (aux-1))
+					tipo = m;
+			}
 		}
 		return tipo;
 	}
