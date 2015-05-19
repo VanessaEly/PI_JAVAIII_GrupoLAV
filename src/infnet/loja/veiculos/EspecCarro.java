@@ -4,17 +4,19 @@ import infnet.loja.Loja;
 import infnet.loja.enums.Cambio;
 import infnet.loja.enums.ModeloCarro;
 import infnet.loja.enums.TipoCarro;
+
 import java.io.IOException;
+
 import javax.swing.JOptionPane;
 
 /**
  * Classe EspecCarro possui as especificacoes de carro
  * @author Antonio Henrique, Leandro Varella, Vanessa Ely
- * @version 2.0
- * @since 12-05-2015
+ * @version 3.0
+ * @since 19-05-2015
  */
-public class EspecCarro {
-
+public class EspecCarro extends Especificacao{
+ 
 	/**
 	 * metido criaCarro cria um novo carro
 	 * @param loja loja onde o carro sera criado
@@ -23,11 +25,9 @@ public class EspecCarro {
 	 */
 	public static Carro criaCarro(Loja loja) throws IOException
 	{
-		Carro carro = new Carro(EspecVeiculo.addChassi(loja), EspecVeiculo.addMontadora(), addModeloCarro(), addTipoCarro(), 
-				EspecVeiculo.addCor(), addMotorizacao(), addCambio(), EspecVeiculo.addPreco());
+		Carro carro = new Carro(addChassi(), addMontadora(), addModeloCarro(), addTipoCarro(), addCor(), addMotorizacao(), addCambio(), addPreco());
 		return carro;
 	}
-
 	/**
 	 * metodo addModeloCarro retorna o modelo do carro inputado pelo usuario
 	 * @return modelo modelo do carro

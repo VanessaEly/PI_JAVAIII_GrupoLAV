@@ -6,8 +6,8 @@ import java.io.IOException;
 /**
  * Classe Principal eh a classe executavel que mostra o funcionamento do programa, instancia classes e demonstra seus metodos
  * @author Antonio Henrique, Leandro Varella, Vanessa Ely
- * @version 2.0
- * @since 12-05-2015
+ * @version 3.0
+ * @since 19-05-2015
  */
 public class Principal 
 {

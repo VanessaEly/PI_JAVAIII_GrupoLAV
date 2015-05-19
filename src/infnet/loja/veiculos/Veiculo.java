@@ -6,8 +6,8 @@ import infnet.loja.enums.Montadora;
 /**
  * Classe Veiculo eh a classe pai de carro e motocicleta
  * @author Antonio Henrique, Leandro Varella, Vanessa Ely
- * @version 2.0
- * @since 12-05-2015
+ * @version 3.0
+ * @since 19-05-2015
  */
 public abstract class Veiculo {
 	protected String chassi;

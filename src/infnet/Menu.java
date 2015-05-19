@@ -12,8 +12,8 @@ import infnet.loja.veiculos.Motocicleta;
 /**
  * Classe Menu possui o menu que direciona o usuario pelo programa
  * @author Antonio Henrique, Leandro Varella, Vanessa Ely
- * @version 2.0
- * @since 12-05-2015
+ * @version 3.0
+ * @since 19-05-2015
  */
 public class Menu 
 {

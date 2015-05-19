@@ -12,8 +12,8 @@ import javax.swing.JOptionPane;
 /**
  * Classe Arquivo possui os metodos referentes a gravacao em arquivo
  * @author Antonio Henrique, Leandro Varella, Vanessa Ely
- * @version 2.0
- * @since 12-05-2015
+ * @version 3.0
+ * @since 19-05-2015
  */
 public class Arquivo {
 	public static PrintWriter gravarArq;

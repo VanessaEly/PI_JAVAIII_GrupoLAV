@@ -9,14 +9,20 @@ import infnet.loja.enums.TipoMoto;
 /**
  * Classe EspecMoto possui as especificacoes de moto
  * @author Antonio Henrique, Leandro Varella, Vanessa Ely
- * @version 2.0
- * @since 12-05-2015
+ * @version 3.0
+ * @since 19-05-2015
  */
-public class EspecMoto {
+public class EspecMoto extends Especificacao {
+	
+	/**
+	 * metido criaCarro cria um novo carro
+	 * @param loja loja onde o carro sera criado
+	 * @return carro carro criado
+	 * @throws IOException para tratamento de excecao
+	 */
 	public static Motocicleta criaMoto(Loja loja) throws IOException
 	{
-		Motocicleta moto = new Motocicleta(EspecVeiculo.addChassi(loja), EspecVeiculo.addMontadora(), addModeloMoto(), addTipoMoto(), EspecVeiculo.addCor(), 
-				addCilindrada(), addCapacidadeDoTanque(), EspecVeiculo.addPreco());
+		Motocicleta moto = new Motocicleta(addChassi(), addMontadora(), addModeloMoto(), addTipoMoto(), addCor(), addCilindrada(), addCapacidadeDoTanque(), addPreco());
 		return moto;
 	}
 

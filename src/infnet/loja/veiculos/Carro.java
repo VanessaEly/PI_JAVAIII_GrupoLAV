@@ -5,8 +5,8 @@ import infnet.loja.enums.*;
 /**
  * Classe Carro define um novo carro
  * @author Antonio Henrique, Leandro Varella, Vanessa Ely
- * @version 2.0
- * @since 08-04-2015
+ * @version 3.0
+ * @since 19-05-2015
  */
 public class Carro extends Veiculo 
 {

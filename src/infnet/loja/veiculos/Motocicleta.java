@@ -5,8 +5,8 @@ import infnet.loja.enums.*;
 /**
  * Classe Motocicleta define uma nova Motocicleta
  * @author Antonio Henrique, Leandro Varella, Vanessa Ely
- * @version 1.0
- * @since 15-04-2015
+ * @version 3.0
+ * @since 19-04-2015
  */
 public class Motocicleta extends Veiculo
 {
