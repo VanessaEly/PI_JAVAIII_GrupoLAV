@@ -52,7 +52,7 @@ public abstract class Veiculo {
 
 	/**
 	 * setChassi altera o valor da variavel chassi para String que foi passado pelo parametro chassi
-	 * @param chassi 
+	 * @param chassi chassi do veiculo
 	 */
 	public void setChassi(String chassi){
 		this.chassi = chassi;
@@ -68,7 +68,7 @@ public abstract class Veiculo {
 
 	/**
 	 * setMontadora altera o valor da variavel montadora para enum Montadora que foi passado pelo parametro montadora
-	 * @param montadora
+	 * @param montadora montadora do veiculo
 	 */
 	public void setMontadora(Montadora montadora) {
 		this.montadora = montadora;

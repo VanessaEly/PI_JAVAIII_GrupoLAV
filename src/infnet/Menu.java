@@ -121,9 +121,9 @@ public class Menu
 					"2 - Remover Moto                 \n" +
 					"3 - Buscar Moto pelo Chassi      \n" +
 					"4 - Pesqusar Moto                \n" +
-					"4 - Listar Estoque de Motos      \n" +
-					"5 - Voltar para o Menu Principal \n" +
-					"6 - Sair"));
+					"5 - Listar Estoque de Motos      \n" +
+					"6 - Voltar para o Menu Principal \n" +
+					"7 - Sair"));
 			switch (opcao) {
 			case 1: 
 				JOptionPane.showMessageDialog(null,"Voce optou por Adicionar uma Moto");
@@ -133,7 +133,7 @@ public class Menu
 				JOptionPane.showMessageDialog(null,"Voce optou por Remover uma Moto");
 				String chassi = JOptionPane.showInputDialog("Insira o chassi da Moto a ser removido:");
 				Loja.removerMotocicleta(chassi, loja);
-				Menu.chamarMenuCarro(loja);
+				Menu.chamarMenuMoto(loja);
 				break;
 			case 3:
 				JOptionPane.showMessageDialog(null,"Voce optou por Buscar uma Moto pelo Chassi");
@@ -158,7 +158,7 @@ public class Menu
 			case 5:
 				JOptionPane.showMessageDialog(null,"Voce optou por Listar Estoque de Motos");
 				Loja.listarEstoqueDeMotocicletas(loja);
-				Menu.chamarMenuCarro(loja);
+				Menu.chamarMenuMoto(loja);
 				break;
 			case 6:
 				Menu.chamarMenu(loja);

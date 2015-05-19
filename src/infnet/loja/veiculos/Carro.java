@@ -76,7 +76,6 @@ public class Carro extends Veiculo
 	/**
 	 * setTipo altera o valor da variavel tipo para enum TipoCarro que foi passado pelo parametro tipo
 	 * @param tipo tipo do carro
-	 * @return 
 	 */
 	public void setTipo(TipoCarro tipo) {
 		this.tipo = tipo;

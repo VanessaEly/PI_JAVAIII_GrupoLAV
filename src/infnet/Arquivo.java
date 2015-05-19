@@ -108,7 +108,7 @@ public class Arquivo {
 			if (Arquivo.gravarArq != null) 
 				Arquivo.gravarArq.close();
 		}
-		JOptionPane.showMessageDialog(null,"Carro cadastrado com sucesso.");
+		JOptionPane.showMessageDialog(null,"Moto cadastrada com sucesso.");
 		Menu.chamarMenuMoto(loja);
 	}
 

@@ -190,7 +190,7 @@ public class Loja
 	/**
 	 * Pesquisa e retorna carros com valores específicos no estoque, caso eles exista,
 	 * @param loja loja do estoque
-	 * @throws IOException 
+	 * @throws IOException tratamento deexcecao de entrada e saida
 	 * @return carrosOk arraylist do resultado obtido
 	 * */
 	public static ArrayList<Carro> pesquisarCarro(Loja loja) throws IOException
@@ -208,7 +208,7 @@ public class Loja
 	/**
 	 * Pesquisa e retorna motos com valores específicos no estoque, caso elas existam
 	 * @param loja loja do estoque
-	 * @throws IOException 
+	 * @throws IOException tratamento de excecao de entrada e saida
 	 * @return motosOk arraylist do resultado obtido
 	 */
 	public static ArrayList <Motocicleta> pesquisarMoto(Loja loja) throws IOException
