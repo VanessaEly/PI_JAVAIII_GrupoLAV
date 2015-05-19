@@ -37,52 +37,31 @@ public class Carro extends Veiculo
 	}
 
 	/**
-	 * Metodo equals sobrescreve o equals da classe
-	 */
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Carro other = (Carro) obj;
-		if (cambio != other.cambio)
-			return false;
-		if (chassi == null) {
-			if (other.chassi != null)
-				return false;
-		} else if (!chassi.equals(other.chassi))
-			return false;
-		if (cor != other.cor)
-			return false;
-		if (modelo != other.modelo)
-			return false;
-		if (montadora != other.montadora)
-			return false;
-		if (Float.floatToIntBits(motorizacao) != Float
-				.floatToIntBits(other.motorizacao))
-			return false;
-		if (Float.floatToIntBits(preco) != Float.floatToIntBits(other.preco))
-			return false;
-		if (tipo != other.tipo)
-			return false;
-		return true;
-	}
-
-	/**
 	 * getModelo Retorna o modelo do carro
 	 * @return modelo modelo do carro
 	 */
-	public ModeloCarro getModelo() {
+	public  ModeloCarro getModelo() {
 		return modelo;
+	}
+
+	/**
+	 * Metodo equals sobrescreve o equals da classe
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		Carro other = (Carro) obj;
+		if ((!super.equals(obj))&&(this.cambio != other.cambio)&&(this.modelo != other.modelo)&&(Float.floatToIntBits(this.motorizacao) != Float.floatToIntBits(other.motorizacao))&&(this.tipo != other.tipo))
+			return false;
+		return true;
 	}
 
 	/**
 	 * setModelo altera o valor da variavel modelo para enum ModeloCarro que foi passado pelo parametro modelo
 	 * @param modelo modelo do carro
 	 */
-	public void        setModelo(ModeloCarro modelo) {
+	public void setModelo(ModeloCarro modelo) {
 		this.modelo = modelo;
 	}
 
@@ -90,7 +69,7 @@ public class Carro extends Veiculo
 	 * getTipo Retorna o tipo do carro
 	 * @return tipo tipo do carro
 	 */
-	public TipoCarro   getTipo() {
+	public TipoCarro getTipo() {
 		return tipo;
 	}
 
@@ -98,7 +77,7 @@ public class Carro extends Veiculo
 	 * setTipo altera o valor da variavel tipo para enum TipoCarro que foi passado pelo parametro tipo
 	 * @param tipo tipo do carro
 	 */
-	public void        setTipo(TipoCarro tipo) {
+	public void setTipo(TipoCarro tipo) {
 		this.tipo = tipo;
 	}
 
@@ -106,7 +85,7 @@ public class Carro extends Veiculo
 	 * getMotorizacao retorna a motorizacao do carro
 	 * @return motorizacao motorizacao do carro
 	 */
-	public float       getMotorizacao() {
+	public float getMotorizacao() {
 		return motorizacao;
 	}
 
@@ -114,7 +93,7 @@ public class Carro extends Veiculo
 	 * setMotorizacao altera o valor da variavel motorizacao para o float que foi passado pelo parametro motorizacao
 	 * @param motorizacao motorizacao do carro
 	 */
-	public void        setMotorizacao(float motorizacao) {
+	public void setMotorizacao(float motorizacao) {
 		this.motorizacao = motorizacao;
 	}
 
@@ -122,7 +101,7 @@ public class Carro extends Veiculo
 	 * getCambio retorna o cambio do carro
 	 * @return cambio cambio do carro
 	 */
-	public Cambio      getCambio() {
+	public Cambio getCambio() {
 		return cambio;
 	}
 
@@ -130,7 +109,7 @@ public class Carro extends Veiculo
 	 * setCambio altera o valor da variavel cambio para enum Cambio que foi passado pelo parametro cambio
 	 * @param cambio cambio do carro
 	 */
-	public void        setCambio(Cambio cambio) {
+	public void setCambio(Cambio cambio) {
 		this.cambio = cambio;
 	}
 
