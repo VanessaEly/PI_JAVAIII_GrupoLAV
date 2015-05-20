@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * @version 3.0
  * @since 19-05-2015
  */
-public abstract class Especificacao {
+public abstract class EspecificacaoVeiculo {
 
 	protected String chassi;
 	protected Montadora montadora;
@@ -86,6 +86,27 @@ public abstract class Especificacao {
 		float preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preco:"));
 		return preco;
 	}
+	
+	/**
+	 * Metodo equals sobrescreve o equals da classe
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EspecificacaoVeiculo other = (EspecificacaoVeiculo) obj;
+		if (chassi == null) {
+			if (other.chassi != null)
+				return false;
+		} else if ((!chassi.equals(other.chassi))&&(cor != other.cor)&&(montadora != other.montadora)&&(Float.floatToIntBits(preco) != Float.floatToIntBits(other.preco)))
+			return false;
+		return true;
+	}
+
 	/**
 	 *getChassi Retorna o chassi do veiculo
 	 * @return chassi chassi do veiculo

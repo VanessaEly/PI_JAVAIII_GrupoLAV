@@ -70,18 +70,18 @@ public class Menu
 				chassi = JOptionPane.showInputDialog("Insira o Chassi que voce deseja procurar: ");
 				Carro car = Loja.buscarCarro(chassi, loja);
 				if (car != null)
-					JOptionPane.showMessageDialog(null, "Carro Encontrado!\n" + car);
+					JOptionPane.showMessageDialog(null, "Carro Encontrado!\n" + car.getEspC().toString());
 				else
 					JOptionPane.showMessageDialog(null, "Carro Nao Encontrado.");
 				Menu.chamarMenuCarro(loja);
 				break;
 			case 4:
-				JOptionPane.showMessageDialog(null,"Voce optou por Pesquisar um Carro");
+				JOptionPane.showMessageDialog(null,"Voce optou por Pesquisar um Carro.\nDIGITE 0 PARA IGNORAR CAMPOS.");
 				ArrayList <Carro> carrosEncontrados = new ArrayList <Carro> (Loja.pesquisarCarro(loja));
 				if (carrosEncontrados.isEmpty())
 					JOptionPane.showMessageDialog(null,"Nenhum carro foi encontrado");
 				for (Carro m: carrosEncontrados)
-					JOptionPane.showMessageDialog(null, m);
+					JOptionPane.showMessageDialog(null, m.getEspC().toString());
 				JOptionPane.showMessageDialog(null,"Voltando para o menu de Carros");
 				chamarMenuCarro(loja);
 				break;
@@ -140,18 +140,18 @@ public class Menu
 				chassi = JOptionPane.showInputDialog("Insira o Chassi que voce deseja procurar: ");
 				Motocicleta moto = Loja.buscarMoto(chassi, loja);
 				if (moto != null)
-					JOptionPane.showMessageDialog(null, "Moto Encontrada!\n" + moto);
+					JOptionPane.showMessageDialog(null, "Moto Encontrada!\n" + moto.getEspM().toString());
 				else
 					JOptionPane.showMessageDialog(null, "Moto Nao Encontrada.");
 				Menu.chamarMenuMoto(loja);
 				break;
 			case 4:
-				JOptionPane.showMessageDialog(null,"Voce optou por Pesquisar uma Moto");
+				JOptionPane.showMessageDialog(null,"Voce optou por Pesquisar uma Moto.\nDIGITE 0 PARA IGNORAR CAMPOS.");
 				ArrayList <Motocicleta> motosEncontradas = new ArrayList <Motocicleta> (Loja.pesquisarMoto(loja));
 				if (motosEncontradas.isEmpty())
 					JOptionPane.showMessageDialog(null,"Nenhuma moto foi encontrada");
 				for (Motocicleta m: motosEncontradas)
-					JOptionPane.showMessageDialog(null, m);
+					JOptionPane.showMessageDialog(null, m.getEspM().toString());
 				JOptionPane.showMessageDialog(null,"Voltando para o menu de Motos");
 				chamarMenuMoto(loja);
 				break;

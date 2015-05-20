@@ -59,16 +59,19 @@ public class Loja
 	public static void adicionarCarro(Loja loja) throws IOException
 	{
 		try{
-			Carro carro = EspecCarro.criaCarro(loja);
+			Carro carro = new Carro();
+			EspecCarro carroE = new EspecCarro();
+			carro.setEspC(carroE);
+
 			for (Carro c: loja.getEstoqueDeCarros())
 			{
-				if (c.getChassi().equals(carro.getChassi()))
+				if (carro.getEspC().getChassi().equals(c.getEspC().getChassi()))
 				{
 					JOptionPane.showMessageDialog(null, "Um carro com esse chassi ja esta cadastrado.");
 					Menu.chamarMenu(loja);
 				}
 			}
-			if ((carro.getCambio() == null)||(carro.getChassi()== null)||(carro.getCor()== null)||(carro.getModelo()== null)||(carro.getMontadora()== null)||(carro.getMotorizacao()<= 0)||(carro.getPreco()<= 0)||(carro.getTipo()== null))
+			if ((carroE.getCambio() == null)||(carroE.getChassi()== null)||(carroE.getCor()== null)||(carroE.getModelo()== null)||(carroE.getMontadora()== null)||(carroE.getMotorizacao()<= 0)||(carroE.getPreco()<= 0)||(carroE.getTipo()== null))
 			{
 				JOptionPane.showMessageDialog(null, "Você inseriu valores invalidos e o carro nao pode ser adicionado.\n Voltando para o menu de Carros.");
 				Menu.chamarMenuCarro(loja);
@@ -93,16 +96,18 @@ public class Loja
 	 */
 	public static void adicionarMoto(Loja loja) throws IOException{
 		try{
-			Motocicleta moto = EspecMoto.criaMoto(loja);
+			Motocicleta moto = new Motocicleta();
+			EspecMoto motoE = new EspecMoto();
+			moto.setEspM(motoE);
 			for (Motocicleta m: loja.getEstoqueDeMotocicletas())
 			{
-				if (m.getChassi().equals(moto.getChassi()))
+				if (moto.getEspM().getChassi().equals(m.getEspM().getChassi()))
 				{
 					JOptionPane.showMessageDialog(null, "Uma moto com esse chassi ja esta cadastrada.");
 					Menu.chamarMenu(loja);
 				}
 			}
-			if ((moto.getCapacidadeDoTanque() <= 0)||(moto.getChassi()== null)||(moto.getCor()== null)||(moto.getModelo()== null)||(moto.getMontadora()== null)||(moto.getCilindrada()<= 0)||(moto.getPreco()<= 0)||(moto.getTipo()== null))
+			if ((motoE.getCapacidadeDoTanque() <= 0)||(motoE.getChassi()== null)||(motoE.getCor()== null)||(motoE.getModelo()== null)||(motoE.getMontadora()== null)||(motoE.getCilindrada()<= 0)||(motoE.getPreco()<= 0)||(motoE.getTipo()== null))
 			{
 				JOptionPane.showMessageDialog(null, "Você inseriu valores invalidos e a moto nao pode ser adicionada.\n Voltando para o menu de Motos.");
 				Menu.chamarMenuMoto(loja);
@@ -125,16 +130,14 @@ public class Loja
 	 * @param loja loja que esta sendo pesquisada
 	 */
 	public static void listarEstoqueDeCarros (Loja loja){
-
-		// Criacao de Buffer para receber os valores do Array A
 		StringBuilder carrosA = new StringBuilder();
-		int i = 1;
-		for (Carro c: loja.estoqueDeCarros)
-		{
-			carrosA.append(" - " + c + "\n");
-			i++;
+		if (loja.estoqueDeCarros.isEmpty())
+			JOptionPane.showMessageDialog(null,"Nao a nenhum carro para ser exibido");
+		else{
+			for (Carro c: loja.estoqueDeCarros)
+				carrosA.append(" - " + c.getEspC().toString() + "\n");
+			JOptionPane.showMessageDialog(null,"Lista de Carros: \n" + carrosA.toString());
 		}
-		JOptionPane.showMessageDialog(null,"Lista de Carros: \n" + carrosA.toString());
 	}
 
 	/**
@@ -142,15 +145,14 @@ public class Loja
 	 * @param loja loja que esta sendo pesquisada
 	 */
 	public static void listarEstoqueDeMotocicletas (Loja loja){
-		// Criacao de Buffer para receber os valores do Array A
 		StringBuilder motosA = new StringBuilder();
-		int i = 1;
-		for (Motocicleta m: loja.estoqueDeMotocicletas)
-		{
-			motosA.append(" - " + m + "\n");
-			i++;
+		if (loja.estoqueDeMotocicletas.isEmpty())
+			JOptionPane.showMessageDialog(null,"Nao a nenhuma moto para ser exibida");
+		else{
+			for (Motocicleta m: loja.estoqueDeMotocicletas)
+				motosA.append(" - " + m.getEspM().toString() + "\n");
+			JOptionPane.showMessageDialog(null,"Lista de Motos: \n" + motosA.toString());
 		}
-		JOptionPane.showMessageDialog(null,"Lista de Motos: \n" + motosA.toString());
 	}
 
 	/**
@@ -163,7 +165,7 @@ public class Loja
 		Carro carro = null;
 		for (Carro car: loja.estoqueDeCarros)
 		{
-			if (chassi.equals(car.getChassi())) {
+			if (chassi.equals(car.getEspC().getChassi())) {
 				carro = car;
 			}
 		}
@@ -180,7 +182,7 @@ public class Loja
 		Motocicleta moto = null;
 		for (Motocicleta m: loja.estoqueDeMotocicletas)
 		{
-			if (chassi.equals(m.getChassi())) {
+			if (chassi.equals(m.getEspM().getChassi())) {
 				moto = m;
 			}
 		}
@@ -196,10 +198,12 @@ public class Loja
 	public static ArrayList<Carro> pesquisarCarro(Loja loja) throws IOException
 	{
 		ArrayList <Carro> carrosOk = new ArrayList <Carro>();
-		Carro carro = EspecCarro.criaCarro(loja);
+		Carro carro = new Carro();
+		EspecCarro carroE = new EspecCarro();
+		carro.setEspC(carroE);
 		for (Carro c: loja.estoqueDeCarros)
 		{
-			if (c.equals(carro) == true)
+			if (c.getEspC().equals(carroE) == true)
 				carrosOk.add(c);
 		}
 		return carrosOk;
@@ -214,10 +218,12 @@ public class Loja
 	public static ArrayList <Motocicleta> pesquisarMoto(Loja loja) throws IOException
 	{
 		ArrayList <Motocicleta> motosOk = new ArrayList <Motocicleta>();
-		Motocicleta moto = EspecMoto.criaMoto(loja);
+		Motocicleta moto = new Motocicleta();
+		EspecMoto motoE = new EspecMoto();
+		moto.setEspM(motoE);
 		for (Motocicleta c: loja.estoqueDeMotocicletas)
 		{
-			if (c.equals(moto) == true)
+			if (c.getEspM().equals(motoE) == true)
 				motosOk.add(c);
 		}
 		return motosOk;
@@ -230,20 +236,17 @@ public class Loja
 	 */
 	public static void removerCarro(String chassi, Loja loja)	
 	{
-		Carro carro = null;
-		for (int i = 0; i< loja.estoqueDeCarros.size(); i++)
-		{
-			if (loja.estoqueDeCarros.equals(chassi))
+		boolean ok = false;
+		for (Carro c: loja.estoqueDeCarros){
+			if (c.getEspC().getChassi().equals(chassi))
 			{
-				carro = loja.estoqueDeCarros.get(i);
-				loja.estoqueDeCarros.remove(loja.estoqueDeCarros.get(i));
-				break;
+				loja.estoqueDeCarros.remove(c);
+				ok = true;
+				JOptionPane.showMessageDialog(null, "Carro Removido com sucesso.");
 			}
 		}
-		if (carro == null)
+		if (!ok)
 			JOptionPane.showMessageDialog(null, "Nao existe Carro com esse Chassi no Estoque");
-		else
-			JOptionPane.showMessageDialog(null, "Carro Removido com sucesso.");
 	}
 
 	/**
@@ -253,20 +256,17 @@ public class Loja
 	 */
 	public static void removerMotocicleta(String chassi, Loja loja)	
 	{
-		Motocicleta moto = null;
-		for (int i = 0; i< loja.estoqueDeMotocicletas.size(); i++)
-		{
-			if (loja.estoqueDeMotocicletas.get(i).getChassi().equals(chassi))
+		boolean ok = false;
+		for (Motocicleta c: loja.estoqueDeMotocicletas){
+			if (c.getEspM().getChassi().equals(chassi))
 			{
-				moto = loja.estoqueDeMotocicletas.get(i);
-				loja.estoqueDeMotocicletas.remove(loja.estoqueDeMotocicletas.get(i));
-				break;
+				loja.estoqueDeMotocicletas.remove(c);
+				ok = true;
+				JOptionPane.showMessageDialog(null, "Moto Removida com sucesso.");
 			}
 		}
-		if (moto == null)
-			JOptionPane.showMessageDialog(null, "Nao existe moto com esse Chassi no Estoque");
-		else
-			JOptionPane.showMessageDialog(null, "Moto Removida com sucesso.");
+		if (!ok)
+			JOptionPane.showMessageDialog(null, "Nao existe Moto com esse Chassi no Estoque");
 	}
 
 	//GETTERS

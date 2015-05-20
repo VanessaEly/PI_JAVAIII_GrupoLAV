@@ -1,10 +1,8 @@
 package infnet.loja.veiculos;
 
-import java.io.IOException;
 import javax.swing.JOptionPane;
-import infnet.loja.Loja;
-import infnet.loja.enums.ModeloMoto;
-import infnet.loja.enums.TipoMoto;
+
+import infnet.loja.enums.*;
 
 /**
  * Classe EspecMoto possui as especificacoes de moto
@@ -12,18 +10,27 @@ import infnet.loja.enums.TipoMoto;
  * @version 3.0
  * @since 19-05-2015
  */
-public class EspecMoto extends Especificacao {
+public class EspecMoto extends EspecificacaoVeiculo {
+	private ModeloMoto modelo;
+	private TipoMoto tipo;
+	private int cilindrada;
+	private int capacidadeDoTanque;
 	
-	/**
-	 * metido criaCarro cria um novo carro
-	 * @param loja loja onde o carro sera criado
-	 * @return carro carro criado
-	 * @throws IOException para tratamento de excecao
-	 */
-	public static Motocicleta criaMoto(Loja loja) throws IOException
+	public EspecMoto()
 	{
-		Motocicleta moto = new Motocicleta(addChassi(), addMontadora(), addModeloMoto(), addTipoMoto(), addCor(), addCilindrada(), addCapacidadeDoTanque(), addPreco());
-		return moto;
+		this(addChassi(), addMontadora(), addModeloMoto(), addTipoMoto(), addCor(), addCilindrada(), addCapacidadeDoTanque(), addPreco()); 
+	}
+
+	public EspecMoto(String addChassi, Montadora addMontadora, ModeloMoto addModeloMoto, TipoMoto addTipoMoto, Cor addCor, 
+			int addCilindrada, int addCapacidadeDoTanque, float addPreco) {
+		chassi = addChassi;
+		montadora = addMontadora;
+		modelo = addModeloMoto;
+		tipo = addTipoMoto;
+		cor = addCor;
+		cilindrada = addCilindrada;
+		capacidadeDoTanque = addCapacidadeDoTanque;
+		preco = addPreco;
 	}
 
 	/**
@@ -83,4 +90,96 @@ public class EspecMoto extends Especificacao {
 		int capacidadeDoTanque = Integer.parseInt(JOptionPane.showInputDialog("Digite a capacidade do Tanque:"));
 		return capacidadeDoTanque;
 	}
+	
+	/**
+	 * getModelo Retorna o modelo da moto
+	 * @return modelo modelo da moto
+	 */
+	public ModeloMoto getModelo() {
+		return modelo;
+	}
+
+	/**
+	 * setModelo altera o valor da variavel modelo para enum ModeloCarro que foi passado pelo parametro modelo
+	 * @param modelo modelo da moto
+	 */
+	public void setModelo(ModeloMoto modelo) {
+		this.modelo = modelo;
+	}
+
+	/**
+	 * getTipo Retorna o tipo da moto
+	 * @return tipo tipo da moto
+	 */
+	public TipoMoto   getTipo() {
+		return tipo;
+	}
+
+	/**
+	 * setTipo altera o valor da variavel tipo para enum TipoCarro que foi passado pelo parametro tipo
+	 * @param tipo tipo da moto
+	 */
+	public void setTipo(TipoMoto tipo) {
+		this.tipo = tipo;
+	}
+
+	/**
+	 * getCilindrada retorna as cilindradas da moto
+	 * @return cilindrada cilindradas da moto
+	 */
+	public int        getCilindrada() {
+		return cilindrada;
+	}
+
+	/**
+	 * setCilindrada altera o valor da variavel cilindrada para o float que foi passado pelo parametro cilindrada
+	 * @param cilindrada cilindradas da moto
+	 */
+	public void setCilindrada(int cilindrada) {
+		this.cilindrada = cilindrada;
+	}
+
+	/**
+	 * getCapacidadeDoTanque retorna a capacidade do tanque da moto
+	 * @return capacidadeDoTanque capacidade do tanque da moto
+	 */
+	public int        getCapacidadeDoTanque() {
+		return capacidadeDoTanque;
+	}
+
+	/**
+	 * setCapacidadeDoTanque altera o valor da variavel capacidadeDoTanque para o inteiro que foi passado pelo parametro capacidadeDoTanque
+	 * @param capacidadeDoTanque capacidade do tanque da moto
+	 */
+	public void       setCapacidadeDoTanque(int capacidadeDoTanque) {
+		this.capacidadeDoTanque = capacidadeDoTanque;
+	}
+
+	/**
+	 * Metodo toString sobrepondo o original, formatando a String da forma desejada.
+	 * @return String que representa o objeto.
+	 */
+	public String toString() {
+		return   "Chassi = " + chassi 			    + " Montadora = " + montadora
+				+ " Modelo = " + modelo 			+ " Tipo = "      + tipo 
+				+ " Cor = "    + cor				+ " Cilindrada = " + cilindrada 
+				+ " Tanque = " + capacidadeDoTanque + " Preco = " + preco + ".";
+	}
+
+	/**
+	 * Metodo equals sobrescreve o equals da classe
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (getClass() != obj.getClass())
+			return false;
+		EspecMoto other = (EspecMoto) obj;
+		if ((!super.equals(obj))&&(capacidadeDoTanque != other.capacidadeDoTanque)&&(cilindrada != other.cilindrada)&&(modelo != other.modelo)&&(tipo != other.tipo))
+			return false;
+		return true;
+	}
+	
+	
 }
