@@ -1,7 +1,5 @@
 package infnet.loja.veiculos;
 
-import java.io.IOException;
-
 import infnet.loja.enums.Cor;
 import infnet.loja.enums.Modelo;
 import infnet.loja.enums.Montadora;
@@ -28,9 +26,7 @@ public abstract class EspecificacaoVeiculo {
 	
 	/**
 	 * metodo addChassi retorna o chassi do veiculo inputado pelo usuario
-	 * @param loja loja a qual o carro será adicionado
 	 * @return chassi chassi do veiculo
-	 * @throws IOException excecao de entrada e saida
 	 */
 	public static String addChassi() {
 		String chassi = (JOptionPane.showInputDialog("Digite o chassi: "));
