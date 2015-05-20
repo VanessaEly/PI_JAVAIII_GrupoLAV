@@ -8,10 +8,18 @@ package infnet.loja.veiculos;
 public abstract class Veiculo {
 	protected EspecificacaoVeiculo espV;
 
+	/**
+	 * getter da especificacao do veiculo
+	 * @return especificacao do veiculo
+	 */
 	public EspecificacaoVeiculo getEspV() {
 		return espV;
 	}
 
+	/**
+	 * setter da especificacao do veiculo
+	 * @param espV especificacao do veiculo
+	 */
 	public void setEv(EspecificacaoVeiculo espV) {
 		this.espV = espV;
 	}

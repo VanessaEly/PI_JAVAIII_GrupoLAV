@@ -1,7 +1,6 @@
 package infnet.loja.veiculos;
 
 import infnet.loja.enums.*;
-
 import javax.swing.JOptionPane;
 
 /**
@@ -11,39 +10,37 @@ import javax.swing.JOptionPane;
  * @since 19-05-2015
  */
 public class EspecCarro extends EspecificacaoVeiculo{
-	private ModeloCarro modelo;
-	private TipoCarro tipo; 
+	private Modelo modelo;
+	private Tipo tipo; 
 	private float motorizacao;
 	private Cambio cambio;
 	
-	public EspecCarro()
-	{
-		this(addChassi(), addMontadora(), addModeloCarro(), addTipoCarro(), addCor(), addMotorizacao(), addCambio(), addPreco());
-	}
-	
-	public EspecCarro(String addChassi, Montadora addMontadora, ModeloCarro addModeloCarro, TipoCarro addTipoCarro, Cor addCor, float addMotorizacao, Cambio addCambio, float addPreco) {
-		chassi = addChassi;
-		montadora = addMontadora;
-		modelo = addModeloCarro;
-		tipo = addTipoCarro;
-		cor = addCor;
-		motorizacao = addMotorizacao;
-		cambio = addCambio;
-		preco = addPreco;
+	/**
+	 * Construtor da especificacao de carro
+	 */
+	public EspecCarro() {
+		chassi = addChassi();
+		montadora = addMontadora();
+		modelo = addModelo();
+		tipo = addTipo();
+		cor = addCor();
+		motorizacao = addMotorizacao();
+		cambio = addCambio();
+		preco = addPreco();
 		
 	}
 	/**
 	 * metodo addModeloCarro retorna o modelo do carro inputado pelo usuario
 	 * @return modelo modelo do carro
 	 */
-	public static ModeloCarro addModeloCarro() {
-		ModeloCarro modelo = null;
+	public Modelo addModelo() {
+		Modelo modelo = null;
 		int aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo:\n1 - FOX\n2 - GOL\n3 - CELTA"));
 		if (aux <= 0 || aux >=4)
 			modelo = null;
 		else
 		{
-			for (ModeloCarro m: ModeloCarro.values())
+			for (Modelo m: Modelo.values())
 			{
 				if (m.getIndice() == (aux-1))
 					modelo = m;
@@ -56,14 +53,14 @@ public class EspecCarro extends EspecificacaoVeiculo{
 	 * metodo addTipoCarro retorna o tipo de carro inputado pelo usuario
 	 * @return tipo tipo do carro
 	 */
-	public static TipoCarro addTipoCarro() {
-		TipoCarro tipo = null;
+	public Tipo addTipo() {
+		Tipo tipo = null;
 		int aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:\n1 - SEDAN\n2 - HATCH\n3 - SUV"));
 		if (aux <= 0 || aux >=4)
 			tipo = null;
 		else
 		{
-			for (TipoCarro m: TipoCarro.values())
+			for (Tipo m: Tipo.values())
 			{
 				if (m.getIndice() == (aux-1))
 					tipo = m;
@@ -104,14 +101,14 @@ public class EspecCarro extends EspecificacaoVeiculo{
 	 * getModelo Retorna o modelo do carro
 	 * @return modelo modelo do carro
 	 */
-	public  ModeloCarro getModelo() {
+	public  Modelo getModelo() {
 		return modelo;
 	}
 	/**
 	 * setModelo altera o valor da variavel modelo para enum ModeloCarro que foi passado pelo parametro modelo
 	 * @param modelo modelo do carro
 	 */
-	public void setModelo(ModeloCarro modelo) {
+	public void setModelo(Modelo modelo) {
 		this.modelo = modelo;
 	}
 
@@ -119,7 +116,7 @@ public class EspecCarro extends EspecificacaoVeiculo{
 	 * getTipo Retorna o tipo do carro
 	 * @return tipo tipo do carro
 	 */
-	public TipoCarro getTipo() {
+	public Tipo getTipo() {
 		return tipo;
 	}
 
@@ -127,7 +124,7 @@ public class EspecCarro extends EspecificacaoVeiculo{
 	 * setTipo altera o valor da variavel tipo para enum TipoCarro que foi passado pelo parametro tipo
 	 * @param tipo tipo do carro
 	 */
-	public void setTipo(TipoCarro tipo) {
+	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
 

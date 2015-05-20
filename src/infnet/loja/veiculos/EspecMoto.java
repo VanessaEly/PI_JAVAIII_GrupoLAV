@@ -11,42 +11,38 @@ import infnet.loja.enums.*;
  * @since 19-05-2015
  */
 public class EspecMoto extends EspecificacaoVeiculo {
-	private ModeloMoto modelo;
-	private TipoMoto tipo;
+	private Modelo modelo;
+	private Tipo tipo;
 	private int cilindrada;
 	private int capacidadeDoTanque;
-	
-	public EspecMoto()
-	{
-		this(addChassi(), addMontadora(), addModeloMoto(), addTipoMoto(), addCor(), addCilindrada(), addCapacidadeDoTanque(), addPreco()); 
-	}
-
-	public EspecMoto(String addChassi, Montadora addMontadora, ModeloMoto addModeloMoto, TipoMoto addTipoMoto, Cor addCor, 
-			int addCilindrada, int addCapacidadeDoTanque, float addPreco) {
-		chassi = addChassi;
-		montadora = addMontadora;
-		modelo = addModeloMoto;
-		tipo = addTipoMoto;
-		cor = addCor;
-		cilindrada = addCilindrada;
-		capacidadeDoTanque = addCapacidadeDoTanque;
-		preco = addPreco;
+	/**
+	 * Construtor da classe
+	 */
+	public EspecMoto() {
+		chassi = addChassi();
+		montadora = addMontadora();
+		modelo = addModelo();
+		tipo = addTipo();
+		cor = addCor();
+		cilindrada = addCilindrada();
+		capacidadeDoTanque = addCapacidadeDoTanque();
+		preco = addPreco();
 	}
 
 	/**
 	 * metodo addModeloMoto retorna o modelo da moto inputado pelo usuario
 	 * @return modelo modelo da moto
 	 */
-	public static  ModeloMoto addModeloMoto(){
-		ModeloMoto modelo = null;
+	public  Modelo addModelo(){
+		Modelo modelo = null;
 		int aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do modelo:\n1 - CBR\n2 - NINJA\n3 - CB_HORNET"));
 		if (aux <= 0 || aux >= 4)
 			modelo = null;
 		else
 		{
-			for (ModeloMoto m: ModeloMoto.values())
+			for (Modelo m: Modelo.values())
 			{
-				if (m.getIndice() == (aux-1))
+				if (m.getIndice() == (aux+2))
 					modelo = m;
 			}
 		}
@@ -57,16 +53,16 @@ public class EspecMoto extends EspecificacaoVeiculo {
 	 * metodo addTipoMoto retorna o tipo da moto inputado pelo usuario
 	 * @return tipo tipo da moto
 	 */
-	public static TipoMoto addTipoMoto() {
-		TipoMoto tipo = null;
+	public Tipo addTipo() {
+		Tipo tipo = null;
 		int aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do tipo:\n1 - CHOPPER\n2 - SCOOTER\n3 - ESPORTIVO"));
 		if (aux <= 0 || aux >=4)
 			tipo = null;
 		else
 		{
-			for (TipoMoto m: TipoMoto.values())
+			for (Tipo m: Tipo.values())
 			{
-				if (m.getIndice() == (aux-1))
+				if (m.getIndice() == (aux+2))
 					tipo = m;
 			}
 		}
@@ -95,7 +91,7 @@ public class EspecMoto extends EspecificacaoVeiculo {
 	 * getModelo Retorna o modelo da moto
 	 * @return modelo modelo da moto
 	 */
-	public ModeloMoto getModelo() {
+	public Modelo getModelo() {
 		return modelo;
 	}
 
@@ -103,7 +99,7 @@ public class EspecMoto extends EspecificacaoVeiculo {
 	 * setModelo altera o valor da variavel modelo para enum ModeloCarro que foi passado pelo parametro modelo
 	 * @param modelo modelo da moto
 	 */
-	public void setModelo(ModeloMoto modelo) {
+	public void setModelo(Modelo modelo) {
 		this.modelo = modelo;
 	}
 
@@ -111,7 +107,7 @@ public class EspecMoto extends EspecificacaoVeiculo {
 	 * getTipo Retorna o tipo da moto
 	 * @return tipo tipo da moto
 	 */
-	public TipoMoto   getTipo() {
+	public Tipo   getTipo() {
 		return tipo;
 	}
 
@@ -119,7 +115,7 @@ public class EspecMoto extends EspecificacaoVeiculo {
 	 * setTipo altera o valor da variavel tipo para enum TipoCarro que foi passado pelo parametro tipo
 	 * @param tipo tipo da moto
 	 */
-	public void setTipo(TipoMoto tipo) {
+	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
 

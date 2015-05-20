@@ -3,7 +3,9 @@ package infnet.loja.veiculos;
 import java.io.IOException;
 
 import infnet.loja.enums.Cor;
+import infnet.loja.enums.Modelo;
 import infnet.loja.enums.Montadora;
+import infnet.loja.enums.Tipo;
 
 import javax.swing.JOptionPane;
 
@@ -19,6 +21,10 @@ public abstract class EspecificacaoVeiculo {
 	protected Montadora montadora;
 	protected Cor cor;
 	protected float preco;
+	
+	//métodos abstratos da classe pai
+	public abstract Tipo addTipo();
+	public abstract Modelo addModelo();
 	
 	/**
 	 * metodo addChassi retorna o chassi do veiculo inputado pelo usuario

@@ -6,11 +6,14 @@ package infnet.loja.enums;
  * GOL
  * CELTA
  */
-public enum ModeloCarro 
+public enum Modelo
 {
 	FOX(0),
 	GOL(1),
-	CELTA(2);
+	CELTA(2),
+	CBR(3),
+	NINJA(4),
+	CB_HORNET(5);
 
 	//variavel do enum
 	private int indice;
@@ -19,7 +22,7 @@ public enum ModeloCarro
 	 * O valor recebido por indice torna-se o indice do enum
 	 * @param indice indice do enum
 	 */
-	private ModeloCarro(int indice) 
+	private Modelo(int indice) 
 	{
 		this.indice = indice;
 	}

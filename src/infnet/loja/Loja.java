@@ -192,10 +192,9 @@ public class Loja
 	/**
 	 * Pesquisa e retorna carros com valores específicos no estoque, caso eles exista,
 	 * @param loja loja do estoque
-	 * @throws IOException tratamento deexcecao de entrada e saida
 	 * @return carrosOk arraylist do resultado obtido
 	 * */
-	public static ArrayList<Carro> pesquisarCarro(Loja loja) throws IOException
+	public static ArrayList<Carro> pesquisarCarro(Loja loja)
 	{
 		ArrayList <Carro> carrosOk = new ArrayList <Carro>();
 		Carro carro = new Carro();
@@ -212,10 +211,9 @@ public class Loja
 	/**
 	 * Pesquisa e retorna motos com valores específicos no estoque, caso elas existam
 	 * @param loja loja do estoque
-	 * @throws IOException tratamento de excecao de entrada e saida
 	 * @return motosOk arraylist do resultado obtido
 	 */
-	public static ArrayList <Motocicleta> pesquisarMoto(Loja loja) throws IOException
+	public static ArrayList <Motocicleta> pesquisarMoto(Loja loja)
 	{
 		ArrayList <Motocicleta> motosOk = new ArrayList <Motocicleta>();
 		Motocicleta moto = new Motocicleta();

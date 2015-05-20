@@ -1,16 +1,19 @@
 package infnet.loja.enums;
 
 /**
- * Tipos que podem ser definidos para motos
- * CHOPPER
- * SCOOTER
- * ESPORTIVO
+ * Tipos que podem ser definidos para carros
+ * SEDAN
+ * HATCH
+ * SUV
  */
-public enum TipoMoto 
+public enum Tipo
 {
-	CHOPPER (0),
-	SCOOTER (1),
-	ESPORTIVO (2);
+	SEDAN (0),
+	HATCH (1),
+	SUV (2),
+	CHOPPER (3),
+	SCOOTER (4),
+	ESPORTIVO (5);
 
 	//variavel do enum
 	private int indice;
@@ -19,7 +22,7 @@ public enum TipoMoto
 	 * O valor recebido por indice torna-se o indice do enum
 	 * @param indice indice do enum
 	 */
-	private TipoMoto(int indice) 
+	private Tipo(int indice)
 	{
 		this.indice = indice;
 	}

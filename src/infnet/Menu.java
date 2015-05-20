@@ -120,7 +120,7 @@ public class Menu
 					"1 - Adicionar Moto               \n" +
 					"2 - Remover Moto                 \n" +
 					"3 - Buscar Moto pelo Chassi      \n" +
-					"4 - Pesqusar Moto                \n" +
+					"4 - Pesquisar Moto                \n" +
 					"5 - Listar Estoque de Motos      \n" +
 					"6 - Voltar para o Menu Principal \n" +
 					"7 - Sair"));
