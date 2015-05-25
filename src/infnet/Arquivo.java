@@ -77,7 +77,7 @@ public class Arquivo {
 		try
 		{
 			Arquivo.gravarArq = new PrintWriter((new BufferedWriter(new FileWriter(Principal.nomearq, true)))); //true garante que a escrita nao sobrescreva o conteudo atual
-			Arquivo.gravarArq.printf("\nCarro %s", loja.getEstoqueDeCarros().get(loja.getEstoqueDeCarros().size()-1).getEspC().toString()); //dados que serao escritos
+			Arquivo.gravarArq.printf("\nCarro %s", loja.getEstoqueDeCarros().get(loja.getEstoqueDeCarros().size()-1).toString()); //dados que serao escritos
 			Arquivo.gravarArq.println();
 			Arquivo.gravarArq.flush(); //limpa buffer
 		} 
@@ -99,7 +99,7 @@ public class Arquivo {
 		try
 		{
 			Arquivo.gravarArq = new PrintWriter((new BufferedWriter(new FileWriter(Principal.nomearq, true)))); //true garante que a escrita nao sobrescreva o conteudo atual
-			Arquivo.gravarArq.printf("\nMoto %s", loja.getEstoqueDeMotocicletas().get(loja.getEstoqueDeMotocicletas().size()-1).getEspM().toString()); //dados que serao escritos
+			Arquivo.gravarArq.printf("\nMoto %s", loja.getEstoqueDeMotocicletas().get(loja.getEstoqueDeMotocicletas().size()-1).toString()); //dados que serao escritos
 			Arquivo.gravarArq.println();
 			Arquivo.gravarArq.flush(); //limpa buffer
 		} 
