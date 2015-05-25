@@ -5,7 +5,6 @@ import infnet.Menu;
 import infnet.loja.veiculos.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,8 +18,8 @@ public class Loja
 	//VARIAVEIS DA CLASSE
 	private String endereco;
 	private String nome;
-	private List <Carro>	estoqueDeCarros       = new ArrayList <>();
-	private List <Motocicleta>  estoqueDeMotocicletas = new ArrayList <>();
+	private ArrayList <Carro>	estoqueDeCarros       = new ArrayList <>();
+	private ArrayList <Motocicleta>  estoqueDeMotocicletas = new ArrayList <>();
 
 	/**
 	 * Construtor Default
@@ -59,7 +58,7 @@ public class Loja
 	{
 		try{
 			Carro carro = new Carro(loja);
-			for (Carro c: loja.getEstoqueDeCarros())
+			for (Carro c: loja.estoqueDeCarros)
 			{
 				if (carro.getChassi().equals(c.getChassi()))
 				{
@@ -94,7 +93,7 @@ public class Loja
 	public static void adicionarMoto(Loja loja) throws IOException{
 		try{
 			Motocicleta moto = new Motocicleta(loja);
-			for (Motocicleta c: loja.getEstoqueDeMotocicletas())
+			for (Motocicleta c: loja.estoqueDeMotocicletas)
 			{
 				if (moto.getChassi().equals(c.getChassi()))
 				{
@@ -278,7 +277,7 @@ public class Loja
 	 * getEstoqueDeCarros retorna o ArrayList do estoque de carros da loja
 	 * @return estoqueDeCarros estoque de carros da loja
 	 */
-	public List<Carro>       getEstoqueDeCarros() {
+	public ArrayList<Carro>       getEstoqueDeCarros() {
 		return estoqueDeCarros;
 	}
 
@@ -286,7 +285,7 @@ public class Loja
 	 * getEstoqueDeMotocicletas retorna o ArrayList do estoque de motocicletas da loja
 	 * @return estoqueDeMotocicletas estoque de motocicletas da loja
 	 */
-	public List<Motocicleta> getEstoqueDeMotocicletas() {
+	public ArrayList<Motocicleta> getEstoqueDeMotocicletas() {
 		return estoqueDeMotocicletas;
 	}
 
