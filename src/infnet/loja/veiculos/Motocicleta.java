@@ -16,8 +16,6 @@ import javax.swing.JOptionPane;
  */
 public class Motocicleta extends Veiculo
 {
-	private Modelo modelo;
-	private Tipo tipo;
 	private int cilindrada;
 	private int capacidadeDoTanque;
 	/**
@@ -91,38 +89,6 @@ public class Motocicleta extends Veiculo
 	public static int addCapacidadeDoTanque() {
 		int capacidadeDoTanque = Integer.parseInt(JOptionPane.showInputDialog("Digite a capacidade do Tanque:"));
 		return capacidadeDoTanque;
-	}
-	
-	/**
-	 * getModelo Retorna o modelo da moto
-	 * @return modelo modelo da moto
-	 */
-	public Modelo getModelo() {
-		return modelo;
-	}
-
-	/**
-	 * setModelo altera o valor da variavel modelo para enum ModeloCarro que foi passado pelo parametro modelo
-	 * @param modelo modelo da moto
-	 */
-	public void setModelo(Modelo modelo) {
-		this.modelo = modelo;
-	}
-
-	/**
-	 * getTipo Retorna o tipo da moto
-	 * @return tipo tipo da moto
-	 */
-	public Tipo   getTipo() {
-		return tipo;
-	}
-
-	/**
-	 * setTipo altera o valor da variavel tipo para enum TipoCarro que foi passado pelo parametro tipo
-	 * @param tipo tipo da moto
-	 */
-	public void setTipo(Tipo tipo) {
-		this.tipo = tipo;
 	}
 
 	/**

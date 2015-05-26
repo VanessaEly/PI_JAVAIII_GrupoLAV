@@ -17,8 +17,6 @@ import javax.swing.JOptionPane;
  */
 public class Carro extends Veiculo 
 {
-	private Modelo modelo;
-	private Tipo tipo; 
 	private float motorizacao;
 	private Cambio cambio;
 	
@@ -104,36 +102,6 @@ public class Carro extends Veiculo
 			}
 		}
 		return cambio;
-	}
-	/**
-	 * getModelo Retorna o modelo do carro
-	 * @return modelo modelo do carro
-	 */
-	public  Modelo getModelo() {
-		return modelo;
-	}
-	/**
-	 * setModelo altera o valor da variavel modelo para enum ModeloCarro que foi passado pelo parametro modelo
-	 * @param modelo modelo do carro
-	 */
-	public void setModelo(Modelo modelo) {
-		this.modelo = modelo;
-	}
-
-	/**
-	 * getTipo Retorna o tipo do carro
-	 * @return tipo tipo do carro
-	 */
-	public Tipo getTipo() {
-		return tipo;
-	}
-
-	/**
-	 * setTipo altera o valor da variavel tipo para enum TipoCarro que foi passado pelo parametro tipo
-	 * @param tipo tipo do carro
-	 */
-	public void setTipo(Tipo tipo) {
-		this.tipo = tipo;
 	}
 
 	/**

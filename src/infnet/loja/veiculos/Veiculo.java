@@ -17,6 +17,8 @@ import infnet.loja.enums.Tipo;
  * @since 19-05-2015
  */
 public abstract class Veiculo {
+	protected Modelo modelo;
+	protected Tipo tipo;
 	protected String chassi;
 	protected Montadora montadora;
 	protected Cor cor;
@@ -113,6 +115,38 @@ public abstract class Veiculo {
 			return false;
 		return true;
 	}
+	/**
+	 * getModelo Retorna o modelo do veiculo
+	 * @return modelo modelo do veiculo
+	 */
+	public Modelo getModelo() {
+		return modelo;
+	}
+
+	/**
+	 * setModelo altera o valor da variavel modelo para enum Modelo que foi passado pelo parametro modelo
+	 * @param modelo modelo do veiculo
+	 */
+	public void setModelo(Modelo modelo) {
+		this.modelo = modelo;
+	}
+
+	/**
+	 * getTipo Retorna o tipo do veiculo
+	 * @return tipo tipo do veiculo
+	 */
+	public Tipo   getTipo() {
+		return tipo;
+	}
+
+	/**
+	 * setTipo altera o valor da variavel tipo para enum Tipo que foi passado pelo parametro tipo
+	 * @param tipo tipo do veiculo
+	 */
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
+	}
+	
 	/**
 	 *getChassi Retorna o chassi do veiculo
 	 * @return chassi chassi do veiculo
