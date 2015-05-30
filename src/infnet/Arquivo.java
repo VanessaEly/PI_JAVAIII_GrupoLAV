@@ -1,12 +1,14 @@
 package infnet;
 
 import infnet.loja.Loja;
+import infnet.loja.veiculos.Veiculo;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -69,47 +71,26 @@ public class Arquivo {
 	}
 
 	/**
-	 * metodo escreveCarro escreve o carro em questao no arquivo da loja recebida por parametro
+	 * metodo escreveVeiculo escreve o veiculo em questao no arquivo da loja recebida por parametro
 	 * @param loja loja do arquivo
+	 * @param veiculo veiculo a ser escrito
 	 * @throws IOException para traramento de excecao
 	 */
-	public static void escreveCarro(Loja loja) throws IOException {
+	public static void escreveVeiculo(Loja loja, Veiculo veiculo) throws IOException {
 		try
 		{
 			Arquivo.gravarArq = new PrintWriter((new BufferedWriter(new FileWriter(Principal.nomearq, true)))); //true garante que a escrita nao sobrescreva o conteudo atual
-			Arquivo.gravarArq.printf("\nCarro %s", loja.getEstoqueDeCarros().get(loja.getEstoqueDeCarros().size()-1).toString()); //dados que serao escritos
-			Arquivo.gravarArq.println();
-			Arquivo.gravarArq.flush(); //limpa buffer
+			if (Loja.indiceVeiculo == 1)
+				Arquivo.gravarArq.printf("\n%s", veiculo.toString()); //dados que serao escritos
+				Arquivo.gravarArq.println();
+				Arquivo.gravarArq.flush(); //limpa buffer
 		} 
 		finally 
 		{
 			if (Arquivo.gravarArq != null) 
 				Arquivo.gravarArq.close();
 		}
-		JOptionPane.showMessageDialog(null,"Carro cadastrado com sucesso.");
-		Menu.chamarMenuCarro(loja);
+		JOptionPane.showMessageDialog(null,"Veiculo cadastrado com sucesso.");
+		Menu.chamarMenu(loja);
 	}
-
-	/**
-	 * metodo escreveMoto escreve a moto em questao no arquivo da loja recebida por parametro
-	 * @param loja loja do arquivo
-	 * @throws IOException para traramento de excecao
-	 */
-	public static void escreveMoto(Loja loja) throws IOException {
-		try
-		{
-			Arquivo.gravarArq = new PrintWriter((new BufferedWriter(new FileWriter(Principal.nomearq, true)))); //true garante que a escrita nao sobrescreva o conteudo atual
-			Arquivo.gravarArq.printf("\nMoto %s", loja.getEstoqueDeMotocicletas().get(loja.getEstoqueDeMotocicletas().size()-1).toString()); //dados que serao escritos
-			Arquivo.gravarArq.println();
-			Arquivo.gravarArq.flush(); //limpa buffer
-		} 
-		finally 
-		{
-			if (Arquivo.gravarArq != null) 
-				Arquivo.gravarArq.close();
-		}
-		JOptionPane.showMessageDialog(null,"Moto cadastrada com sucesso.");
-		Menu.chamarMenuMoto(loja);
-	}
-
 }

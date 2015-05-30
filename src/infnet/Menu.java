@@ -2,12 +2,9 @@ package infnet;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
-
 import infnet.loja.Loja;
-import infnet.loja.veiculos.Carro;
-import infnet.loja.veiculos.Motocicleta;
+import infnet.loja.veiculos.Veiculo;
 
 /**
  * Classe Menu possui o menu que direciona o usuario pelo programa
@@ -22,161 +19,91 @@ public class Menu
 	 * @param loja loja que esta sendo trabalhada
 	 * @throws IOException para excecoes de entrada e saida
 	 */
-	public static void chamarMenu(Loja loja) throws IOException
+	public static int chamarMenuVeiculo(Loja loja) throws IOException
 	{
-		Object[] itens = {"Controle de Estoque de Carros", "Controle de Estoque de Motos", "Criar nova Loja", "Sair"};
-		Object selectedValue = JOptionPane.showInputDialog(null, "O que voce deseja fazer?", "Opcao", JOptionPane.INFORMATION_MESSAGE, null, itens, itens [0]);
+		Object[] itens = {"Carro", "Moto", "Voltar"};
+		Object selectedValue = JOptionPane.showInputDialog(null, "Carro ou Moto?", "Opcao", JOptionPane.INFORMATION_MESSAGE, null, itens, itens [0]);
 		if (selectedValue == itens[0])
-			Menu.chamarMenuCarro(loja);
+			return 1;
 		if (selectedValue == itens[1])
-			Menu.chamarMenuMoto(loja);	
-		if (selectedValue == itens[2])
-			loja = Loja.salvarEstoque();
+			return 2;
 		if ((selectedValue == itens[3])||(selectedValue == null)){
-			JOptionPane.showMessageDialog(null,"Fechando o sistema, ate a proxima!");
-			System.exit(0);
+			JOptionPane.showMessageDialog(null,"Voltando para o Menu Principal");
+			chamarMenu(loja);
 		}
+		return 0;
 	}
 
 	/**
-	 * Menu que exibe todas as opcoes disponiveis para carro
+	 * Menu que exibe todas as opcoes disponiveis
 	 * @param loja loja sendo trabalhada
 	 * @throws IOException excecoes de entrada e saida
 	 */
-	public static void chamarMenuCarro(Loja loja) throws IOException
+	public static void chamarMenu(Loja loja) throws IOException
 	{
 		try{
 			int opcao = Integer.parseInt(JOptionPane.showInputDialog("O que voce deseja fazer?     \n" + 
-					"1 - Adicionar Carro              \n" + 
-					"2 - Remover Carro                \n" +
-					"3 - Buscar Carro pelo Chassi     \n" +
-					"4 - Pesquisar Carro              \n" +
-					"5 - Listar Estoque de Carros     \n" +
-					"6 - Voltar para o Menu Principal \n" +
+					"1 - Adicionar              \n" + 
+					"2 - Remover                \n" +
+					"3 - Buscar pelo Chassi     \n" +
+					"4 - Pesquisar              \n" +
+					"5 - Listar Estoque         \n" +
+					"6 - Criar Nova Loja        \n" +
 					"7 - Sair"));
 			switch (opcao) {
 			case 1: 
-				JOptionPane.showMessageDialog(null,"Voce optou por Adicionar um Carro");
-				Loja.adicionarCarro(loja);
-				chamarMenuCarro(loja);
+				Loja.indiceVeiculo = chamarMenuVeiculo(loja);
+				Loja.adicionarVeiculo(loja);
+				chamarMenu(loja);
 				break;
 			case 2: 
-				JOptionPane.showMessageDialog(null,"Voce optou por Remover um Carro");
-				String chassi = JOptionPane.showInputDialog("Insira o chassi do Carro a ser removido:");
-				Loja.removerCarro(chassi, loja);
-				chamarMenuCarro(loja);
+				Loja.indiceVeiculo = chamarMenuVeiculo(loja);
+				String chassi = JOptionPane.showInputDialog("Insira o chassi do Veiculo a ser removido:");
+				Loja.removerVeiculo(chassi, loja);
+				chamarMenu(loja);
 				break;
 			case 3:
-				JOptionPane.showMessageDialog(null,"Voce optou por Buscar um Carro pelo Chassi");
+				Loja.indiceVeiculo = chamarMenuVeiculo(loja);
 				chassi = JOptionPane.showInputDialog("Insira o Chassi que voce deseja procurar: ");
-				Carro car = Loja.buscarCarro(chassi, loja);
-				if (car != null)
-					JOptionPane.showMessageDialog(null, "Carro Encontrado!\n" + car.toString());
+				Veiculo v = Loja.buscarVeiculo(chassi, loja);
+				if (v != null)
+					JOptionPane.showMessageDialog(null, "Encontrado!\n" + v.toString());
 				else
-					JOptionPane.showMessageDialog(null, "Carro Nao Encontrado.");
-				chamarMenuCarro(loja);
+					JOptionPane.showMessageDialog(null, "Nao Encontrado.");
+				chamarMenu(loja);
 				break;
 			case 4:
-				JOptionPane.showMessageDialog(null,"Voce optou por Pesquisar um Carro.\nDIGITE 0 PARA IGNORAR CAMPOS.");
-				ArrayList <Carro> carrosEncontrados = new ArrayList <Carro> (Loja.pesquisarCarro(loja));
-				if (carrosEncontrados.isEmpty())
-					JOptionPane.showMessageDialog(null,"Nenhum carro foi encontrado");
-				for (Carro m: carrosEncontrados)
+				Loja.indiceVeiculo = chamarMenuVeiculo(loja);
+				JOptionPane.showMessageDialog(null,"OBS: DIGITE 0 PARA IGNORAR CAMPOS.");
+				ArrayList <Veiculo> veiculosEncontrados = new ArrayList <Veiculo> (Loja.pesquisarVeiculo(loja));
+				if (veiculosEncontrados.isEmpty())
+					JOptionPane.showMessageDialog(null,"Nenhum Veiculo foi encontrado");
+				for (Veiculo m: veiculosEncontrados)
 					JOptionPane.showMessageDialog(null, m.toString());
-				JOptionPane.showMessageDialog(null,"Voltando para o menu de Carros");
-				chamarMenuCarro(loja);
+				JOptionPane.showMessageDialog(null,"Voltando para o Menu Principal");
+				chamarMenu(loja);
 				break;
 			case 5:
-				JOptionPane.showMessageDialog(null,"Voce optou por Listar Estoque de Carros");
-				Loja.listarEstoqueDeCarros(loja);
-				chamarMenuCarro(loja);
+				Loja.indiceVeiculo = chamarMenuVeiculo(loja);
+				Loja.listarEstoqueDeVeiculos(loja);
+				chamarMenu(loja);
 				break;
 			case 6:
-				chamarMenu(loja);
+				JOptionPane.showMessageDialog(null,"Voce optou por Criar uma nova Loja");
+				loja = Loja.salvarEstoque();
 				break;
 			case 7:
 				JOptionPane.showMessageDialog(null,"Voce optou por sair do sistema, ate a proxima!");
 				System.exit(0);
 			default:
 				JOptionPane.showMessageDialog(null,"Escolha uma opcao valida.");
-				chamarMenuCarro(loja);
-				break;
+				chamarMenu(loja);
 			}
 		}
 		catch (Exception e) {
-			JOptionPane.showMessageDialog(null,"Voltando para o Menu Principal.");
-			chamarMenu(loja);
-		}
-	}
-
-	/**
-	 * Metodo que exibe todas as opcoes disponiveis para moto
-	 * @param loja loja sendo trabalhada
-	 * @throws IOException excecoes de entrada e saida
-	 */
-	public static void chamarMenuMoto(Loja loja) throws IOException
-	{
-		try{
-			int opcao = Integer.parseInt(JOptionPane.showInputDialog("O que voce deseja fazer?    \n" + 
-					"1 - Adicionar Moto               \n" +
-					"2 - Remover Moto                 \n" +
-					"3 - Buscar Moto pelo Chassi      \n" +
-					"4 - Pesquisar Moto                \n" +
-					"5 - Listar Estoque de Motos      \n" +
-					"6 - Voltar para o Menu Principal \n" +
-					"7 - Sair"));
-			switch (opcao) {
-			case 1: 
-				JOptionPane.showMessageDialog(null,"Voce optou por Adicionar uma Moto");
-				Loja.adicionarMoto(loja);
-				chamarMenuMoto(loja);
-				break;
-			case 2:
-				JOptionPane.showMessageDialog(null,"Voce optou por Remover uma Moto");
-				String chassi = JOptionPane.showInputDialog("Insira o chassi da Moto a ser removido:");
-				Loja.removerMotocicleta(chassi, loja);
-				chamarMenuMoto(loja);
-				break;
-			case 3:
-				JOptionPane.showMessageDialog(null,"Voce optou por Buscar uma Moto pelo Chassi");
-				chassi = JOptionPane.showInputDialog("Insira o Chassi que voce deseja procurar: ");
-				Motocicleta moto = Loja.buscarMoto(chassi, loja);
-				if (moto != null)
-					JOptionPane.showMessageDialog(null, "Moto Encontrada!\n" + moto.toString());
-				else
-					JOptionPane.showMessageDialog(null, "Moto Nao Encontrada.");
-				chamarMenuMoto(loja);
-				break;
-			case 4:
-				JOptionPane.showMessageDialog(null,"Voce optou por Pesquisar uma Moto.\nDIGITE 0 PARA IGNORAR CAMPOS.");
-				ArrayList <Motocicleta> motosEncontradas = new ArrayList <Motocicleta> (Loja.pesquisarMoto(loja));
-				if (motosEncontradas.isEmpty())
-					JOptionPane.showMessageDialog(null,"Nenhuma moto foi encontrada");
-				for (Motocicleta m: motosEncontradas)
-					JOptionPane.showMessageDialog(null, m.toString());
-				JOptionPane.showMessageDialog(null,"Voltando para o menu de Motos");
-				chamarMenuMoto(loja);
-				break;
-			case 5:
-				JOptionPane.showMessageDialog(null,"Voce optou por Listar Estoque de Motos");
-				Loja.listarEstoqueDeMotocicletas(loja);
-				chamarMenuMoto(loja);
-				break;
-			case 6:
-				Menu.chamarMenu(loja);
-				break;
-			case 7:
-				JOptionPane.showMessageDialog(null,"Voce optou por sair do sistema, ate a proxima!");
-				System.exit(0);	
-			default:
-				JOptionPane.showMessageDialog(null,"Escolha uma opcao valida.");
-				chamarMenuMoto(loja);
-				break;
-			}
-		}
-		catch (Exception e) {
-			JOptionPane.showMessageDialog(null,"Voltando para o Menu Principal.");
-			chamarMenu(loja);
+			JOptionPane.showMessageDialog(null,"Saindo do Sistema. Ate a Proxima.");
+			System.exit(0);
 		}
 	}
 }
+
