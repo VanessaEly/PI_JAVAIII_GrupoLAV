@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  * Classe Arquivo possui os metodos referentes a gravacao em arquivo
  * @author Antonio Henrique, Leandro Varella, Vanessa Ely
  * @version 3.0
- * @since 19-05-2015
+ * @since 08-06-2015
  */
 public class Arquivo {
 	public static PrintWriter gravarArq;
@@ -23,9 +23,10 @@ public class Arquivo {
 	/**
 	 * metodo criaArquivo cria um novo txt com o nome e endereco da loja
 	 * @param loja loja a qual pertence o arquivo
+	 * @throws IOException 
 	 */
-	public static void criaArquivo(Loja loja) {
-		try{
+	public static void criaArquivo(Loja loja) throws IOException {
+		
 			Principal.nomearq = (JOptionPane.showInputDialog("Digite o nome do seu arquivo de estoque(Ex: 'loja.txt'): "));
 			while (Principal.nomearq.isEmpty())
 				Principal.nomearq = (JOptionPane.showInputDialog("Nome Invalido. Digite o nome do seu arquivo .txt(Ex: 'loja.txt'): "));
@@ -62,35 +63,29 @@ public class Arquivo {
 			}
 			else
 				JOptionPane.showMessageDialog(null,"Arquivo ja existe. Dados acrescentados serao incluidos no mesmo.");
-			Menu.chamarMenu(loja);
-		}
-		catch (Exception e){
-			JOptionPane.showMessageDialog(null,"Fechando o sistema, ate a proxima!");
-			System.exit(0);
-		}
+			Menu.chamarMenu();
+		
 	}
 
 	/**
 	 * metodo escreveVeiculo escreve o veiculo em questao no arquivo da loja recebida por parametro
-	 * @param loja loja do arquivo
 	 * @param veiculo veiculo a ser escrito
 	 * @throws IOException para traramento de excecao
 	 */
-	public static void escreveVeiculo(Loja loja, Veiculo veiculo) throws IOException {
+	public static void escreveVeiculo(Veiculo veiculo) throws IOException {
 		try
 		{
 			Arquivo.gravarArq = new PrintWriter((new BufferedWriter(new FileWriter(Principal.nomearq, true)))); //true garante que a escrita nao sobrescreva o conteudo atual
-			if (Loja.indiceVeiculo == 1)
-				Arquivo.gravarArq.printf("\n%s", veiculo.toString()); //dados que serao escritos
-				Arquivo.gravarArq.println();
-				Arquivo.gravarArq.flush(); //limpa buffer
-		} 
+			Arquivo.gravarArq.printf("\n%s", veiculo.toString()); //dados que serao escritos
+			Arquivo.gravarArq.println();
+			Arquivo.gravarArq.flush(); //limpa buffer
+		}
 		finally 
 		{
 			if (Arquivo.gravarArq != null) 
 				Arquivo.gravarArq.close();
 		}
 		JOptionPane.showMessageDialog(null,"Veiculo cadastrado com sucesso.");
-		Menu.chamarMenu(loja);
+		Menu.chamarMenu();
 	}
 }

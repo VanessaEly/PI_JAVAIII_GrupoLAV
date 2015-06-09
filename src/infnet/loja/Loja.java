@@ -5,7 +5,6 @@ import infnet.Menu;
 import infnet.loja.veiculos.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map.Entry;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,10 +15,9 @@ import javax.swing.JOptionPane;
  */
 public class Loja 
 {
-	//VARIAVEIS DA CLASSE
 	private String endereco;
 	private String nome;
-	public static int indiceVeiculo;
+	private static ArrayList <Veiculo> estoque = new ArrayList <Veiculo>();
 
 	/**
 	 * Construtor Default
@@ -36,6 +34,7 @@ public class Loja
 	{
 		this.endereco              = endereco;
 		this.nome                  = nome;
+		estoque = new ArrayList<>();
 	}
 
 	/**
@@ -50,131 +49,94 @@ public class Loja
 	}
 
 	/**
-	 * Adiciona um novo carro e o escreve no arquivo
-	 * @param loja loja cujo estoque recebera o carro 
+	 * Adiciona um novo veiculo e o escreve no arquivo
 	 * @throws IOException para excecoes de entrada e saida
 	 */
-	public static void adicionarVeiculo(Loja loja) throws IOException
+	public static void adicionarVeiculo() throws IOException
 	{
-		try{
-			Veiculo veiculo = new Veiculo(loja);
-			if (veiculo.getChassi() == null)
-			{
-				JOptionPane.showMessageDialog(null, "Voce inseriu um valor nulo para chassi.\nVoltando para o Menu Principal.");
-				Menu.chamarMenu(loja);
-			}
-			for (Veiculo v: Veiculo.map.keySet())
-			{
-				if ((veiculo.getChassi().equals(v.getChassi()))&&(Veiculo.map.get(v).intValue() == Loja.indiceVeiculo))
-				{
-					JOptionPane.showMessageDialog(null, "Um veiculo com esse chassi ja esta cadastrado.");
-					Menu.chamarMenu(loja);
-				}
-			}
-			if (Loja.indiceVeiculo == 1)
-			{
-				if ((veiculo.getCambio() == null)||(veiculo.getCor()== null)||(veiculo.getModelo()== null)||(veiculo.getMontadora()== null)||(veiculo.getMotorizacao()<= 0)||(veiculo.getPreco()<= 0)||(veiculo.getTipo()== null))
-				{
-					JOptionPane.showMessageDialog(null, "Você inseriu valores invalidos e o veiculo nao pode ser adicionado.\n Voltando para o menu de Veiculos.");
-					Menu.chamarMenu(loja);
-				}
-			}
-			else
-			{
-				if ((veiculo.getCapacidadeDoTanque() <= 0)||(veiculo.getCor()== null)||(veiculo.getModelo()== null)||(veiculo.getMontadora()== null)||(veiculo.getCilindrada()<= 0)||(veiculo.getPreco()<= 0)||(veiculo.getTipo()== null))			{
-					JOptionPane.showMessageDialog(null, "Você inseriu valores invalidos e a moto nao pode ser adicionado.\n Voltando para o menu de Veiculos.");
-					Menu.chamarMenu(loja);
-				}
-			}
-			Veiculo.map.put(veiculo, Loja.indiceVeiculo);
-			Arquivo.escreveVeiculo(loja, veiculo);
-		}
-		catch (Exception e)
+		Veiculo veiculo = new Veiculo();
+		if (veiculo.getChassi() == null)
 		{
-			JOptionPane.showMessageDialog(null, "Operacao cancelada, voltando para o Menu Principal");
-			Menu.chamarMenu(loja);
+			JOptionPane.showMessageDialog(null, "Voce inseriu um valor nulo para chassi.\nVoltando para o Menu Principal.");
+			Menu.chamarMenu();
 		}
+		for (Veiculo v: estoque)
+		{
+			if (v.getChassi().equals(veiculo.getChassi()))
+			{
+				JOptionPane.showMessageDialog(null, "Um veiculo com esse chassi ja esta cadastrado.");
+				Menu.chamarMenu();
+			}
+		}
+		estoque.add(veiculo);
+		Arquivo.escreveVeiculo(veiculo);
 	}
 
 	/**
 	 * Metodo listarEstoqueDeVeiculos exibe todos os veiculos do tipo desejado que foram adicionados ao estoque da loja
-	 * @param loja loja que esta sendo pesquisada
 	 */
-	public static void listarEstoqueDeVeiculos (Loja loja){
+	public static void listarEstoqueDeVeiculos (){
 		StringBuilder veiculosEncontrados = new StringBuilder();
-		if (!(Veiculo.map.values().contains(Loja.indiceVeiculo)))
+		if (estoque.isEmpty())
 			JOptionPane.showMessageDialog(null,"Nao existe veiculo para ser exibido");
 		else{
-			for (Entry<Veiculo, Integer> v: Veiculo.map.entrySet())
-			{
-				if (v.getValue().equals(Loja.indiceVeiculo))
-					veiculosEncontrados.append(v.getKey().toString() + "\n");
-			}
+			for (Veiculo v: estoque)
+				veiculosEncontrados.append(v.toString() + "\n");
 			JOptionPane.showMessageDialog(null, veiculosEncontrados.toString());
 		}
 	}
 
 	/**
-	 * Busca por um carro baseado pelo chassi recebido por parametro
+	 * Busca por um veiculo baseado pelo chassi recebido por parametro
 	 * @param chassi chassi do carro que sera buscado
-	 * @param loja na qual sera efetada a busca
-	 * @return carro carro que foi encontrado pela busca
+	 * @return veiculo veiculo que foi encontrado pela busca
 	 */
-	public static Veiculo buscarVeiculo(String chassi, Loja loja){
+	public static Veiculo buscarVeiculo(String chassi){
 		Veiculo veiculo = null;
-		for (Veiculo v: Veiculo.map.keySet())
+		for (Veiculo v: estoque)
 		{
-			if (chassi.equals(v.getChassi())&&(Veiculo.map.get(v).intValue() == Loja.indiceVeiculo)) {
+			if (v.getChassi().equals(chassi))
 				veiculo = v;
-			}
 		}
 		return veiculo;
 	}
 
 	/**
-	 * Pesquisa e retorna carros com valores específicos no estoque, caso eles exista,
-	 * @param loja loja do estoque
-	 * @return carrosOk arraylist do resultado obtido
+	 * Pesquisa e retorna veiculos com valores específicos no estoque, caso eles exista,
+	 * @return veiculosEncontrados arraylist do resultado obtido
 	 * @throws IOException tratamento de excecao
 	 * */
-	public static ArrayList<Veiculo> pesquisarVeiculo(Loja loja) throws IOException
-	{
+	public static ArrayList<Veiculo> pesquisarVeiculo() throws IOException{
 		ArrayList <Veiculo> veiculosEncontrados = new ArrayList <Veiculo>();
-		Veiculo veiculo = new Veiculo(loja);
-		System.out.println(veiculo.toString());
-		for (Veiculo v: Veiculo.map.keySet())
+		Veiculo veiculo = new Veiculo();
+		for (Veiculo v: estoque)
 		{
-			if (v.equals(veiculo) == true)
+			if (v.getMap().equals(veiculo.getMap()))
 				veiculosEncontrados.add(v);
-
 		}
-
 		return veiculosEncontrados;
 	}
 
 	/**
-	 * Metodo removerCarro remove o carro com o chassi desejado da array estoqueDeMotocicletas
-	 * @param chassi chassi do carro
-	 * @param loja loja do estoque
+	 * Metodo removerVeiculo remove o veiculo com o chassi desejado da array estoque
+	 * @param chassi chassi do veiculo
 	 * @throws IOException 
 	 */
-	public static void removerVeiculo(String chassi, Loja loja) throws IOException	
-	{
+	public static void removerVeiculo(String chassi) throws IOException		{
 		boolean ok = false;
-		for (Veiculo v: Veiculo.map.keySet()){
-			if (v.getChassi().equals(chassi)&&(Veiculo.map.get(v).intValue() == Loja.indiceVeiculo))
+		for (Veiculo v: estoque){
+			if (v.getChassi().equals(chassi))
 			{
-				Veiculo.map.remove(v);
+				estoque.remove(v);
 				ok = true;
 				JOptionPane.showMessageDialog(null, "Veiculo Removido com sucesso.");
-				Menu.chamarMenu(loja);
+				Menu.chamarMenu();
 			}
 		}
 		if (!ok)
 			JOptionPane.showMessageDialog(null, "Nao existe Veiculo desse tipo com esse Chassi no Estoque");
 	}
-
-	//GETTERS
+	
 	/**
 	 * getNome Retorna o nome da Loja
 	 * @return nome nome da loja
@@ -190,7 +152,6 @@ public class Loja
 		return endereco;
 	}
 
-	//SETTERS
 	/**
 	 * setNome altera o valor da variavel nome para o que foi passado pelo parametro nome
 	 * @param nome nome da loja
@@ -207,5 +168,4 @@ public class Loja
 	public void                   setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-
 }
