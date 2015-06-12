@@ -4,13 +4,12 @@ import infnet.loja.Loja;
 import java.io.IOException;
 
 /**
- * Classe Principal eh a classe executavel que mostra o funcionamento do programa, instancia classes e demonstra seus metodos
+ * Classe Principal eh a classe executavel que demonstra o funcionamento do programa
  * @author Antonio Henrique, Leandro Varella, Vanessa Ely
  * @version 3.0
  * @since 19-05-2015
  */
-public class Principal 
-{
+public class Principal {
 	public static String nomearq = null;
 
 	/**
@@ -18,8 +17,7 @@ public class Principal
 	 * @param args argumentos do metodo main
 	 * @throws IOException Excecoes de entrada e saida e seus tratamentos
 	 */
-	public static void main(String[] args) throws IOException 
-	{
+	public static void main(String[] args) throws IOException {
 		Loja.salvarEstoque();
 	}	
 }

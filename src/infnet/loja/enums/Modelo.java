@@ -15,7 +15,6 @@ public enum Modelo
 	NINJA(4),
 	CB_HORNET(5);
 
-	//variavel do enum
 	private int indice;
 
 	/**

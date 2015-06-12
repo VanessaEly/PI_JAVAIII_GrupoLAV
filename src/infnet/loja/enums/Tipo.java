@@ -6,8 +6,7 @@ package infnet.loja.enums;
  * HATCH
  * SUV
  */
-public enum Tipo
-{
+public enum Tipo{
 	SEDAN (0),
 	HATCH (1),
 	SUV (2),
@@ -15,15 +14,13 @@ public enum Tipo
 	SCOOTER (4),
 	ESPORTIVO (5);
 
-	//variavel do enum
 	private int indice;
 
 	/**
 	 * O valor recebido por indice torna-se o indice do enum
 	 * @param indice indice do enum
 	 */
-	private Tipo(int indice)
-	{
+	private Tipo(int indice){
 		this.indice = indice;
 	}
 
@@ -31,8 +28,7 @@ public enum Tipo
 	 * Retorna o valor do indice
 	 * @return indice indice do enum
 	 */
-	public int getIndice() 
-	{
+	public int getIndice() {
 		return indice;
 	}
 }

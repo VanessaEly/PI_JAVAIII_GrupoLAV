@@ -3,8 +3,10 @@ package infnet.loja;
 import infnet.Arquivo;
 import infnet.Menu;
 import infnet.loja.veiculos.*;
+
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -13,15 +15,13 @@ import javax.swing.JOptionPane;
  * @version 4.0
  * @since 30-05-2015
  */
-public class Loja 
-{
+public class Loja {
 	private String endereco;
 	private String nome;
 	private static ArrayList <Veiculo> estoque = new ArrayList <Veiculo>();
 
 	/**
-	 * Construtor Default
-	 * Cria uma loja sem valores definidos
+	 * Construtor Default, cria uma loja sem valores definidos
 	 */
 	public Loja() {}
 
@@ -30,10 +30,9 @@ public class Loja
 	 * @param nome nome da loja
 	 * @param endereco endereco da loja
 	 */
-	public Loja(String nome, String endereco) 
-	{
-		this.endereco              = endereco;
-		this.nome                  = nome;
+	public Loja(String nome, String endereco) {
+		this.endereco = endereco;
+		this.nome = nome;
 		estoque = new ArrayList<>();
 	}
 
@@ -52,18 +51,14 @@ public class Loja
 	 * Adiciona um novo veiculo e o escreve no arquivo
 	 * @throws IOException para excecoes de entrada e saida
 	 */
-	public static void adicionarVeiculo() throws IOException
-	{
+	public static void adicionarVeiculo() throws IOException{
 		Veiculo veiculo = new Veiculo();
-		if (veiculo.getChassi() == null)
-		{
+		if (veiculo.getChassi() == null){
 			JOptionPane.showMessageDialog(null, "Voce inseriu um valor nulo para chassi.\nVoltando para o Menu Principal.");
 			Menu.chamarMenu();
 		}
-		for (Veiculo v: estoque)
-		{
-			if (v.getChassi().equals(veiculo.getChassi()))
-			{
+		for (Veiculo v: estoque){
+			if (v.getChassi().equals(veiculo.getChassi())){
 				JOptionPane.showMessageDialog(null, "Um veiculo com esse chassi ja esta cadastrado.");
 				Menu.chamarMenu();
 			}
@@ -93,8 +88,7 @@ public class Loja
 	 */
 	public static Veiculo buscarVeiculo(String chassi){
 		Veiculo veiculo = null;
-		for (Veiculo v: estoque)
-		{
+		for (Veiculo v: estoque){
 			if (v.getChassi().equals(chassi))
 				veiculo = v;
 		}
@@ -109,9 +103,8 @@ public class Loja
 	public static ArrayList<Veiculo> pesquisarVeiculo() throws IOException{
 		ArrayList <Veiculo> veiculosEncontrados = new ArrayList <Veiculo>();
 		Veiculo veiculo = new Veiculo();
-		for (Veiculo v: estoque)
-		{
-			if (v.getMap().equals(veiculo.getMap()))
+		for (Veiculo v: estoque){
+			if (v.equals(veiculo) == true)
 				veiculosEncontrados.add(v);
 		}
 		return veiculosEncontrados;
@@ -120,13 +113,12 @@ public class Loja
 	/**
 	 * Metodo removerVeiculo remove o veiculo com o chassi desejado da array estoque
 	 * @param chassi chassi do veiculo
-	 * @throws IOException 
+	 * @throws IOException para tratamento de excecao
 	 */
 	public static void removerVeiculo(String chassi) throws IOException		{
 		boolean ok = false;
 		for (Veiculo v: estoque){
-			if (v.getChassi().equals(chassi))
-			{
+			if (v.getChassi().equals(chassi)){
 				estoque.remove(v);
 				ok = true;
 				JOptionPane.showMessageDialog(null, "Veiculo Removido com sucesso.");
@@ -136,7 +128,7 @@ public class Loja
 		if (!ok)
 			JOptionPane.showMessageDialog(null, "Nao existe Veiculo desse tipo com esse Chassi no Estoque");
 	}
-	
+
 	/**
 	 * getNome Retorna o nome da Loja
 	 * @return nome nome da loja
@@ -164,7 +156,6 @@ public class Loja
 	 * setEndereco altera o valor da variavel endereco para o que foi passado pelo parametro endereco
 	 * @param endereco endereco da loja
 	 */
-
 	public void                   setEndereco(String endereco) {
 		this.endereco = endereco;
 	}

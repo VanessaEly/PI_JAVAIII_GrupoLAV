@@ -9,7 +9,6 @@ public enum Motorizacao {
 	M1p8(5),
 	M2p0(6);
 
-	//variavel do enum
 	private int indice;
 
 	/**

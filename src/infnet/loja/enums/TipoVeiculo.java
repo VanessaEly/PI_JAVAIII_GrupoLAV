@@ -4,7 +4,6 @@ public enum TipoVeiculo {
 	CARRO(0),
 	MOTOCICLETA (1);
 
-	//variavel do enum
 	private int indice;
 
 	/**

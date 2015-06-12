@@ -16,7 +16,6 @@ public enum Cor {
 	ROSA(4),
 	AMARELO(5);
 
-	//variavel do enum
 	private int indice;
 
 	/**

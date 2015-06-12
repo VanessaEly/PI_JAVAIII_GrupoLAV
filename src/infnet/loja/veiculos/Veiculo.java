@@ -2,7 +2,10 @@ package infnet.loja.veiculos;
 
 import java.io.IOException;
 import java.util.HashMap;
+
 import javax.swing.JOptionPane;
+
+import infnet.Menu;
 import infnet.loja.enums.*;
 
 /**
@@ -11,50 +14,53 @@ import infnet.loja.enums.*;
  * @version 3.0
  * @since 08-06-2015
  */
+@SuppressWarnings("rawtypes")
 public class Veiculo {
 	private String chassi;
 	private float preco;
 	public HashMap<String, Enum> map;
-	private int cilindrada; //500 ate 1000
+	private int cilindrada; 
 	private float capacidadeDoTanque; //ate 20l
 
 	/**
 	 * Construtor de Veiculo
-	 * @throws IOException para tratamento de excecao
+	 * @throws IOException tratamento de excecao
 	 */
 	public Veiculo() throws IOException {
-		map = new HashMap <String, Enum>();
-		map.put("TipoVeiculo", addTipoVeiculo());
-		this.chassi = addChassi();
-		map.put("Montadora", addMontadora());
-		map.put ("Modelo", addModelo());
-		map.put("Tipo", addTipo());
-		map.put ("Cor", addCor());
-		this.preco = addPreco();
-		if (map.containsValue(TipoVeiculo.CARRO))
-		{
-			map.put("Motorizacao", addMotorizacao());
-			map.put("Cambio", addCambio());
+		try{
+			map = new HashMap <String, Enum>();
+			map.put("TipoVeiculo", addTipoVeiculo());
+			this.chassi = addChassi();
+			map.put("Montadora", addMontadora());
+			map.put ("Modelo", addModelo());
+			map.put("Tipo", addTipo());
+			map.put ("Cor", addCor());
+			this.preco = addPreco();
+			if (map.containsValue(TipoVeiculo.CARRO)){
+				map.put("Motorizacao", addMotorizacao());
+				map.put("Cambio", addCambio());
+			}
+			else{
+				this.cilindrada = addCilindrada();
+				this.capacidadeDoTanque = addCapacidadeDoTanque();
+			}
 		}
-		else
-		{
-			this.cilindrada = addCilindrada();
-			this.capacidadeDoTanque = addCapacidadeDoTanque();
+		catch (Exception e){
+			JOptionPane.showMessageDialog(null, "Operacao cancelada, voltando para o Menu Principal");
+			Menu.chamarMenu();
 		}
 	}
 	/**
 	 * Metodo que permite a escolha entre opcoes de carro e de moto
-	 * @throws IOException para excecoes de entrada e saida
+	 * @return veiculo tipo do veiculo
 	 */
-	public TipoVeiculo addTipoVeiculo() throws IOException{
+	public TipoVeiculo addTipoVeiculo(){
 		TipoVeiculo veiculo = null;
 		int aux = Integer.parseInt(JOptionPane.showInputDialog("Digite o tipo do veiculo:\n1 - Carro\n2 - Moto"));
 		if (aux <= 0 || aux >= 3)
 			veiculo = null;
-		else
-		{
-			for (TipoVeiculo t: TipoVeiculo.values())
-			{
+		else{
+			for (TipoVeiculo t: TipoVeiculo.values()){
 				if (t.getIndice() == aux-1)
 					veiculo = t;
 			}
@@ -73,8 +79,7 @@ public class Veiculo {
 			return modelo;
 		if (map.containsValue(TipoVeiculo.MOTOCICLETA))
 			aux = aux+3;
-		for (Modelo m: Modelo.values())
-		{
+		for (Modelo m: Modelo.values()){
 			if (m.getIndice() == (aux-1))
 				modelo = m;
 		}
@@ -92,8 +97,7 @@ public class Veiculo {
 			return tipo;
 		if (map.containsValue(TipoVeiculo.MOTOCICLETA))
 			aux = aux+3;
-		for (Tipo m: Tipo.values())
-		{
+		for (Tipo m: Tipo.values()){
 			if (m.getIndice() == (aux-1))
 				tipo = m;
 		}
@@ -103,10 +107,8 @@ public class Veiculo {
 	/**
 	 * metodo addChassi retorna o chassi do veiculo inputado pelo usuario
 	 * @return chassi chassi do veiculo
-	 * @throws IOException tratamento de excecao
-	 * @param loja loja
 	 */
-	public String addChassi() throws IOException {
+	public String addChassi() {
 		String chassi = (JOptionPane.showInputDialog("Digite o chassi: "));
 		if (chassi.isEmpty() || chassi.equals("0"))
 			chassi = null;
@@ -124,8 +126,7 @@ public class Veiculo {
 			return montadora;
 		if (map.containsValue(TipoVeiculo.MOTOCICLETA))
 			aux = aux + 4;
-		for (Montadora m: Montadora.values())
-		{
+		for (Montadora m: Montadora.values()){
 			if (m.getIndice() == aux)
 				montadora = m;
 		}
@@ -141,10 +142,8 @@ public class Veiculo {
 		int aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da Cor:\n1 - PRETO\n2 - BRANCO\n3 - AZUL\n4 - VERDE\n5 - ROSA\n6 - AMARELO"));
 		if (aux <= 0 || aux >= 7)
 			cor = null;
-		else
-		{
-			for (Cor m: Cor.values())
-			{
+		else{
+			for (Cor m: Cor.values()){
 				if (m.getIndice() == (aux-1))
 					cor = m;
 			}
@@ -154,7 +153,7 @@ public class Veiculo {
 
 	/**
 	 * metodo addPreco retorna o preco do veiculo inputado pelo usuario
-	 * @return preco preco do carro
+	 * @return preco preco do veiculo
 	 */
 	public float addPreco(){
 		float preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preco:"));
@@ -170,10 +169,8 @@ public class Veiculo {
 		int aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero da motorizacao:\n1 - 1.0\n2 - 1.3\n3 - 1.4\n4 - 1.5\n5 - 1.6\n6 - 1.8\n7 - 2.0"));
 		if (aux <= 0 || aux >= 9)
 			motorizacao = null;
-		else
-		{
-			for (Motorizacao m: Motorizacao.values())
-			{
+		else{
+			for (Motorizacao m: Motorizacao.values()){
 				if (m.getIndice() == (aux-1))
 					motorizacao = m;
 			}
@@ -190,10 +187,8 @@ public class Veiculo {
 		int aux = Integer.parseInt(JOptionPane.showInputDialog("Digite numero do cambio:\n1 - MANUAL\n2 - SEMI\n3 - AUTO"));
 		if (aux <= 0 || aux >=4)
 			cambio = null;
-		else
-		{
-			for (Cambio m: Cambio.values())
-			{
+		else{
+			for (Cambio m: Cambio.values()){
 				if (m.getIndice() == (aux-1))
 					cambio = m;
 			}
@@ -201,13 +196,14 @@ public class Veiculo {
 		return cambio;
 	}
 
-	//moto
 	/**
 	 * metodo addCilindrada retorna as cilindradas da moto inputadas pelo usuario
 	 * @return cilindrada cilindrada da moto
 	 */
 	public int addCilindrada() {
-		int cilindrada = Integer.parseInt(JOptionPane.showInputDialog("Digite numero de cilindradas:"));
+		int cilindrada = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero de cilindradas:"));
+		while ((cilindrada < 0 || cilindrada > 1000))
+			cilindrada = Integer.parseInt(JOptionPane.showInputDialog("ERRO:Cilindradas soh adotam valores entre 0 e 1000.\nDigite o numero de cilindradas:"));
 		return cilindrada;
 	}
 
@@ -217,6 +213,8 @@ public class Veiculo {
 	 */
 	public float addCapacidadeDoTanque() {
 		float capacidadeDoTanque = Integer.parseInt(JOptionPane.showInputDialog("Digite a capacidade do Tanque:"));
+		while (capacidadeDoTanque < 0 || capacidadeDoTanque > 20)
+			capacidadeDoTanque = Integer.parseInt(JOptionPane.showInputDialog("A capacidade do tanque soh aceita valores entre 0 e 20 litros.\nDigite a capacidade do Tanque:"));
 		return capacidadeDoTanque;
 	}
 
@@ -274,13 +272,26 @@ public class Veiculo {
 		this.capacidadeDoTanque = capacidadeDoTanque;
 	}
 
+	/**
+	 * getCapacidadeDoTanque retorna a capacidade do tanque da moto
+	 * @return capacidadeDoTanque capacidade do tanque da moto
+	 */
 	public float getCapacidadeDoTanque() {
 		return capacidadeDoTanque;
 	}
 
+	/**
+	 * getMap retorna o mapa do veiculo
+	 * @return map mapa do veiculo
+	 */
 	public HashMap<String, Enum> getMap() {
 		return map;
 	}
+
+	/**
+	 * setMap altera o mapa do veiculo
+	 * @param map mapa do veiculo
+	 */
 	public void setMap(HashMap<String, Enum> map) {
 		this.map = map;
 	}
@@ -300,15 +311,10 @@ public class Veiculo {
 			if (other.chassi != null)
 				return false;
 		} 
-		else 
-		{
-			if ((map.containsKey(TipoVeiculo.CARRO)&&(!chassi.equals(other.chassi))&&(map.get("Cor") != other.map.get("Cor"))&&(map.get("Montadora") != other.map.get("Montadora"))&&(Float.floatToIntBits(preco) 
-					!= Float.floatToIntBits(other.preco))&&(map.get("Cambio") != other.map.get("Cambio"))&&(map.get("Modelo") != other.map.get("Modelo"))&&(map.get("Motorizacao") != other.map.get("Motorizacao"))&&(map.get("Tipo") != other.map.get("Tipo"))))
-				return false;
-			//caso moto
-			if ((map.containsKey(TipoVeiculo.MOTOCICLETA)&&(!chassi.equals(other.chassi))&&(map.get("Cor") != other.map.get("Cor"))&&(map.get("Montadora") != other.map.get("Montadora"))&&(Float.floatToIntBits(preco) 
-					!= Float.floatToIntBits(other.preco))&&(capacidadeDoTanque != other.capacidadeDoTanque)&&(cilindrada != other.cilindrada)&&(map.get("Modelo") != other.map.get("Modelo"))&&(map.get("Tipo") != other.map.get("Tipo"))))
-				return false;
+		if ((!this.getChassi().equals(other.getChassi()))&&(this.map.get("TipoVeiculo") != other.map.get("TipoVeiculo"))&&(this.map.get("Cor") != other.map.get("Cor"))&&
+				(this.map.get("Montadora") != other.map.get("Montadora"))&&(Float.floatToIntBits(this.preco) != Float.floatToIntBits(other.preco))&&
+				(this.map.get("Modelo") != other.map.get("Modelo"))&&(this.map.get("Tipo") != other.map.get("Tipo"))){
+			return false;
 		}
 		return true;
 	}
@@ -318,17 +324,13 @@ public class Veiculo {
 	 */
 	@Override
 	public String toString() {
-		//caso carro
-		if (map.containsValue(TipoVeiculo.CARRO))
-		{
+		if (map.containsValue(TipoVeiculo.CARRO)){
 			return "Carro - Chassi = " + chassi + " Montadora = " + map.get("Montadora")
 					+ " Modelo = " + map.get("Modelo") + " Tipo = " + map.get("Tipo") + " Cor = " + map.get("Cor")
 					+ " Motorizacao = " + map.get("Motorizacao") + " Cambio = " + map.get("Cambio")
 					+ " Preco = " + preco + ".";
 		}
-		//caso moto
-		else
-		{
+		else{
 			return   "Moto - Chassi = " + chassi 			    + " Montadora = " + map.get("Montadora")
 					+ " Modelo = " + map.get("Modelo") 			+ " Tipo = "      + map.get("Tipo") 
 					+ " Cor = "    + map.get("Cor")				+ " Cilindrada = " + cilindrada 

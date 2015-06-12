@@ -11,8 +11,7 @@ package infnet.loja.enums;
  * YAMAHA
  * KAWASAKI
  */
-public enum Montadora 
-{
+public enum Montadora {
 	VOLKSWAGEN(1), 
 	FORD(2), 
 	CHEVROLET(3), 
@@ -22,15 +21,13 @@ public enum Montadora
 	YAMAHA(7),
 	KAWASAKI(8);
 
-	//variavel do enum
 	private int indice;
 
 	/**
 	 * O valor recebido por indice torna-se o indice do enum
 	 * @param indice indice do enum
 	 */
-	private Montadora(int indice) 
-	{
+	private Montadora(int indice) {
 		this.indice = indice ;
 	}
 
@@ -38,8 +35,7 @@ public enum Montadora
 	 * Retorna o valor do indice
 	 * @return indice indice do enum
 	 */
-	public int getIndice() 
-	{
+	public int getIndice() {
 		return indice;
 	}
 }

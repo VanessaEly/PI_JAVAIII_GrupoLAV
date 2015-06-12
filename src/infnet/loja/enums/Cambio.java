@@ -11,7 +11,6 @@ public enum Cambio {
 	SEMI (1),
 	AUTO (2);
 
-	//variavel do enum
 	private int indice;
 
 	/**
